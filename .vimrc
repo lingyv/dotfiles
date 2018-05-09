@@ -90,10 +90,8 @@ set smartcase
 " vim 自身命令行模式智能补全
 set wildmenu
 
-" 剪切板使用 "+ 寄存器
-set clipboard=unnamedplus
 " 剪切板使用 "* 寄存器
-"set clipboard=unnamed
+set clipboard=unnamed
 " 在缩进位置，行结束符，段首可以回删
 set backspace=indent,eol,start
 
@@ -123,13 +121,8 @@ Plugin 'majutsushi/tagbar' " 查看函数列表
 Plugin 'dyng/ctrlsf.vim'    "查找
 Plugin 'terryma/vim-multiple-cursors'   "多处编辑
 Plugin 'scrooloose/nerdcommenter'   "快速注释
-" Plugin 'vim-scripts/DrawIt' "ASCII art 风格的注释
-Plugin 'honza/vim-snippets' "模板补全
-Plugin 'SirVer/ultisnips'   "代码模板
-Plugin 'Valloric/YouCompleteMe' "自动补全
 Plugin 'scrooloose/nerdtree'    "目录树
 Plugin 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plugin 'fatih/vim-go'   "go语言插件
 Plugin 'asins/vimcdoc' "中文文档
 " 插件列表结束
 call vundle#end()

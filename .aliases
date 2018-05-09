@@ -2,8 +2,16 @@ eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
 
 alias vi=vim
+alias vpn=ipsec
 
-alias openvpn_start="sudo openvpn --cd /etc/openvpn/ --config client.conf"
+alias idea="/root/IDEA_License_linux -u lingyv -p 1314 &"
+
+alias ssstart="ssserver -p 8488 -k Ss123456@ -m aes-256-cfb --user nobody -d start"
+alias ssstop="ssserver -d stop"
+alias sslog="less /var/log/shadowsocks.log"
+alias ssrstart="python ~/ss/shadowsocks/server.py -d start"
+alias ssrrestart="python ~/ss/shadowsocks/server.py -d restart"
+alias ssrstop="python ~/ss/shadowsocks/server.py -d stop"
 
 #命令行使用proxychains4
 alias fq=proxychains4
