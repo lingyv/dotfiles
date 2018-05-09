@@ -1,10 +1,29 @@
 export M2_HOME=/usr/local/maven/maven
 export REDIS_HOME=/usr/local/redis/redis
 export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+export GRADLE_USER_HOME=/usr/local/gradle/caches
 export GOPATH=~/Coding/go
 # export ALL_PROXY=socks5://127.0.0.1:1080
 export EDITOR=vim
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
 
+export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/m4/bin:$PATH"
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/bison/bin:$PATH"
+export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+export PATH=$PATH:$M2_HOME/bin
 export PATH=$PATH:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
-export PATH=/usr/local/opt/bison/bin:$PATH
-
