@@ -17,7 +17,7 @@ alias -s js='node'
 alias -s tgz='tar zxvf'
 
 #启动aria2
-alias aria2_start='aria2c --conf-path=/home/lingyv/dotfiles/aria2.conf -D'
+alias aria2_start='aria2c --conf-path=/Users/lingyv/dotfiles/aria2.conf -D'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
