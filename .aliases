@@ -1,8 +1,16 @@
 eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
 
+alias vi=vim
+
+alias openvpn_start="sudo openvpn --cd /etc/openvpn/ --config client.conf"
+
 #命令行使用proxychains4
 alias fq=proxychains4
+
+alias ssrstart="sudo python2 /opt/ssr/shadowsocksr/shadowsocks/local.py -c /etc/shadowsocks.json -d start"
+alias ssrstop="sudo python2 /opt/ssr/shadowsocksr/shadowsocks/local.py -d stop"
+alias ssrrestart="sudo python2 /opt/ssr/shadowsocksr/shadowsocks/local.py -d restart"
 
 #设置npm淘宝源
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
@@ -27,7 +35,7 @@ else # OS X `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -alhF ${colorflag}"
+alias l="ls -lF ${colorflag}"
 
 # List all files colorized in long format, including dot files
 alias la="ls -laF ${colorflag}"

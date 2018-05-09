@@ -90,8 +90,10 @@ set smartcase
 " vim 自身命令行模式智能补全
 set wildmenu
 
+" 剪切板使用 "+ 寄存器
+set clipboard=unnamedplus
 " 剪切板使用 "* 寄存器
-set clipboard=unnamed
+"set clipboard=unnamed
 " 在缩进位置，行结束符，段首可以回删
 set backspace=indent,eol,start
 

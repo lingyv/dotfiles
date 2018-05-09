@@ -1,10 +1,19 @@
-export M2_HOME=/usr/local/maven/maven
-export REDIS_HOME=/usr/local/redis/redis
-export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper
+export M2_HOME=/usr/local/maven/apache-maven-3.3.9
+export REDIS_HOME=/usr/local/redis/redis-3.2.7
+export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper-3.4.9
 export GOPATH=~/Coding/go
 # export ALL_PROXY=socks5://127.0.0.1:1080
 export EDITOR=vim
 
+export PYTHONPATH=/opt/xgboost/python-package
+
+export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
 export PATH=/usr/local/opt/bison/bin:$PATH
 
+# JDK 环境变量
+export JAVA_HOME=/usr/local/jdk/jdk-9.0.1
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=$JAVA_HOME/lib
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+export PATH=~/anaconda3/bin:$PATH

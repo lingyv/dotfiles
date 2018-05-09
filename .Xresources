@@ -1,0 +1,53 @@
+!!$HOME/.Xresources
+!#if __has_include(".extend.Xresources")
+!#include ".extend.Xresources"
+!#endif
+
+URxvt.preeditType:Root
+
+! default input method
+URxvt.inputMethod:fcitx
+
+! color setup
+URxvt.depth:32
+URxvt.inheritPixmap:true
+URxvt.background:#282A36
+URxvt.foreground:#F8F8F2
+URxvt.colorBD:Gray95
+URxvt.colorUL:Green
+URxvt.color1:Red2
+URxvt.color4:RoyalBlue
+URxvt.color5:Magenta2
+URxvt.color8:Gray50
+URxvt.color10:Green2
+URxvt.color12:DodgerBlue
+URxvt.color14:Cyan2
+URxvt.color15:Gray95
+
+! default web brower
+URxvt.urlLauncher:/usr/bin/google-chrome-stable
+URxvt.matcher.button:1
+Urxvt.perl-ext-common:matcher
+
+! scroll bar setting
+URxvt.scrollBar:False
+URxvt.scrollBar_floating:False
+URxvt.scrollstyle:plain
+
+! scroll screen setting
+URxvt.mouseWheelScrollPage:True
+URxvt.scrollTtyOutput:False
+URxvt.scrollWithBuffer:True
+URxvt.scrollTtyKeypress:True
+
+! cursor splash
+URxvt.cursorBlink:True
+URxvt.saveLines:3000
+
+! border setting
+URxvt.borderLess:False
+
+! font setting
+Xft.dpi:96
+URxvt.font:xft:monaco:antialias=True:pixelsize=18,xft:Microsoft YaHei:pixelsize=18
+URxvt.boldfont:xft:monaco:antialias=True:pixelsize=18,xft:Microsoft YaHei:pixelsize=18

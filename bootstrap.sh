@@ -16,6 +16,7 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
     sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
+    sudo ln -s -f ~/dotfiles/.i3 ~/.i3
     # 使用tmux配置文件
     rm -rf ~/.tmux
     git clone https://github.com/gpakosz/.tmux.git ~/.tmux

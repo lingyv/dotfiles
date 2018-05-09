@@ -1,0 +1,24 @@
+out_to_x no
+out_to_console yes
+background no
+double_buffer no
+update_interval 1
+total_run_times 0
+override_utf8_locale no
+short_units yes
+if_up_strictness address
+cpu_avg_samples 2
+
+TEXT
+[
+{ "full_text" : ${if_up wlp3s0}"${downspeed wlp3s0}/s"${else}""${endif}, "color" : "\#33A6B8" },
+{ "full_text" : "${addr wlp3s0}" , "color" : "\#005CAF" },
+{ "full_text" : "${cpu cpu0}% ${cpu cpu1}%", "color" : "\#FBE251" },
+{ "full_text" : "${acpitemp}°C" , "color" : "\#FF1493" },
+{ "full_text" : "${ibm_fan} RPM" , "color" : "\#A96360" },
+{ "full_text" : "${mem} ${memperc}%" , "color" : "\#00FFFF" },
+{ "full_text" : "${fs_free} ${fs_free_perc}%" , "color" : "\#00896C" },
+{ "full_text" : "${time %Y/%m/%d %a}" , "color" : "\#ff797b" },
+{ "full_text" : "${battery_percent}%" , "color" : "\#1B813E" },
+{ "full_text" : "${time %H:%M}" , "color" : "\#F596AA" }
+],
