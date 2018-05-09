@@ -1,4 +1,7 @@
 #!/bin/bash
+# 使用🇨🇳源
+sudo pacman-mirrors -gb testing -c China
+# 添加archlinuxcn源
 #sudo echo "[archlinuxcn]" >> /etc/pacman.conf
 #sudo echo "Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch" >> /etc/pacman.conf
 sudo pacman -Syyu
@@ -8,8 +11,7 @@ sudo pacman -S --noconfirm gvim
 sudo pacman -S --noconfirm zsh
 chsh -s /bin/zsh
 sudo pacman -S --noconfirm tmux
-sudo pacman -S --noconfirm python2
-sudo pacman -S --noconfirm python2-pip
+sudo pacman -S --noconfirm xfce4-terminal
 sudo pacman -S --noconfirm python3-pip
 sudo pacman -S --noconfirm nodejs
 sudo pacman -S --noconfirm npm
