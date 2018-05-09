@@ -1,0 +1,10 @@
+export M2_HOME=/usr/local/maven/maven
+export REDIS_HOME=/usr/local/redis/redis
+export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper
+export GOPATH=~/Coding/go
+# export ALL_PROXY=socks5://127.0.0.1:1080
+export EDITOR=vim
+
+export PATH=$PATH:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
+export PATH=/usr/local/opt/bison/bin:$PATH
+

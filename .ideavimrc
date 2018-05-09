@@ -1,0 +1,185 @@
+" >>>>>>> VIM 设置 <<<<<<<<
+" 关闭兼容模式
+set nocompatible
+" 定义快捷键的前缀，即<leader>
+let mapleader=" "
+
+" 显示相对行号（当前行为绝对行号）
+set nu rnu
+" 在屏幕右下角显示未完成的指令输入
+set showmode
+" 在屏幕右下角显示未完成的指令输入
+set showcmd
+" 上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=3
+
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+" 高亮显示当前行/列
+" set cursorline
+
+" 在输入成对的括号时，Vim会帮助你跳转并高亮一下匹配的括号然后回到你正在输入的位置
+set showmatch
+set matchtime=1
+
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
+" 自适应不同语言的智能缩进
+filetype indent on
+" 自动缩进
+set autoindent
+" 自动对齐
+set shiftround
+
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+
+" 基于缩进或语法进行代码折叠
+set foldmethod=indent
+" set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+
+" 开启实时搜索功能
+set incsearch
+" 高亮搜索 
+set hlsearch
+" 搜索时大小写不敏感
+set ignorecase
+set smartcase
+
+" vim 自身命令行模式智能补全
+set wildmenu
+
+" 剪切板使用 "* 寄存器
+set clipboard=unnamed
+" 在缩进位置，行结束符，段首可以回删
+set backspace=indent,eol,start
+
+" 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
+set list listchars=eol:¬,tab:▸\ ,trail:.,
+
+" >>>>>>> IDEA 设置 <<<<<<<<
+" ==================================================
+" 查看所有action --> ':actionlist'
+" ==================================================
+
+" 将vim搜索替换为idea搜索
+nnoremap / :action Find<CR>
+" 绑定vim自带搜索
+nnoremap <leader>/ /
+
+" 折叠所有代码
+nmap <Leader>{ zM
+" 打开所有折叠
+nmap <Leader>} zR
+" 折叠当前代码
+nnoremap <leader>[ :action CollapseRegion<CR>
+" 打开当前折叠
+nnoremap <leader>] :action ExpandRegion<CR>
+
+" 当前行打断点
+nnoremap <leader>bb :action ToggleLineBreakpoint<CR>
+" 查看所有断点
+nnoremap <leader>br :action ViewBreakpoints<CR>
+
+" 折叠文档
+nnoremap <leader>d[ :action CollapseDocComments<CR>
+" 打开文档
+nnoremap <leader>d] :action ExpandDocComments<CR>
+
+" 将当前行注释
+nnoremap <leader>cc :action CommentByLineComment<CR>
+nnoremap <leader>cv :action ChangeView<CR>
+" 关闭当前Tab
+nnoremap <leader>ce :action CloseEditor<CR>
+" 关闭其他Tab
+nnoremap <leader>coe :action CloseAllEditorsButActive<CR>
+" 关闭Active Tab
+nnoremap <leader>ct  :action CloseActiveTab<CR>
+" 选择配置Run
+nnoremap <leader>cr :action ChooseRunConfiguration<CR>
+" 选择配置Debug
+nnoremap <leader>cd :action ChooseDebugConfiguration<CR>
+
+nnoremap <leader>ga :action GotoAction<CR>
+nnoremap <leader>gc :action GotoClass<CR>
+nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gf :action GotoFile<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>gs :action GotoSymbol<CR>
+nnoremap <leader>gt :action GotoTest<CR>
+
+" 在资源管理器中显示文件
+nnoremap <leader>fp :action ShowFilePath<CR>
+" 查找所有引用
+nnoremap <leader>fu :action FindUsages<CR>
+
+" 检查代码
+nnoremap <leader>ic :action InspectCode<CR>
+
+" 打开maven窗口
+nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<CR>
+" 添加书签
+nnoremap <leader>m0 :action ToggleBookmark0<CR>
+nnoremap <leader>m1 :action ToggleBookmark1<CR>
+nnoremap <leader>m2 :action ToggleBookmark2<CR>
+nnoremap <leader>m3 :action ToggleBookmark3<CR>
+nnoremap <leader>m4 :action ToggleBookmark4<CR>
+nnoremap <leader>m5 :action ToggleBookmark5<CR>
+nnoremap <leader>m6 :action ToggleBookmark6<CR>
+nnoremap <leader>m7 :action ToggleBookmark7<CR>
+nnoremap <leader>m8 :action ToggleBookmark8<CR>
+nnoremap <leader>m9 :action ToggleBookmark9<CR>
+
+" 优化import
+nnoremap <leader>oi :action OptimizeImports<CR>
+
+" 显示弹出菜单
+nnoremap <leader>pm :action ShowPopupMenu<CR>
+" 显示参数信息
+nnoremap <leader>pi :action ParameterInfo<CR>
+
+" 最近打开文件
+nnoremap <leader>rf :action RecentFiles<CR>
+" 最近改变
+nnoremap <leader>rc :action RecentChanges<CR>
+" 最近修改文件
+nnoremap <leader>rcf :action RecentChangedFiles<CR>
+" 替换
+nnoremap <leader>rp :action Replace<CR>
+" 重命名当前元素
+nnoremap <leader>re :action RenameElement<CR>
+" 重命名当前文件
+nnoremap <leader>rnf :action RenameFile<CR>
+
+" 格式化代码
+nnoremap <leader>fm :action ReformatCode<CR>
+
+nnoremap <leader>se :action SearchEverywhere<CR>
+" 显示引用
+nnoremap <leader>su :action ShowUsages<CR>
+
+nnoremap <leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
+vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
+
+" 跳转到书签
+nnoremap <leader>`0:action GotoBookmark0<CR>
+nnoremap <leader>`1:action GotoBookmark1<CR>
+nnoremap <leader>`2:action GotoBookmark2<CR>
+nnoremap <leader>`3:action GotoBookmark3<CR>
+nnoremap <leader>`4:action GotoBookmark4<CR>
+nnoremap <leader>`5:action GotoBookmark5<CR>
+nnoremap <leader>`6:action GotoBookmark6<CR>
+nnoremap <leader>`7:action GotoBookmark7<CR>
+nnoremap <leader>`8:action GotoBookmark8<CR>
+nnoremap <leader>`9:action GotoBookmark9<CR>
