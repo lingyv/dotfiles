@@ -1,9 +1,8 @@
 #!/bin/bash
 # 使用🇨🇳源
-sudo pacman-mirrors -gb testing -c China
+sudo pacman-mirrors -i -c China -m rank
 # 添加archlinuxcn源
-#sudo echo "[archlinuxcn]" >> /etc/pacman.conf
-#sudo echo "Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch" >> /etc/pacman.conf
+echo -e "\n[archlinuxcn]\nServer = https://mirrors.ustc.edu.cn/archlinuxcn/$arch" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 sudo pacman -S --noconfirm git
@@ -17,11 +16,13 @@ sudo pacman -S --noconfirm nodejs
 sudo pacman -S --noconfirm npm
 sudo pacman -S --noconfirm tor-browser
 sudo pacman -S --noconfirm autojump
+sudo pacman -S --noconfirm tldr
 sudo pacman -S --noconfirm thefuck
 sudo pacman -S --noconfirm silversearcher-ag
 sudo pacman -S --noconfirm aria2
 sudo pacman -S --noconfirm mpv
 sudo pacman -S --noconfirm google-chrome
+sudo pacman -S --noconfirm go
 sudo pacman -S --noconfirm firefox
 sudo pacman -S --noconfirm p7zip
 sudo pacman -S --noconfirm tree
