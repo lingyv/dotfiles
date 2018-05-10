@@ -28,7 +28,8 @@ floating_modifier $mod
 
 # 启动一个终端 start a terminal
 #bindsym $mod+Return exec terminal
-bindsym $mod+Return exec urxvt -sh 40
+# bindsym $mod+Return exec urxvt -sh 40
+bindsym $mod+Return exec xfce4-terminal
 
 # 杀死当前窗口 kill focused window
 bindsym $mod+Shift+q kill
@@ -383,7 +384,7 @@ bar {
     height 28
 
 	#status_command i3status
-	status_command  /home/lingyv/dotfiles/.i3/barconky.sh
+	status_command  ~/dotfiles/.i3/barconky.sh
 	#position bottom
 	position top
 
