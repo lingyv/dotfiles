@@ -10,19 +10,24 @@ sudo pacman -S --noconfirm gvim
 sudo pacman -S --noconfirm zsh
 chsh -s /bin/zsh
 sudo pacman -S --noconfirm tmux
+sudo pacman -S --noconfirm cmake
 sudo pacman -S --noconfirm xfce4-terminal
-sudo pacman -S --noconfirm python3-pip
+sudo pacman -S --noconfirm python-pip
 sudo pacman -S --noconfirm nodejs
 sudo pacman -S --noconfirm npm
+sudo pacman -S --noconfirm anaconda
 sudo pacman -S --noconfirm tor-browser
 sudo pacman -S --noconfirm autojump
 sudo pacman -S --noconfirm tldr
+sudo pacman -S --noconfirm gradle
 sudo pacman -S --noconfirm thefuck
 sudo pacman -S --noconfirm silversearcher-ag
 sudo pacman -S --noconfirm aria2
 sudo pacman -S --noconfirm mpv
 sudo pacman -S --noconfirm google-chrome
 sudo pacman -S --noconfirm go
+sudo pacman -S --noconfirm tig
+sudo pacman -S --noconfirm thunderbird
 sudo pacman -S --noconfirm firefox
 sudo pacman -S --noconfirm p7zip
 sudo pacman -S --noconfirm tree
@@ -37,6 +42,10 @@ systemctl mask systemd-rfkill.service
 systemctl mask systemd-rfkill.socket
 sudo pacman -S fcitx-configtool fcitx-im fcitx-rime
 sudo pacman -Syu yaourt
+sudo pacman -S --noconfirm intellij-idea-ultimate-edition
+sudo pacman -S --noconfirm goland
+sudo pacman -S --noconfirm visual-studio-code-bin
+
 
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
