@@ -41,7 +41,7 @@ bindsym $mod+d exec rofi -show run
 bindsym Mod1+space exec rofi -show window
 
 #设置壁纸
-exec --no-startup-id feh --bg-scale /home/lingyv/Pictures/WallPapers
+exec --no-startup-id feh --bg-scale ~/Pictures/WallPapers
 
 # 启动分类菜单 launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu

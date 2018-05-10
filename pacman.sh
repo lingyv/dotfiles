@@ -46,6 +46,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
 
+git clone https://github.com/shadowsocksr-backup/shadowsocksr.git /opt/ssr
+
 sudo echo "export GTK_IM_MODULE=fcitx" >> ~/.xprofile
 sudo echo "export QT_IM_MODULE=fcitx" >> ~/.xprofile
 sudo echo "export XMODIFIERS=@im=fcitx" >> ~/.xprofile
