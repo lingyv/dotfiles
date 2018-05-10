@@ -1,5 +1,28 @@
-# 我的`.`配置文件
-存放💻中的配置文件, 包括`macOS`和`GNU/Linux`, 用于重装系统或配置新电脑时一键恢复使用环境.
+# 我的配置文件
+存放我💻中的配置文件, 包括`macOS`和`GNU/Linux`, 用于重装系统或配置新电脑时一键恢复环境.
+
+# 使用方法
+1. 克隆到本地
+```bash
+git clone https://github.com/lingyv/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+```
+2. 执行脚本
+- 如果是macOS:
+
+```bash
+git checkout mac
+./brew.sh
+./bootstrap.sh
+```
+
+- 如果是Linux:
+
+```bash
+git checkout linux
+./apt.sh(或pacman.sh)
+./bootstrap.sh
+```
 
 # 文件分类
 1. 安装软件的脚本:
