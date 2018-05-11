@@ -101,6 +101,9 @@ set list listchars=eol:¬,tab:▸\ ,trail:.,
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
+" fzf支持
+set rtp+=/usr/local/opt/fzf
+
 " vundle 环境设置
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -121,7 +124,6 @@ Plugin 'majutsushi/tagbar' " 查看函数列表
 Plugin 'dyng/ctrlsf.vim'    "查找
 Plugin 'terryma/vim-multiple-cursors'   "多处编辑
 Plugin 'scrooloose/nerdcommenter'   "快速注释
-" Plugin 'vim-scripts/DrawIt' "ASCII art 风格的注释
 Plugin 'honza/vim-snippets' "模板补全
 Plugin 'SirVer/ultisnips'   "代码模板
 Plugin 'Valloric/YouCompleteMe' "自动补全
@@ -129,6 +131,7 @@ Plugin 'scrooloose/nerdtree'    "目录树
 Plugin 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
 Plugin 'fatih/vim-go'   "go语言插件
 Plugin 'asins/vimcdoc' "中文文档
+Plugin 'junegunn/fzf.vim' "fzf
 " 插件列表结束
 call vundle#end()
 filetype plugin indent on
@@ -230,14 +233,13 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
-nnoremap <Leader>sp :CtrlSF<CR>
+" 插件在工程内全局查找
+nnoremap <C-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
-
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
 	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -246,7 +248,7 @@ let g:Lf_NormalMap = {
 	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
-
+" F2查看函数列表
 noremap <F2> :LeaderfFunction!<cr>
 
 " 插件Better Rainbow Parentheses
