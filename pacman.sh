@@ -21,7 +21,7 @@ sudo pacman -S --noconfirm autojump
 sudo pacman -S --noconfirm tldr
 sudo pacman -S --noconfirm gradle
 sudo pacman -S --noconfirm thefuck
-sudo pacman -S --noconfirm silversearcher-ag
+sudo pacman -S --noconfirm the_silver_searcher
 sudo pacman -S --noconfirm aria2
 sudo pacman -S --noconfirm mpv
 sudo pacman -S --noconfirm google-chrome
