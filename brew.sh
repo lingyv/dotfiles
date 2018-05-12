@@ -131,6 +131,9 @@ brew install htop
 brew install tldr
 brew install scala
 brew install sbt
+brew install icdiff
+# 安装mac-cli
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
 
 # 安装oh-my-zsh
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
