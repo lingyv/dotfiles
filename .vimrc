@@ -132,9 +132,9 @@ Plugin 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间�
 Plugin 'fatih/vim-go'   "go语言插件
 Plugin 'asins/vimcdoc' "中文文档
 Plugin 'junegunn/fzf.vim' "fzf
-Plugin 'tpope/vim-fugitive' "fzf
-Plugin 'airblade/vim-gitgutter' "fzf
-Plugin 'junegunn/gv.vim' "fzf
+Plugin 'tpope/vim-fugitive' "vim 里使用 git 命令
+Plugin 'airblade/vim-gitgutter' "显示文件变动
+Plugin 'junegunn/gv.vim' "git commit 浏览器
 " 插件列表结束
 call vundle#end()
 filetype plugin indent on
