@@ -50,7 +50,7 @@ ZSH_THEME="lingyv"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump osx zsh-syntax-highlighting zsh-autosuggestions vi-mode vim-interaction)
+plugins=(git autojump osx zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
