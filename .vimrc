@@ -31,8 +31,6 @@ set visualbell t_vb=
 filetype on
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
-" 开启缩进规则
-filetype indent on 
 " 根据不同的文件类型执行不同的命令 
 " c/c++类型 
 :autocmd FileType c,cpp :set foldmethod=syntax 
@@ -104,40 +102,31 @@ cmap w!! w !sudo tee >/dev/null %
 " fzf支持
 set rtp+=/usr/local/opt/fzf
 
-" vundle 环境设置
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/phd'
-Plugin 'lingyv/Colorful'
-Plugin 'dracula/vim'
-Plugin 'Lokaltog/vim-powerline' "美化状态栏
-Plugin 'kien/rainbow_parentheses.vim' "为括号上色
-Plugin 'Raimondi/delimitMate' " 自动补全单引号，双引号等
-Plugin 'docunext/closetag.vim' " 自动补全html/xml标签
-Plugin 'Yggdroot/LeaderF' " 查看函数列表
-Plugin 'majutsushi/tagbar' " 查看函数列表
-Plugin 'dyng/ctrlsf.vim'    "查找
-Plugin 'terryma/vim-multiple-cursors'   "多处编辑
-Plugin 'scrooloose/nerdcommenter'   "快速注释
-Plugin 'honza/vim-snippets' "模板补全
-Plugin 'SirVer/ultisnips'   "代码模板
-Plugin 'Valloric/YouCompleteMe' "自动补全
-Plugin 'scrooloose/nerdtree'    "目录树
-Plugin 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plugin 'fatih/vim-go'   "go语言插件
-Plugin 'asins/vimcdoc' "中文文档
-Plugin 'junegunn/fzf.vim' "fzf
-Plugin 'tpope/vim-fugitive' "vim 里使用 git 命令
-Plugin 'airblade/vim-gitgutter' "显示文件变动
-Plugin 'junegunn/gv.vim' "git commit 浏览器
-" 插件列表结束
-call vundle#end()
-filetype plugin indent on
+" 插件管理
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/phd'
+Plug 'lingyv/Colorful'
+Plug 'Lokaltog/vim-powerline' "美化状态栏
+Plug 'kien/rainbow_parentheses.vim' "为括号上色
+Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
+Plug 'docunext/closetag.vim' " 自动补全html/xml标签
+Plug 'ludovicchabant/vim-gutentags' "自动索引
+Plug 'Yggdroot/LeaderF' " 查看函数列表
+Plug 'dyng/ctrlsf.vim'    "查找
+Plug 'terryma/vim-multiple-cursors'   "多处编辑
+Plug 'scrooloose/nerdcommenter'   "快速注释
+Plug 'honza/vim-snippets' "模板补全
+Plug 'SirVer/ultisnips'   "代码模板
+Plug 'Valloric/YouCompleteMe' "自动补全
+Plug 'scrooloose/nerdtree'    "目录树
+Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
+Plug 'fatih/vim-go'   "go语言插件
+Plug 'asins/vimcdoc' "中文文档
+Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
+Plug 'mhinz/vim-signify' "显示文件变动
+Plug 'junegunn/gv.vim' "git commit 浏览器
+call plug#end()
 
 " 设定 doc 文档目录
 let helptags=$VIM."/vimfiles/doc"
@@ -240,9 +229,17 @@ map <Leader>k <Plug>(easymotion-k)
 nnoremap <C-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
+" F2查看函数列表
+noremap <F2> :LeaderfFunction!<cr>
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
-let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0}
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
 	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -251,8 +248,7 @@ let g:Lf_NormalMap = {
 	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
-" F2查看函数列表
-noremap <F2> :LeaderfFunction!<cr>
+
 
 " 插件Better Rainbow Parentheses
 let g:rbpt_colorpairs = [
@@ -279,6 +275,23 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" vim-gutentags 配置
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " 检测函数（检测光标位置处文字的样式名）
 function! <SID>SynStack()
