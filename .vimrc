@@ -31,8 +31,6 @@ set visualbell t_vb=
 filetype on
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
-" 开启缩进规则
-filetype indent on 
 " 根据不同的文件类型执行不同的命令 
 " c/c++类型 
 :autocmd FileType c,cpp :set foldmethod=syntax 
@@ -101,32 +99,27 @@ set list listchars=eol:¬,tab:▸\ ,trail:.,
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
-" vundle 环境设置
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/phd'
-Plugin 'lingyv/Colorful'
-Plugin 'dracula/vim'
-Plugin 'Lokaltog/vim-powerline' "美化状态栏
-Plugin 'kien/rainbow_parentheses.vim' "为括号上色
-Plugin 'Raimondi/delimitMate' " 自动补全单引号，双引号等
-Plugin 'docunext/closetag.vim' " 自动补全html/xml标签
-Plugin 'Yggdroot/LeaderF' " 查看函数列表
-Plugin 'majutsushi/tagbar' " 查看函数列表
-Plugin 'dyng/ctrlsf.vim'    "查找
-Plugin 'terryma/vim-multiple-cursors'   "多处编辑
-Plugin 'scrooloose/nerdcommenter'   "快速注释
-Plugin 'scrooloose/nerdtree'    "目录树
-Plugin 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plugin 'asins/vimcdoc' "中文文档
-" 插件列表结束
-call vundle#end()
-filetype plugin indent on
+" 插件管理
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/phd'
+Plug 'lingyv/Colorful'
+Plug 'Lokaltog/vim-powerline' "美化状态栏
+Plug 'kien/rainbow_parentheses.vim' "为括号上色
+Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
+Plug 'docunext/closetag.vim' " 自动补全html/xml标签
+Plug 'ludovicchabant/vim-gutentags' "自动索引
+Plug 'Yggdroot/LeaderF' " 查看函数列表
+Plug 'dyng/ctrlsf.vim'    "查找
+Plug 'terryma/vim-multiple-cursors'   "多处编辑
+Plug 'scrooloose/nerdcommenter'   "快速注释
+Plug 'scrooloose/nerdtree'    "目录树
+Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
+Plug 'asins/vimcdoc' "中文文档
+Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
+Plug 'mhinz/vim-signify' "显示文件变动
+Plug 'junegunn/gv.vim' "git commit 浏览器
+call plug#end()
 
 " 设定 doc 文档目录
 let helptags=$VIM."/vimfiles/doc"
@@ -142,72 +135,6 @@ colorscheme Colorful
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
-
-" 禁止光标闪烁
-set gcr=a:block-blinkon0
-" 禁止显示滚动条
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-" 禁止显示菜单和工具条
-set guioptions-=m
-set guioptions-=T
-
-" UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
-
-" 提供python3自动完成
-let g:ycm_python_binary_path = 'python'
-" YCM 补全菜单配色
-" 菜单
-" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#12FF12
-" 选中项
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#106900
-" 补全功能在注释中同样有效
-let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
-let g:ycm_confirm_extra_conf=0
-" 开启 YCM 标签补全引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-" inoremap <leader>; <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 语法关键字补全
-let g:ycm_seed_identifiers_with_syntax=1
-" 跳转到定义处 查找光标下的符号，跳转到它的定义;如果定义不能访问，则跳转到符号的声明
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-" 跳转到引用处 查找项目中的所有引用到光标下的标识符
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
-" 获取变量或者方法的类型
-nnoremap <leader>gt :YcmCompleter GetType<CR>
-" 获取文档
-nnoremap <leader>gd :YcmCompleter GetDoc<CR>
-
-" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
-nmap <Leader>t :NERDTreeToggle<CR>
-" 设置NERDTree子窗口宽度
-let NERDTreeWinSize=32
-" 设置NERDTree子窗口位置
-let NERDTreeWinPos="left"
-" 显示隐藏文件
-let NERDTreeShowHidden=1
-" NERDTree 子窗口中不显示冗余帮助信息
-let NERDTreeMinimalUI=1
-" 删除文件时自动删除文件对应 buffer
-let NERDTreeAutoDeleteBuffer=1
-" open NERDTree automatically when vim starts up on opening a directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " 快速注释配置
 " 默认情况下在注释分隔符后添加空格
@@ -225,14 +152,21 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
-nnoremap <Leader>sp :CtrlSF<CR>
+" 插件在工程内全局查找
+nnoremap <C-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
+" F2查看函数列表
+noremap <F2> :LeaderfFunction!<cr>
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
-let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
-
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0}
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
 	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -242,7 +176,6 @@ let g:Lf_NormalMap = {
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
 
-noremap <F2> :LeaderfFunction!<cr>
 
 " 插件Better Rainbow Parentheses
 let g:rbpt_colorpairs = [
@@ -269,6 +202,23 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" vim-gutentags 配置
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " 检测函数（检测光标位置处文字的样式名）
 function! <SID>SynStack()
