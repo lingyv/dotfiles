@@ -155,9 +155,7 @@ set guioptions-=m
 set guioptions-=T
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<C-Space>"
-let g:UltiSnipsJumpBackwardTrigger="<C-Space>"
+let g:UltiSnipsExpandTrigger="<c-space>"
 
 " 提供python3自动完成
 let g:ycm_python_binary_path = 'python'
