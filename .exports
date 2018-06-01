@@ -4,8 +4,12 @@ export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper
 export GOPATH=~/coding/go
 # export ALL_PROXY=socks5://127.0.0.1:1080
 export EDITOR=vim
+export JAVA_HOME=/usr/lib/jvm/default
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export HADOOP_HOME=/usr/local/hadoop/hadoop
+export SPARK_HOME=/usr/local/spark/spark
 
 export PYTHONPATH=/opt/xgboost/python-package
 
-export PATH=$PATH:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
+export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
 export PATH=/usr/local/opt/bison/bin:$PATH
