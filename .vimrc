@@ -94,7 +94,7 @@ set clipboard=unnamed
 set backspace=indent,eol,start
 
 " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
-set list listchars=eol:ϟ,tab:ϊ♪,trail:·,extends:⇒,precedes:⇐,
+" set list listchars=eol:ϟ,tab:ϊ♪,trail:·,extends:⇒,precedes:⇐,
 
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
