@@ -16,6 +16,9 @@ set showcmd
 " 上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=3
 
+" 开启24bit真彩色
+set termguicolors
+
 " 总是显示状态栏
 set laststatus=2
 " 显示光标当前位置
@@ -96,7 +99,7 @@ set clipboard=unnamedplus
 set backspace=indent,eol,start
 
 " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
-set list listchars=eol:ϟ,tab:ϊ♪,trail:·,extends:⇒,precedes:⇐,
+" set list listchars=eol:ϟ,tab:ϊ♪,trail:·,extends:⇒,precedes:⇐,
 
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
@@ -109,6 +112,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/phd'
 Plug 'lingyv/Colorful'
+Plug 'iCyMind/NeoSolarized'
+Plug 'KeitaNakamura/neodark.vim'
 Plug 'Lokaltog/vim-powerline' "美化状态栏
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
@@ -126,7 +131,8 @@ Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的�
 Plug 'fatih/vim-go'   "go语言插件
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
-Plug 'mhinz/vim-signify' "显示文件变动
+" Plug 'mhinz/vim-signify' "显示文件变动
+Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
 call plug#end()
 
@@ -136,11 +142,9 @@ set helplang=cn
 
 " 配色方案
 set background=dark
-" colorscheme solarized
 colorscheme Colorful
-" colorscheme molokai
-" colorscheme phd
-" color dracula
+" colorscheme NeoSolarized
+" colorscheme neodark
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
@@ -157,9 +161,7 @@ set guioptions-=m
 set guioptions-=T
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<C-Space>"
-let g:UltiSnipsJumpBackwardTrigger="<C-Space>"
+let g:UltiSnipsExpandTrigger="<c-space>"
 
 " 提供python3自动完成
 let g:ycm_python_binary_path = 'python'
