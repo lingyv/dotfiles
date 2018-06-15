@@ -8,8 +8,9 @@ export JAVA_HOME=/usr/lib/jvm/default
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export HADOOP_HOME=/usr/local/hadoop/hadoop
 export SPARK_HOME=/usr/local/spark/spark
+export HIVE_HOME=/usr/local/hive/hive
 
 export PYTHONPATH=/opt/xgboost/python-package
 
-export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
+export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HIVE_HOME/bin:$REDIS_HOME/src:$ZOOKEEPER_HOME/bin
 export PATH=/usr/local/opt/bison/bin:$PATH

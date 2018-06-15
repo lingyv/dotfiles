@@ -8,7 +8,7 @@ alias openvpn_start="sudo openvpn --cd /etc/openvpn/ --config client.conf"
 #命令行使用proxychains4
 alias fq=proxychains4
 
-alias activate_conda="export PATH=/opt/anaconda/bin:$PATH"
+alias activate_conda="export PATH=~/anaconda3/bin:$PATH"
 
 alias ssrstart="sudo python2 /opt/ssr/shadowsocksr/shadowsocks/local.py -c /etc/shadowsocks.json -d start"
 alias ssrstop="sudo python2 /opt/ssr/shadowsocksr/shadowsocks/local.py -d stop"

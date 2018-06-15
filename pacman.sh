@@ -15,7 +15,6 @@ sudo pacman -S --noconfirm xfce4-terminal
 sudo pacman -S --noconfirm python-pip
 sudo pacman -S --noconfirm nodejs
 sudo pacman -S --noconfirm npm
-sudo pacman -S --noconfirm anaconda
 sudo pacman -S --noconfirm tor-browser
 sudo pacman -S --noconfirm autojump
 sudo pacman -S --noconfirm tldr
