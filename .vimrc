@@ -7,6 +7,10 @@ let mapleader=" "
 let &termencoding=&encoding 
 set fileencodings=utf-8,gbk
 
+" MacVim字体
+set macligatures
+set guifont=Fira\ Code\ Retina:h13
+
 " 显示相对行号（当前行为绝对行号）
 set nu rnu
 " 在屏幕右下角显示未完成的指令输入
