@@ -1,3 +1,6 @@
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 export M2_HOME=/usr/local/maven/maven
 export REDIS_HOME=/usr/local/redis/redis
 export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper

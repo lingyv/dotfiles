@@ -148,7 +148,7 @@ brew cleanup
 
 #图形程序
 caskApps=(
-    java
+    java@8
     alfred
     cheatsheet
     google-chrome
