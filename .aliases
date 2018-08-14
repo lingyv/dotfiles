@@ -25,6 +25,7 @@ alias -s jar='java -jar'
 alias -s go='go run'
 alias -s js='node'
 alias -s tgz='tar zxvf'
+alias -s py='python'
 
 #启动aria2
 alias aria2_start='aria2c --conf-path=/home/lingyv/dotfiles/aria2.conf -D'
