@@ -238,7 +238,7 @@ nnoremap <C-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
 " F2查看函数列表
-noremap <Leader>vf :LeaderfFunction!<cr>
+noremap <Leader>m :LeaderfFunction!<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
