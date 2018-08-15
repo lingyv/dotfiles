@@ -193,6 +193,11 @@ nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
 " 获取文档
 nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+" 自动弹出语义补全
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
 nmap <Leader>t :NERDTreeToggle<CR>
