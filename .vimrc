@@ -130,7 +130,8 @@ Plug 'SirVer/ultisnips'   "代码模板
 Plug 'Valloric/YouCompleteMe' "自动补全
 Plug 'scrooloose/nerdtree'    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plug 'fatih/vim-go'   "go语言插件
+Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 " Plug 'mhinz/vim-signify' "显示文件变动
