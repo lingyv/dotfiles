@@ -78,7 +78,7 @@ nmap <Leader>[ zM
 " 打开所有折叠
 nmap <Leader>] zR
 " 打开或关闭当前折叠
-nnoremap <c-[> za
+nnoremap <Leader>- za
 
 " 开启实时搜索功能
 set incsearch
