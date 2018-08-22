@@ -67,6 +67,7 @@ chsh -s /bin/zsh
 
 # Install more recent versions of some OS X tools.
 brew install vim --with-override-system-vi
+brew install neovim
 brew install homebrew/dupes/openssh
 
 # Install font tools.
