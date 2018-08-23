@@ -139,6 +139,7 @@ Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 " Plug 'mhinz/vim-signify' "显示文件变动
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
+Plug 'skywind3000/asyncrun.vim' "异步运行命令
 call plug#end()
 
 " 设定 doc 文档目录
@@ -291,6 +292,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " vim-gutentags 配置
+set tags=./tags;,tags
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
