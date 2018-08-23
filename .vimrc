@@ -123,7 +123,7 @@ Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF' " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
-Plug 'w0rp/ale' "异步代码检查
+" Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
