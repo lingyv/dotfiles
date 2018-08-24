@@ -361,6 +361,7 @@ function! AutoSetFileHead()
 endfunc
 
 " normal模式切换到指定tab
+noremap <leader>n :tabnew<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
