@@ -78,11 +78,11 @@ set foldmethod=indent
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 " 折叠所有代码
-nmap <Leader>[ zM
+nmap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>] zR
+nmap <Leader>} zR
 " 打开或关闭当前折叠
-nnoremap <Leader>- za
+nnoremap <Leader>[ za
 
 " 开启实时搜索功能
 set incsearch
