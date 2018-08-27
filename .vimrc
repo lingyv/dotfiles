@@ -348,6 +348,8 @@ function! AutoSetFileHead()
     "如果文件类型为python
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
+        call append(1, "__author__ = 'lingyv'")
+        call append(1, "")
         call append(1, "\# -*- coding: utf-8 -*-")
     endif
 
