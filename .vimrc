@@ -119,12 +119,10 @@ Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF' " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
-" Plug 'w0rp/ale' "异步代码检查
+Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
-Plug 'honza/vim-snippets' "模板补全
-Plug 'SirVer/ultisnips'   "代码模板
 Plug 'Valloric/YouCompleteMe' "自动补全
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
@@ -132,7 +130,6 @@ Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
-" Plug 'mhinz/vim-signify' "显示文件变动
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
 Plug 'skywind3000/asyncrun.vim' "异步运行命令
@@ -161,6 +158,13 @@ set guioptions-=R
 " 禁止显示菜单和工具条
 set guioptions-=m
 set guioptions-=T
+
+" 代码检查
+let g:ale_sign_error = '😡'
+let g:ale_sign_warning = '😢'
+" let g:ale_sign_error = '✗'
+" let g:ale_sign_warning = '⚡'
+
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
