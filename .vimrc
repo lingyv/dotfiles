@@ -74,11 +74,11 @@ set foldmethod=indent
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 " 折叠所有代码
-nmap <Leader>[ zM
+nmap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>] zR
+nmap <Leader>} zR
 " 打开或关闭当前折叠
-nnoremap <space> za
+nnoremap <Leader>[ za
 
 " 开启实时搜索功能
 set incsearch
@@ -121,19 +121,20 @@ Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF' " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
+Plug 'w0rp/ale' "异步代码检查
+Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
-Plug 'honza/vim-snippets' "模板补全
-Plug 'SirVer/ultisnips'   "代码模板
 Plug 'Valloric/YouCompleteMe' "自动补全
-Plug 'scrooloose/nerdtree'    "目录树
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plug 'fatih/vim-go'   "go语言插件
+Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
-" Plug 'mhinz/vim-signify' "显示文件变动
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
+Plug 'skywind3000/asyncrun.vim' "异步运行命令
 call plug#end()
 
 " 设定 doc 文档目录
@@ -159,6 +160,13 @@ set guioptions-=R
 " 禁止显示菜单和工具条
 set guioptions-=m
 set guioptions-=T
+
+" 代码检查
+let g:ale_sign_error = '😡'
+let g:ale_sign_warning = '😢'
+" let g:ale_sign_error = '✗'
+" let g:ale_sign_warning = '⚡'
+
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -194,6 +202,11 @@ nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
 " 获取文档
 nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+" 自动弹出语义补全
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
 nmap <Leader>t :NERDTreeToggle<CR>
@@ -234,7 +247,7 @@ nnoremap <C-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
 " F2查看函数列表
-noremap <F2> :LeaderfFunction!<cr>
+noremap <Leader>m :LeaderfFunction!<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -281,6 +294,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " vim-gutentags 配置
+set tags=./tags;,tags
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
@@ -340,6 +354,8 @@ function! AutoSetFileHead()
     "如果文件类型为python
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
+        call append(1, "__author__ = 'lingyv'")
+        call append(1, "")
         call append(1, "\# -*- coding: utf-8 -*-")
     endif
 
@@ -349,6 +365,7 @@ function! AutoSetFileHead()
 endfunc
 
 " normal模式切换到指定tab
+noremap <leader>n :tabnew<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -360,3 +377,5 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
+" 格式化 Python 代码
+autocmd FileType python nnoremap <Leader>l :0,$!yapf<CR>

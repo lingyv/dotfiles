@@ -103,13 +103,13 @@ nnoremap <leader>cv :action ChangeView<CR>
 " 关闭当前Tab
 nnoremap <leader>ce :action CloseEditor<CR>
 " 关闭其他Tab
-nnoremap <leader>coe :action CloseAllEditorsButActive<CR>
+nnoremap <leader>co :action CloseAllEditorsButActive<CR>
 " 关闭Active Tab
 nnoremap <leader>ct  :action CloseActiveTab<CR>
 " 选择配置Run
-nnoremap <leader>cr :action ChooseRunConfiguration<CR>
+nnoremap <leader>rc :action ChooseRunConfiguration<CR>
 " 选择配置Debug
-nnoremap <leader>cd :action ChooseDebugConfiguration<CR>
+nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
 
 nnoremap <leader>ga :action GotoAction<CR>
 nnoremap <leader>gc :action GotoClass<CR>
@@ -163,7 +163,7 @@ nnoremap <leader>re :action RenameElement<CR>
 nnoremap <leader>rnf :action RenameFile<CR>
 
 " 格式化代码
-nnoremap <leader>fm :action ReformatCode<CR>
+nnoremap <leader>l :action ReformatCode<CR>
 
 nnoremap <leader>se :action SearchEverywhere<CR>
 " 显示引用
