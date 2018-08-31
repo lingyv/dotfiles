@@ -5,6 +5,7 @@ yum install -y git
 yum install -y neovim
 yum install -y zsh
 yum install -y tmux
+yum install -y autojump
 yum install -y htop
 yum install -y ctags
 
