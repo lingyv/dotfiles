@@ -6,11 +6,6 @@ function doIt() {
     sudo ln -s -f ~/lingyv/dotfiles/.zshrc ~/.zshrc
     sudo ln -s -f ~/lingyv/.vim ~/.config/nvim
     sudo ln -s -f ~/lingyv/dotfiles/.vimrc ~/.config/nvim/init.vim
-    # 使用tmux配置文件
-    rm -rf ~/.tmux
-    git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-    ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
-    ln -s -f ~/lingyv/dotfiles/.tmux.conf.local ~/.tmux.conf.local
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
