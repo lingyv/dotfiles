@@ -36,6 +36,7 @@ sudo pacman -Syu yaourt
 sudo pacman -S --noconfirm intellij-idea-ultimate-edition
 sudo pacman -S --noconfirm goland
 sudo pacman -S --noconfirm visual-studio-code-bin
+sudo pacman -S fprintd libfprint
 
 
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
