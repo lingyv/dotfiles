@@ -381,3 +381,6 @@ noremap <leader>0 :tablast<cr>
 
 " 格式化 Python 代码
 autocmd FileType python nnoremap <Leader>l :0,$!yapf<CR>
+
+" 可视模式下快速全局替换
+vmap <C-R> y:%s`<C-R>"``g<left><left>
