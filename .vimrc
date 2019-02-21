@@ -117,7 +117,7 @@ Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
-Plug 'Yggdroot/LeaderF' " 查看函数列表
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
 Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
@@ -127,6 +127,8 @@ Plug 'Valloric/YouCompleteMe' "自动补全
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
 Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
+Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
