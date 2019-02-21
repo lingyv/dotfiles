@@ -119,7 +119,7 @@ Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
-Plug 'w0rp/ale' "异步代码检查
+" Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
@@ -162,10 +162,10 @@ set guioptions-=m
 set guioptions-=T
 
 " 代码检查
-let g:ale_sign_error = '😡'
-let g:ale_sign_warning = '😢'
-" let g:ale_sign_error = '✗'
-" let g:ale_sign_warning = '⚡'
+" let g:ale_sign_error = '😡'
+" let g:ale_sign_warning = '😢'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
 
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
@@ -248,6 +248,7 @@ nnoremap <C-f> :CtrlSF<Space>
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
 " F2查看函数列表
 noremap <Leader>m :LeaderfFunction!<cr>
+noremap <Leader>l :LeaderfLine<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
