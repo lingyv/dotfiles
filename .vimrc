@@ -116,7 +116,7 @@ Plug 'vim-scripts/phd'
 Plug 'lingyv/Colorful'
 Plug 'iCyMind/NeoSolarized'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'Lokaltog/vim-powerline' "美化状态栏
+Plug 'powerline/powerline' "美化状态栏
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
@@ -131,6 +131,7 @@ Plug 'Valloric/YouCompleteMe' "自动补全
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
 Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'derekwyatt/vim-scala', {'for': 'scala'}   "scala语言插件
 Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
 Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
 Plug 'Yggdroot/indentLine'    "缩进线
