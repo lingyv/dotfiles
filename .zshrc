@@ -84,3 +84,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.bash_profile;
+eval "$(lua ~/coding/z.lua/z.lua --init zsh)"
