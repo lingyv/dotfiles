@@ -112,7 +112,8 @@ Plug 'vim-scripts/phd'
 Plug 'lingyv/Colorful'
 Plug 'iCyMind/NeoSolarized'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'powerline/powerline' "美化状态栏
+Plug 'vim-airline/vim-airline' "美化状态栏
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
@@ -130,6 +131,7 @@ Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'derekwyatt/vim-scala', {'for': 'scala'}   "scala语言插件
 Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
 Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
+Plug 'chrisbra/csv.vim', {'for': 'csv'}  " CSV
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
@@ -149,7 +151,15 @@ colorscheme Colorful
 " colorscheme neodark
 
 " 设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
+set t_Co=256
+set laststatus=2
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
 
 " 禁止光标闪烁
 set gcr=a:block-blinkon0
@@ -320,30 +330,6 @@ function! <SID>SynStack()
 
 " 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
 nnoremap <leader>vc :call <SID>SynStack()<CR>
-
-" 标签只显示文件名
-function! Vim_NeatTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        " select the highlighting
-        if i + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (i + 1) . 'T'
-        " the label is made by MyTabLabel()
-        let s .= ' %{Vim_NeatTabLabel(' . (i + 1) . ')} '
-    endfor
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
-    " right-align the label to close the current tab page
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999XX'
-    endif
-    return s
-endfunc
 
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
