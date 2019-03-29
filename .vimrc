@@ -84,6 +84,10 @@ nmap <Leader>} zR
 " 打开或关闭当前折叠
 nnoremap <Leader>[ za
 
+" 映射切换buffer的键位
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
+
 " 开启实时搜索功能
 set incsearch
 " 高亮搜索 
@@ -357,7 +361,6 @@ function! AutoSetFileHead()
 endfunc
 
 " normal模式切换到指定tab
-noremap <leader>n :tabnew<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
