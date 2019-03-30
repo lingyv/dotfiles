@@ -214,13 +214,13 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
 " 跳转到定义处 查找光标下的符号，跳转到它的定义;如果定义不能访问，则跳转到符号的声明
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
 " 跳转到引用处 查找项目中的所有引用到光标下的标识符
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 " 获取变量或者方法的类型
-nnoremap <leader>gt :YcmCompleter GetType<CR>
+" nnoremap <leader>gt :YcmCompleter GetType<CR>
 " 获取文档
-nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+" nnoremap <leader>gd :YcmCompleter GetDoc<CR>
 " 自动弹出语义补全
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
@@ -262,12 +262,15 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " 插件在工程内全局查找
-nnoremap <C-f> :CtrlSF<Space>
+nnoremap <m-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
 " F2查看函数列表
-noremap <Leader>m :LeaderfFunction!<cr>
+let g:Lf_ShortcutF = '<c-f>'
+noremap <Leader>r :LeaderfMru<cr>
+noremap <Leader>f :LeaderfFunction!<cr>
 noremap <Leader>l :LeaderfLine<cr>
+noremap <m-t> :LeaderfTag<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -371,9 +374,6 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
-
-" 格式化 Python 代码
-autocmd FileType python nnoremap <Leader>l :0,$!yapf<CR>
 
 " 可视模式下快速全局替换
 vmap <C-R> y:%s`<C-R>"``g<left><left>
