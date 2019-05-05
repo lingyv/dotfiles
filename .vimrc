@@ -120,6 +120,7 @@ Plug 'vim-airline/vim-airline' "美化状态栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
+Plug 'tpope/vim-surround'
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
@@ -261,7 +262,6 @@ map <Leader>k <Plug>(easymotion-k)
 nnoremap <m-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
-" F2查看函数列表
 let g:Lf_ShortcutF = '<c-f>'
 noremap <Leader>r :LeaderfMru<cr>
 noremap <Leader>f :LeaderfFunction!<cr>
