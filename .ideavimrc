@@ -65,8 +65,8 @@ set clipboard=unnamed
 " 在缩进位置，行结束符，段首可以回删
 set backspace=indent,eol,start
 
-" 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
-set list listchars=eol:¬,tab:▸\ ,trail:.,
+set surround
+set multiple-cursors
 
 " >>>>>>> IDEA 设置 <<<<<<<<
 " ==================================================
@@ -129,17 +129,6 @@ nnoremap <leader>ic :action InspectCode<CR>
 
 " 打开maven窗口
 nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<CR>
-" 添加书签
-nnoremap <leader>m0 :action ToggleBookmark0<CR>
-nnoremap <leader>m1 :action ToggleBookmark1<CR>
-nnoremap <leader>m2 :action ToggleBookmark2<CR>
-nnoremap <leader>m3 :action ToggleBookmark3<CR>
-nnoremap <leader>m4 :action ToggleBookmark4<CR>
-nnoremap <leader>m5 :action ToggleBookmark5<CR>
-nnoremap <leader>m6 :action ToggleBookmark6<CR>
-nnoremap <leader>m7 :action ToggleBookmark7<CR>
-nnoremap <leader>m8 :action ToggleBookmark8<CR>
-nnoremap <leader>m9 :action ToggleBookmark9<CR>
 
 " 优化import
 nnoremap <leader>oi :action OptimizeImports<CR>
@@ -158,12 +147,11 @@ nnoremap <leader>rcf :action RecentChangedFiles<CR>
 " 替换
 nnoremap <leader>rp :action Replace<CR>
 " 重命名当前元素
-nnoremap <leader>re :action RenameElement<CR>
+nnoremap <leader>rn :action RenameElement<CR>
 " 重命名当前文件
 nnoremap <leader>rnf :action RenameFile<CR>
-
 " 格式化代码
-nnoremap <leader>l :action ReformatCode<CR>
+nnoremap <leader>re :action ReformatCode<CR>
 
 nnoremap <leader>se :action SearchEverywhere<CR>
 " 显示引用
@@ -172,14 +160,25 @@ nnoremap <leader>su :action ShowUsages<CR>
 nnoremap <leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
 vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
 
+" 添加书签
+nnoremap m0 :action ToggleBookmark0<CR>
+nnoremap m1 :action ToggleBookmark1<CR>
+nnoremap m2 :action ToggleBookmark2<CR>
+nnoremap m3 :action ToggleBookmark3<CR>
+nnoremap m4 :action ToggleBookmark4<CR>
+nnoremap m5 :action ToggleBookmark5<CR>
+nnoremap m6 :action ToggleBookmark6<CR>
+nnoremap m7 :action ToggleBookmark7<CR>
+nnoremap m8 :action ToggleBookmark8<CR>
+nnoremap m9 :action ToggleBookmark9<CR>
 " 跳转到书签
-nnoremap <leader>`0:action GotoBookmark0<CR>
-nnoremap <leader>`1:action GotoBookmark1<CR>
-nnoremap <leader>`2:action GotoBookmark2<CR>
-nnoremap <leader>`3:action GotoBookmark3<CR>
-nnoremap <leader>`4:action GotoBookmark4<CR>
-nnoremap <leader>`5:action GotoBookmark5<CR>
-nnoremap <leader>`6:action GotoBookmark6<CR>
-nnoremap <leader>`7:action GotoBookmark7<CR>
-nnoremap <leader>`8:action GotoBookmark8<CR>
-nnoremap <leader>`9:action GotoBookmark9<CR>
+nnoremap `0:action GotoBookmark0<CR>
+nnoremap `1:action GotoBookmark1<CR>
+nnoremap `2:action GotoBookmark2<CR>
+nnoremap `3:action GotoBookmark3<CR>
+nnoremap `4:action GotoBookmark4<CR>
+nnoremap `5:action GotoBookmark5<CR>
+nnoremap `6:action GotoBookmark6<CR>
+nnoremap `7:action GotoBookmark7<CR>
+nnoremap `8:action GotoBookmark8<CR>
+nnoremap `9:action GotoBookmark9<CR>
