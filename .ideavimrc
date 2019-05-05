@@ -132,10 +132,6 @@ nnoremap <leader>gv :action ActivateVersionControlToolWindow<CR>
 
 " 显示所有成员
 nnoremap <leader>f :action ActivateStructureToolWindow<CR>
-" 在资源管理器中显示文件
-nnoremap <leader>fp :action ShowFilePath<CR>
-" 查找所有引用
-nnoremap <leader>fu :action FindUsages<CR>
 
 " 检查代码
 nnoremap <leader>ic :action InspectCode<CR>
@@ -150,14 +146,12 @@ nnoremap <leader>pi :action ParameterInfo<CR>
 
 " 最近打开文件
 nnoremap <leader>rf :action RecentFiles<CR>
-" 最近改变
-nnoremap <leader>rc :action RecentChanges<CR>
 " 最近修改文件
-nnoremap <leader>rcf :action RecentChangedFiles<CR>
+nnoremap <leader>rc :action RecentChangedFiles<CR>
 " 替换
 nnoremap <leader>rp :action Replace<CR>
 " 重命名当前元素
-nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <leader>rne :action RenameElement<CR>
 " 重命名当前文件
 nnoremap <leader>rnf :action RenameFile<CR>
 " 格式化代码
@@ -165,12 +159,10 @@ nnoremap <leader>re :action ReformatCode<CR>
 
 nnoremap <leader>se :action SearchEverywhere<CR>
 " 显示引用
-nnoremap <leader>su :action ShowUsages<CR>
+nnoremap <leader>su :action FindUsages<CR>
 
 " 文件树
 nnoremap <leader>t :action ActivateProjectToolWindow<CR>
-nnoremap <leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
-vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
 
 " 添加书签
 nnoremap m0 :action ToggleBookmark0<CR>
