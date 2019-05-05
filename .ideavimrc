@@ -87,6 +87,8 @@ nnoremap <leader>[ :action CollapseRegion<CR>
 " 打开当前折叠
 nnoremap <leader>] :action ExpandRegion<CR>
 
+" 书签列表
+nnoremap <leader>bl :action ShowBookmarks<CR>
 " 当前行打断点
 nnoremap <leader>bb :action ToggleLineBreakpoint<CR>
 " 查看所有断点
@@ -111,14 +113,25 @@ nnoremap <leader>rc :action ChooseRunConfiguration<CR>
 " 选择配置Debug
 nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
 
+nnoremap <leader>nf :action NewFile<CR>
+nnoremap <leader>nc :action NewClass<CR>
+nnoremap <leader>nd :action NewDir<CR>
+nnoremap <leader>np :action NewPackageInfo<CR>
+nnoremap <leader>ns :action NewScratchFile<CR>
+
 nnoremap <leader>ga :action GotoAction<CR>
 nnoremap <leader>gc :action GotoClass<CR>
 nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gu :action ShowUsages<CR>
 nnoremap <leader>gf :action GotoFile<CR>
 nnoremap <leader>gi :action GotoImplementation<CR>
 nnoremap <leader>gs :action GotoSymbol<CR>
 nnoremap <leader>gt :action GotoTest<CR>
+" 版本管理
+nnoremap <leader>gv :action ActivateVersionControlToolWindow<CR>
 
+" 显示所有成员
+nnoremap <leader>f :action ActivateStructureToolWindow<CR>
 " 在资源管理器中显示文件
 nnoremap <leader>fp :action ShowFilePath<CR>
 " 查找所有引用
@@ -126,9 +139,6 @@ nnoremap <leader>fu :action FindUsages<CR>
 
 " 检查代码
 nnoremap <leader>ic :action InspectCode<CR>
-
-" 打开maven窗口
-nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<CR>
 
 " 优化import
 nnoremap <leader>oi :action OptimizeImports<CR>
@@ -157,6 +167,8 @@ nnoremap <leader>se :action SearchEverywhere<CR>
 " 显示引用
 nnoremap <leader>su :action ShowUsages<CR>
 
+" 文件树
+nnoremap <leader>t :action ActivateProjectToolWindow<CR>
 nnoremap <leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
 vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
 
