@@ -220,7 +220,7 @@ nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 " nnoremap <leader>gd :YcmCompleter GetDoc<CR>
 " 自动弹出语义补全
 let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'c,cpp,python,java,go,scala,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
@@ -373,3 +373,26 @@ noremap <leader>0 :tablast<cr>
 
 " 可视模式下快速全局替换
 vmap <C-R> y:%s`<C-R>"``g<left><left>
+
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+	exec "w"
+	if &filetype == 'c'
+		exec "!gcc % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		exec "!time python %"
+    elseif &filetype == 'go'
+        exec "!time go run %"
+    elseif &filetype == 'scala'
+        exec "!time scala %"
+	endif
+endfunc
