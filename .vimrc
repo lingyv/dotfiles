@@ -80,6 +80,10 @@ nmap <Leader>} zR
 " 打开或关闭当前折叠
 nnoremap <Leader>[ za
 
+" 映射切换buffer的键位
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
+
 " 开启实时搜索功能
 set incsearch
 " 高亮搜索 
@@ -114,14 +118,16 @@ Plug 'vim-scripts/phd'
 Plug 'lingyv/Colorful'
 Plug 'iCyMind/NeoSolarized'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'Lokaltog/vim-powerline' "美化状态栏
+Plug 'vim-airline/vim-airline' "美化状态栏
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
+Plug 'tpope/vim-surround'
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
-Plug 'Yggdroot/LeaderF' " 查看函数列表
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
-Plug 'w0rp/ale' "异步代码检查
+" Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
@@ -129,6 +135,10 @@ Plug 'Valloric/YouCompleteMe' "自动补全
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
 Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'derekwyatt/vim-scala', {'for': 'scala'}   "scala语言插件
+Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
+Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
+Plug 'chrisbra/csv.vim', {'for': 'csv'}  " CSV
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
@@ -148,7 +158,15 @@ colorscheme Colorful
 " colorscheme neodark
 
 " 设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
+set t_Co=256
+set laststatus=2
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
 
 " 禁止光标闪烁
 set gcr=a:block-blinkon0
@@ -162,10 +180,10 @@ set guioptions-=m
 set guioptions-=T
 
 " 代码检查
-let g:ale_sign_error = '😡'
-let g:ale_sign_warning = '😢'
-" let g:ale_sign_error = '✗'
-" let g:ale_sign_warning = '⚡'
+" let g:ale_sign_error = '😡'
+" let g:ale_sign_warning = '😢'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
 
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
@@ -195,16 +213,16 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
 " 跳转到定义处 查找光标下的符号，跳转到它的定义;如果定义不能访问，则跳转到符号的声明
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
 " 跳转到引用处 查找项目中的所有引用到光标下的标识符
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 " 获取变量或者方法的类型
-nnoremap <leader>gt :YcmCompleter GetType<CR>
+" nnoremap <leader>gt :YcmCompleter GetType<CR>
 " 获取文档
-nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+" nnoremap <leader>gd :YcmCompleter GetDoc<CR>
 " 自动弹出语义补全
 let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'c,cpp,python,java,go,scala,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
@@ -243,11 +261,14 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " 插件在工程内全局查找
-nnoremap <C-f> :CtrlSF<Space>
+nnoremap <m-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
-" F2查看函数列表
-noremap <Leader>m :LeaderfFunction!<cr>
+let g:Lf_ShortcutF = '<c-f>'
+noremap <Leader>r :LeaderfMru<cr>
+noremap <Leader>f :LeaderfFunction!<cr>
+noremap <Leader>l :LeaderfLine<cr>
+noremap <m-t> :LeaderfTag<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -319,30 +340,6 @@ function! <SID>SynStack()
 " 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
 nnoremap <leader>vc :call <SID>SynStack()<CR>
 
-" 标签只显示文件名
-function! Vim_NeatTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        " select the highlighting
-        if i + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (i + 1) . 'T'
-        " the label is made by MyTabLabel()
-        let s .= ' %{Vim_NeatTabLabel(' . (i + 1) . ')} '
-    endfor
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
-    " right-align the label to close the current tab page
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999XX'
-    endif
-    return s
-endfunc
-
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
@@ -365,7 +362,6 @@ function! AutoSetFileHead()
 endfunc
 
 " normal模式切换到指定tab
-noremap <leader>n :tabnew<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -377,5 +373,28 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
-" 格式化 Python 代码
-autocmd FileType python nnoremap <Leader>l :0,$!yapf<CR>
+" 可视模式下快速全局替换
+vmap <C-R> y:%s`<C-R>"``g<left><left>
+
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+	exec "w"
+	if &filetype == 'c'
+		exec "!gcc % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		exec "!time python %"
+    elseif &filetype == 'go'
+        exec "!time go run %"
+    elseif &filetype == 'scala'
+        exec "!time scala %"
+	endif
+endfunc
