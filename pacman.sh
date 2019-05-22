@@ -1,8 +1,4 @@
 #!/bin/bash
-# 使用🇨🇳源
-sudo pacman-mirrors -i -c China -m rank
-# 添加archlinuxcn源
-echo -e "\n[archlinuxcn]\nServer = https://mirrors.ustc.edu.cn/archlinuxcn/$arch" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 sudo pacman -S --noconfirm git
@@ -15,6 +11,8 @@ sudo pacman -S --noconfirm xfce4-terminal
 sudo pacman -S --noconfirm python-pip
 sudo pacman -S --noconfirm nodejs
 sudo pacman -S --noconfirm npm
+sudo pacman -S --noconfirm jdk8
+sudo archlinux-java set java-8-jdk
 sudo pacman -S --noconfirm tor-browser
 sudo pacman -S --noconfirm autojump
 sudo pacman -S --noconfirm tldr
@@ -33,17 +31,12 @@ sudo pacman -S --noconfirm tree
 sudo pacman -S --noconfirm rofi 
 sudo pacman -S --noconfirm proxychains-ng 
 sudo pacman -S --noconfirm feh 
-sudo pacman -S --noconfirm tlp tlp-rdw
-systemctl enable tlp.service
-systemctl enable tlp-sleep.service
-systemctl enable NetworkManager-dispatcher.service
-systemctl mask systemd-rfkill.service
-systemctl mask systemd-rfkill.socket
 sudo pacman -S fcitx-configtool fcitx-im fcitx-rime
 sudo pacman -Syu yaourt
 sudo pacman -S --noconfirm intellij-idea-ultimate-edition
 sudo pacman -S --noconfirm goland
 sudo pacman -S --noconfirm visual-studio-code-bin
+sudo pacman -S fprintd libfprint
 
 
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
