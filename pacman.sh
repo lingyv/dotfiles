@@ -57,6 +57,9 @@ ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
 
 git clone https://github.com/shadowsocksr-backup/shadowsocksr.git /opt/ssr
 
+mkdir ~/coding
+git clone https://github.com/skywind3000/z.lua.git ~/coding/z.lua
+
 sudo echo "export GTK_IM_MODULE=fcitx" >> ~/.xprofile
 sudo echo "export QT_IM_MODULE=fcitx" >> ~/.xprofile
 sudo echo "export XMODIFIERS=@im=fcitx" >> ~/.xprofile

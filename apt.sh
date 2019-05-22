@@ -28,3 +28,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
+
+mkdir ~/coding
+git clone https://github.com/skywind3000/z.lua.git ~/coding/z.lua
