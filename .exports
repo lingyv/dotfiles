@@ -8,6 +8,9 @@ export GOPATH=~/Coding/go
 export EDITOR=vim
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
+export HADOOP_HOME=/usr/local/hadoop/hadoop
+export HIVE_HOME=/usr/local/hive/hive
+export SPARK_HOME=/usr/local/spark/spark
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export PATH="/usr/local/sbin:$PATH"
@@ -26,4 +29,4 @@ export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-export PATH=$PATH:$M2_HOME/bin
+export PATH=$PATH:$M2_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SPARK_HOME/bin
