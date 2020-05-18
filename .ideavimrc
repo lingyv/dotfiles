@@ -51,7 +51,7 @@ set nofoldenable
 
 " 开启实时搜索功能
 set incsearch
-" 高亮搜索 
+" 高亮搜索
 set hlsearch
 " 搜索时大小写不敏感
 set ignorecase
@@ -186,3 +186,4 @@ nnoremap `6:action GotoBookmark6<CR>
 nnoremap `7:action GotoBookmark7<CR>
 nnoremap `8:action GotoBookmark8<CR>
 nnoremap `9:action GotoBookmark9<CR>
+set ideajoin
