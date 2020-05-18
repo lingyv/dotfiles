@@ -29,4 +29,4 @@ export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-export PATH=$PATH:$M2_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SPARK_HOME/bin
+export PATH=$PATH:$M2_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SPARK_HOME/bin:/usr/local/pandoc/pandoc/bin
