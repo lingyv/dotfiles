@@ -185,8 +185,6 @@ set guioptions-=m
 set guioptions-=T
 
 " 代码检查
-" let g:ale_sign_error = '😡'
-" let g:ale_sign_warning = '😢'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_set_highlights = 0
 let g:ale_fix_on_save = 1
@@ -204,7 +202,7 @@ let g:ale_lint_on_insert_leave = 1
 " run lint only on saving a file
 " let g:ale_lint_on_text_changed = 'never'
 " dont run lint on opening a file
-" let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 0
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
