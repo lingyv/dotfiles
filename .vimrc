@@ -120,6 +120,7 @@ Plug 'vim-scripts/phd'
 Plug 'lingyv/Colorful'
 Plug 'iCyMind/NeoSolarized'
 Plug 'KeitaNakamura/neodark.vim'
+Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-airline/vim-airline' "美化状态栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
@@ -129,7 +130,7 @@ Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
-" Plug 'w0rp/ale' "异步代码检查
+Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
@@ -140,24 +141,26 @@ Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'derekwyatt/vim-scala', {'for': 'scala'}   "scala语言插件
 Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
 Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
-Plug 'chrisbra/csv.vim', {'for': 'csv'}  " CSV
+" Plug 'chrisbra/csv.vim', {'for': 'csv'}  " CSV
 Plug 'Yggdroot/indentLine'    "缩进线
-Plug 'asins/vimcdoc' "中文文档
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
 Plug 'skywind3000/asyncrun.vim' "异步运行命令
 call plug#end()
 
-" 设定 doc 文档目录
-let helptags=$VIM."/vimfiles/doc"
-set helplang=cn
-
 " 配色方案
 set background=dark
 colorscheme Colorful
 " colorscheme NeoSolarized
 " colorscheme neodark
+" colorscheme space-vim-dark
+" 斜体字
+hi Comment cterm=italic
+" 透明背景
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 " 设置状态栏主题风格
 set t_Co=256
@@ -184,9 +187,24 @@ set guioptions-=T
 " 代码检查
 " let g:ale_sign_error = '😡'
 " let g:ale_sign_warning = '😢'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
+let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-
+let g:ale_sign_warning = '•'
+let g:ale_echo_msg_error_str = '✹ Error'
+let g:ale_echo_msg_warning_str = '⚠ Warning'
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+" run lint only on saving a file
+" let g:ale_lint_on_text_changed = 'never'
+" dont run lint on opening a file
+" let g:ale_lint_on_enter = 0
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -378,25 +396,25 @@ noremap <leader>0 :tablast<cr>
 " 可视模式下快速全局替换
 vmap <C-R> y:%s`<C-R>"``g<left><left>
 
-map <F5> :call CompileRun()<CR>
-func! CompileRun()
-	exec "w"
-	if &filetype == 'c'
-		exec "!gcc % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!time python %"
+" Quick run via <F5>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! time python %"
     elseif &filetype == 'go'
-        exec "!time go run %"
+        exec "AsyncRun! time go run %"
     elseif &filetype == 'scala'
-        exec "!time scala %"
-	endif
-endfunc
+        exec "AsyncRun! time scala %"
+    endif
+endfunction
+" asyncrun now has an option for opening quickfix automatically
+let g:asyncrun_open = 15
