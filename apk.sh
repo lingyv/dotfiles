@@ -4,9 +4,6 @@ apk add zsh
 chsh -s /bin/zsh
 apk add tmux
 apk add cmake
-apk add autojump
-apk add tldr
-apk add thefuck
 apk add the_silver_searcher
 apk add go
 apk add tig
@@ -14,6 +11,7 @@ apk add p7zip
 apk add tree
 apk add proxychains-ng 
 apk add neovim
+apk add fzf
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
