@@ -282,9 +282,9 @@ map <Leader>k <Plug>(easymotion-k)
 nnoremap <m-f> :CtrlSF<Space>
 
 " 插件Leaderf -> 关闭预览功能,ESC退出函数列表
-let g:Lf_ShortcutF = '<c-f>'
+let g:Lf_ShortcutF = "<leader>f"
 noremap <Leader>r :LeaderfMru<cr>
-noremap <Leader>f :LeaderfFunction!<cr>
+noremap <Leader>m :LeaderfFunction!<cr>
 noremap <Leader>l :LeaderfLine<cr>
 noremap <m-t> :LeaderfTag<cr>
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }

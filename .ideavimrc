@@ -68,6 +68,23 @@ set backspace=indent,eol,start
 set surround
 set multiple-cursors
 
+
+" >>>>>>> VIM PLUG <<<<<<<<
+set easymotion
+" 关闭默认快捷键
+let g:EasyMotion_do_mapping = 0 
+" 跳转到任何地方
+map s <Plug>(easymotion-s)
+" 快速跳转到上一行,下一行
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+set surround
+set multiple-cursors
+set exchange
+set textobj-entire
+
+
 " >>>>>>> IDEA 设置 <<<<<<<<
 " ==================================================
 " 查看所有action --> ':actionlist'
@@ -131,8 +148,9 @@ nnoremap <leader>gt :action GotoTest<CR>
 nnoremap <leader>gv :action ActivateVersionControlToolWindow<CR>
 
 " 显示所有成员
-nnoremap <leader>f :action ActivateStructureToolWindow<CR>
+nnoremap <leader>m :action ActivateStructureToolWindow<CR>
 
+nnoremap <leader>f :action GotoFile<CR>
 " 检查代码
 nnoremap <leader>ic :action InspectCode<CR>
 
