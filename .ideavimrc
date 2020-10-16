@@ -65,10 +65,6 @@ set clipboard=unnamed
 " 在缩进位置，行结束符，段首可以回删
 set backspace=indent,eol,start
 
-set surround
-set multiple-cursors
-
-
 " >>>>>>> VIM PLUG <<<<<<<<
 set easymotion
 " 关闭默认快捷键
