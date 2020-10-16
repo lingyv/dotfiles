@@ -122,7 +122,7 @@ nnoremap <leader>ns :action NewScratchFile<CR>
 nnoremap <leader>ga :action GotoAction<CR>
 nnoremap <leader>gc :action GotoClass<CR>
 nnoremap <leader>gd :action GotoDeclaration<CR>
-nnoremap <leader>gu :action ShowUsages<CR>
+nnoremap <leader>gr :action ShowUsages<CR>
 nnoremap <leader>gf :action GotoFile<CR>
 nnoremap <leader>gi :action GotoImplementation<CR>
 nnoremap <leader>gs :action GotoSymbol<CR>
