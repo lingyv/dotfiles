@@ -78,9 +78,9 @@ set foldmethod=indent
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 " 折叠所有代码
-nmap <Leader>{ zM
+nnoremap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>} zR
+nnoremap <Leader>} zR
 " 打开或关闭当前折叠
 nnoremap <Leader>[ za
 
@@ -247,7 +247,7 @@ let g:ycm_semantic_triggers =  {
 			\ }
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
-nmap <Leader>t :Defx<CR>
+nnoremap <Leader>t :Defx<CR>
 call defx#custom#option('_', {
       \ 'winwidth': 30,
       \ 'split': 'vertical',
@@ -332,12 +332,12 @@ let g:NERDTrimTrailingWhitespace = 1
 " 关闭默认快捷键
 let g:EasyMotion_do_mapping = 0 
 " 跳转到任何地方
-nmap s <Plug>(easymotion-s)
+nnoremap s <Plug>(easymotion-s)
 " 不区分大小写
 let g:EasyMotion_smartcase = 1
 " 快速跳转到上一行,下一行
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+nnoremap <Leader>j <Plug>(easymotion-j)
+nnoremap <Leader>k <Plug>(easymotion-k)
 
 " 插件在工程内全局查找
 nnoremap <m-f> :CtrlSF<Space>
@@ -442,19 +442,19 @@ function! AutoSetFileHead()
 endfunc
 
 " normal模式切换到指定tab
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
 
 " 可视模式下快速全局替换
-vmap <C-R> y:%s`<C-R>"``g<left><left>
+vnoremap <C-R> y:%s`<C-R>"``g<left><left>
 
 " Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
