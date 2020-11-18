@@ -70,10 +70,10 @@ set easymotion
 " 关闭默认快捷键
 let g:EasyMotion_do_mapping = 0 
 " 跳转到任何地方
-map s <Plug>(easymotion-s)
+nnoremap s <Plug>(easymotion-s)
 " 快速跳转到上一行,下一行
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+nnoremap <Leader>j <Plug>(easymotion-j)
+nnoremap <Leader>k <Plug>(easymotion-k)
 
 set surround
 set multiple-cursors
@@ -92,9 +92,9 @@ nnoremap / :action Find<CR>
 nnoremap <leader>/ /
 
 " 折叠所有代码
-nmap <Leader>{ zM
+nnoremap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>} zR
+nnoremap <Leader>} zR
 " 折叠当前代码
 nnoremap <leader>[ :action CollapseRegion<CR>
 " 打开当前折叠
