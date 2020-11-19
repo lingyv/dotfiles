@@ -200,7 +200,7 @@ let g:ale_lint_on_insert_leave = 1
 " run lint only on saving a file
 " let g:ale_lint_on_text_changed = 'never'
 " dont run lint on opening a file
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
