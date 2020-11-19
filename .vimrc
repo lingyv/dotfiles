@@ -199,12 +199,12 @@ let g:ale_echo_msg_warning_str = '⚠ Warning'
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
 " run lint only on saving a file
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 0
 " dont run lint on opening a file
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
