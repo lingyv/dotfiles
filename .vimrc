@@ -128,6 +128,7 @@ Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
 Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
+Plug 'voldikss/vim-floaterm' "浮动终端
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'dyng/ctrlsf.vim'    "查找
 Plug 'w0rp/ale' "异步代码检查
@@ -136,7 +137,7 @@ Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
 Plug 'Valloric/YouCompleteMe' "自动补全
 if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' } "树状文件浏览
 else
   Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
@@ -145,6 +146,7 @@ endif
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
 Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'Yggdroot/indentLine'    "缩进线
+Plug 'itchyny/vim-cursorword' "当前单词下划线
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
@@ -199,12 +201,12 @@ let g:ale_echo_msg_warning_str = '⚠ Warning'
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
 " run lint only on saving a file
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 0
 " dont run lint on opening a file
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
