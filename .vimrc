@@ -9,7 +9,7 @@ set fileencodings=utf-8,gbk
 
 " MacVim字体
 " set macligatures
-set guifont=Fira\ Code\ Retina:h13
+" set guifont=Fira\ Code\ Retina:h13
 
 " 显示相对行号（当前行为绝对行号）
 set nu rnu
@@ -111,7 +111,7 @@ set backspace=indent,eol,start
 cmap w!! w !sudo tee >/dev/null %
 
 " fzf支持
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/usr/local/opt/fzf
 
 " 插件管理
 call plug#begin('~/.vim/plugged')
@@ -135,36 +135,38 @@ Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
-Plug 'Valloric/YouCompleteMe' "自动补全
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' } "树状文件浏览
-else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" Plug 'Valloric/YouCompleteMe' "自动补全
+Plug 'Shougo/neocomplete.vim' "自动补全
+Plug 'preservim/nerdtree' "树状文件浏览
+" if has('nvim')
+"   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' } "树状文件浏览
+" else
+"   Plug 'Shougo/defx.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+" Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
-Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
-Plug 'airblade/vim-gitgutter' "显示文件变动
-Plug 'junegunn/gv.vim' "git commit 浏览器
-Plug 'skywind3000/asyncrun.vim' "异步运行命令
+" Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
+" Plug 'airblade/vim-gitgutter' "显示文件变动
+" Plug 'junegunn/gv.vim' "git commit 浏览器
+" Plug 'skywind3000/asyncrun.vim' "异步运行命令
 call plug#end()
 
 " 配色方案
 set background=dark
-colorscheme Colorful
-" colorscheme NeoSolarized
+" colorscheme Colorful
+colorscheme NeoSolarized
 " colorscheme neodark
 " colorscheme space-vim-dark
 " 斜体字
 hi Comment cterm=italic
 " 透明背景
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+" hi Normal     ctermbg=NONE guibg=NONE
+" hi LineNr     ctermbg=NONE guibg=NONE
+" hi SignColumn ctermbg=NONE guibg=NONE
 
 " 设置状态栏主题风格
 set t_Co=256
@@ -212,118 +214,84 @@ let g:ale_lint_on_enter = 0
 let g:UltiSnipsExpandTrigger="<c-space>"
 
 " 提供python3自动完成
-let g:ycm_python_binary_path = 'python'
-" YCM 补全菜单配色
-" 菜单
-" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#12FF12
-" 选中项
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#106900
-" 补全功能在注释中同样有效
-let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
-let g:ycm_confirm_extra_conf=0
-" 开启 YCM 标签补全引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-" inoremap <leader>; <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 语法关键字补全
-let g:ycm_seed_identifiers_with_syntax=1
-" 跳转到定义处 查找光标下的符号，跳转到它的定义;如果定义不能访问，则跳转到符号的声明
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-" 跳转到引用处 查找项目中的所有引用到光标下的标识符
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-" 获取变量或者方法的类型
-" nnoremap <leader>gt :YcmCompleter GetType<CR>
-" 获取文档
-" nnoremap <leader>gd :YcmCompleter GetDoc<CR>
-" 自动弹出语义补全
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,scala,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
-nnoremap <Leader>t :Defx<CR>
-call defx#custom#option('_', {
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'botright',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-autocmd FileType defx call s:defx_my_settings()
-	function! s:defx_my_settings() abort
-	  " Define mappings
-	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> c
-	  \ defx#do_action('copy')
-	  nnoremap <silent><buffer><expr> m
-	  \ defx#do_action('move')
-	  nnoremap <silent><buffer><expr> p
-	  \ defx#do_action('paste')
-	  nnoremap <silent><buffer><expr> l
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> E
-	  \ defx#do_action('open', 'vsplit')
-	  nnoremap <silent><buffer><expr> P
-	  \ defx#do_action('preview')
-	  nnoremap <silent><buffer><expr> o
-	  \ defx#do_action('open_tree', 'toggle')
-	  nnoremap <silent><buffer><expr> K
-	  \ defx#do_action('new_directory')
-	  nnoremap <silent><buffer><expr> N
-	  \ defx#do_action('new_file')
-	  nnoremap <silent><buffer><expr> M
-	  \ defx#do_action('new_multiple_files')
-	  nnoremap <silent><buffer><expr> C
-	  \ defx#do_action('toggle_columns',
-	  \                'mark:indent:icon:filename:type:size:time')
-	  nnoremap <silent><buffer><expr> S
-	  \ defx#do_action('toggle_sort', 'time')
-	  nnoremap <silent><buffer><expr> d
-	  \ defx#do_action('remove')
-	  nnoremap <silent><buffer><expr> r
-	  \ defx#do_action('rename')
-	  nnoremap <silent><buffer><expr> !
-	  \ defx#do_action('execute_command')
-	  nnoremap <silent><buffer><expr> x
-	  \ defx#do_action('execute_system')
-	  nnoremap <silent><buffer><expr> yy
-	  \ defx#do_action('yank_path')
-	  nnoremap <silent><buffer><expr> .
-	  \ defx#do_action('toggle_ignored_files')
-	  nnoremap <silent><buffer><expr> ;
-	  \ defx#do_action('repeat')
-	  nnoremap <silent><buffer><expr> h
-	  \ defx#do_action('cd', ['..'])
-	  nnoremap <silent><buffer><expr> ~
-	  \ defx#do_action('cd')
-	  nnoremap <silent><buffer><expr> q
-	  \ defx#do_action('quit')
-	  nnoremap <silent><buffer><expr> <Space>
-	  \ defx#do_action('toggle_select') . 'j'
-	  nnoremap <silent><buffer><expr> *
-	  \ defx#do_action('toggle_select_all')
-	  nnoremap <silent><buffer><expr> j
-	  \ line('.') == line('$') ? 'gg' : 'j'
-	  nnoremap <silent><buffer><expr> k
-	  \ line('.') == 1 ? 'G' : 'k'
-	  nnoremap <silent><buffer><expr> <C-l>
-	  \ defx#do_action('redraw')
-	  nnoremap <silent><buffer><expr> <C-g>
-	  \ defx#do_action('print')
-	  nnoremap <silent><buffer><expr> cd
-	  \ defx#do_action('change_vim_cwd')
-	endfunction
+nnoremap <Leader>t :NERDTreeToggle<CR>
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=32
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="left"
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree 子窗口中不显示冗余帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+" open NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " 快速注释配置
 " 默认情况下在注释分隔符后添加空格
