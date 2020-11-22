@@ -149,6 +149,7 @@ Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的�
 " Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
+Plug 'liuchengxu/vim-which-key'
 " Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 " Plug 'airblade/vim-gitgutter' "显示文件变动
 " Plug 'junegunn/gv.vim' "git commit 浏览器
