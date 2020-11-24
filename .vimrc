@@ -250,7 +250,6 @@ let g:ycm_semantic_triggers =  {
 			\ }
 
 " vim-floaterm 浮动终端
-nnoremap <silent> <Leader>nt :FloatermNew<CR>
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
 tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
