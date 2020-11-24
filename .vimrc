@@ -245,8 +245,13 @@ let g:ycm_semantic_triggers =  {
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
-" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
-nnoremap <Leader>t :Defx<CR>
+" vim-floaterm 浮动终端
+nnoremap <silent> <Leader>nt :FloatermNew<CR>
+nnoremap <silent> <Leader>t :FloatermToggle<CR>
+tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
+
+" 文件树。设置快捷键，速记：tree
+nnoremap <Leader><Leader>t :Defx<CR>
 call defx#custom#option('_', {
       \ 'winwidth': 30,
       \ 'split': 'vertical',
