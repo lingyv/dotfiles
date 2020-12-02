@@ -110,8 +110,70 @@ set backspace=indent,eol,start
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
+" 配色方案
+set background=dark
+" 斜体字
+hi Comment cterm=italic
+
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+" 禁止显示滚动条
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+
+" 检测函数（检测光标位置处文字的样式名）
+function! <SID>SynStack()
+    echo map(synstack(line('.'),col('.')),'synIDattr(v:val, "name")')
+    endfunc
+
+" 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
+nnoremap <leader>vc :call <SID>SynStack()<CR>
+
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "__author__ = 'lingyv'")
+        call append(1, "")
+        call append(1, "\# -*- coding: utf-8 -*-")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+" normal模式切换到指定tab
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
+
+" 可视模式下快速全局替换
+vnoremap <C-R> y:%s`<C-R>"``g<left><left>
+
 " fzf支持
 set rtp+=/usr/local/opt/fzf
+
+" ******************* 插件配置 ***********************
 
 " 插件管理
 call plug#begin('~/.vim/plugged')
@@ -151,17 +213,13 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 Plug 'airblade/vim-gitgutter' "显示文件变动
 Plug 'junegunn/gv.vim' "git commit 浏览器
-Plug 'skywind3000/asyncrun.vim' "异步运行命令
 call plug#end()
 
 " 配色方案
-set background=dark
 colorscheme Colorful
 " colorscheme NeoSolarized
 " colorscheme neodark
 " colorscheme space-vim-dark
-" 斜体字
-hi Comment cterm=italic
 " 透明背景
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
@@ -177,17 +235,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
-
-" 禁止光标闪烁
-set gcr=a:block-blinkon0
-" 禁止显示滚动条
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-" 禁止显示菜单和工具条
-set guioptions-=m
-set guioptions-=T
 
 " 代码检查
 let g:airline#extensions#ale#enabled = 0
@@ -419,69 +466,3 @@ if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
 
-" 检测函数（检测光标位置处文字的样式名）
-function! <SID>SynStack()
-    echo map(synstack(line('.'),col('.')),'synIDattr(v:val, "name")')
-    endfunc
-
-" 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
-nnoremap <leader>vc :call <SID>SynStack()<CR>
-
-" 定义函数AutoSetFileHead，自动插入文件头
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
-function! AutoSetFileHead()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-    endif
-
-    "如果文件类型为python
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "__author__ = 'lingyv'")
-        call append(1, "")
-        call append(1, "\# -*- coding: utf-8 -*-")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
-" normal模式切换到指定tab
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>0 :tablast<cr>
-
-" 可视模式下快速全局替换
-vnoremap <C-R> y:%s`<C-R>"``g<left><left>
-
-" Quick run via <F5>
-nnoremap <F5> :call <SID>compile_and_run()<CR>
-function! s:compile_and_run()
-    exec 'w'
-    if &filetype == 'c'
-        exec "AsyncRun! gcc % -o %<; time ./%<"
-    elseif &filetype == 'cpp'
-       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
-    elseif &filetype == 'java'
-       exec "AsyncRun! javac %; time java %<"
-    elseif &filetype == 'sh'
-       exec "AsyncRun! time bash %"
-    elseif &filetype == 'python'
-       exec "AsyncRun! time python %"
-    elseif &filetype == 'go'
-        exec "AsyncRun! time go run %"
-    elseif &filetype == 'scala'
-        exec "AsyncRun! time scala %"
-    endif
-endfunction
-" asyncrun now has an option for opening quickfix automatically
-let g:asyncrun_open = 15
