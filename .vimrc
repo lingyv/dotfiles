@@ -130,27 +130,6 @@ function! <SID>SynStack()
 " 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
 nnoremap <leader>vc :call <SID>SynStack()<CR>
 
-" 定义函数AutoSetFileHead，自动插入文件头
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
-function! AutoSetFileHead()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-    endif
-
-    "如果文件类型为python
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "__author__ = 'lingyv'")
-        call append(1, "")
-        call append(1, "\# -*- coding: utf-8 -*-")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
 " normal模式切换到指定tab
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
@@ -470,4 +449,25 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "__author__ = 'lingyv'")
+        call append(1, "")
+        call append(1, "\# -*- coding: utf-8 -*-")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
 
