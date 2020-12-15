@@ -44,6 +44,8 @@ brew install gnu-which --with-default-names
 brew install gnutls
 brew install grep --with-default-names
 brew install gzip
+brew install global
+brew install rg
 brew install screen
 brew install watch
 brew install wdiff --with-gettext
