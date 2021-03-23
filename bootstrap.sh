@@ -19,6 +19,7 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
     sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
     sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
