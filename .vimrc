@@ -122,7 +122,7 @@ set guioptions-=R
 set guioptions-=m
 set guioptions-=T
 
-“ 文件树
+" 文件树
 let g:netrw_liststyle=3
 
 
