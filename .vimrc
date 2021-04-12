@@ -128,7 +128,7 @@ set guioptions-=T
 
 " 文件树
 let g:netrw_liststyle=3
-
+nnoremap <leader>e :Explore<CR>
 
 " 检测函数（检测光标位置处文字的样式名）
 function! <SID>SynStack()
