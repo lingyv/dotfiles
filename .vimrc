@@ -74,9 +74,9 @@ set foldmethod=indent
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 " 折叠所有代码
-nmap <Leader>{ zM
+nnoremap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>} zR
+nnoremap <Leader>} zR
 " 打开或关闭当前折叠
 nnoremap <Leader>[ za
 
@@ -108,65 +108,10 @@ set backspace=indent,eol,start
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
-" fzf支持
-set rtp+=/usr/local/opt/fzf
-
-" 插件管理
-call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
-Plug 'vim-scripts/phd'
-Plug 'lingyv/Colorful'
-Plug 'iCyMind/NeoSolarized'
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'vim-airline/vim-airline' "美化状态栏
-Plug 'vim-airline/vim-airline-themes'
-Plug 'kien/rainbow_parentheses.vim' "为括号上色
-Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
-Plug 'tpope/vim-surround'
-Plug 'docunext/closetag.vim' " 自动补全html/xml标签
-Plug 'ludovicchabant/vim-gutentags' "自动索引
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
-Plug 'dyng/ctrlsf.vim'    "查找
-" Plug 'w0rp/ale' "异步代码检查
-Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
-Plug 'terryma/vim-multiple-cursors'   "多处编辑
-Plug 'scrooloose/nerdcommenter'   "快速注释
-Plug 'Valloric/YouCompleteMe' "自动补全
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    "目录树
-Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
-Plug 'derekwyatt/vim-scala', {'for': 'scala'}   "scala语言插件
-Plug 'pangloss/vim-javascript', {'for': 'js'}  " 前端 js
-Plug 'mxw/vim-jsx', {'for': 'js'}  " 前端库 React
-Plug 'chrisbra/csv.vim', {'for': 'csv'}  " CSV
-Plug 'Yggdroot/indentLine'    "缩进线
-Plug 'asins/vimcdoc' "中文文档
-Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
-Plug 'airblade/vim-gitgutter' "显示文件变动
-Plug 'junegunn/gv.vim' "git commit 浏览器
-Plug 'skywind3000/asyncrun.vim' "异步运行命令
-call plug#end()
-
-" 设定 doc 文档目录
-let helptags=$VIM."/vimfiles/doc"
-set helplang=cn
-
 " 配色方案
 set background=dark
-colorscheme Colorful
-" colorscheme NeoSolarized
-" colorscheme neodark
-
-" 设置状态栏主题风格
-set t_Co=256
-set laststatus=2
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
+" 斜体字
+hi Comment cterm=italic
 
 " 禁止光标闪烁
 set gcr=a:block-blinkon0
@@ -179,12 +124,117 @@ set guioptions-=R
 set guioptions-=m
 set guioptions-=T
 
-" 代码检查
-" let g:ale_sign_error = '😡'
-" let g:ale_sign_warning = '😢'
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
+" 文件树
+let g:netrw_liststyle=3
+nnoremap <leader>e :Explore<CR>
 
+" 检测函数（检测光标位置处文字的样式名）
+function! <SID>SynStack()
+    echo map(synstack(line('.'),col('.')),'synIDattr(v:val, "name")')
+    endfunc
+
+" 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
+nnoremap <leader>vc :call <SID>SynStack()<CR>
+
+" 可视模式下快速全局替换
+vnoremap <C-R> y:%s`<C-R>"``g<left><left>
+
+" fzf支持
+set rtp+=/usr/local/opt/fzf
+
+" ******************* 插件配置 ***********************
+
+" 插件管理
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/phd'
+Plug 'lingyv/Colorful'
+Plug 'iCyMind/NeoSolarized'
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'vim-airline/vim-airline' "美化状态栏
+Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/rainbow_parentheses.vim' "为括号上色
+Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
+Plug 'tpope/vim-surround'
+Plug 'docunext/closetag.vim' " 自动补全html/xml标签
+Plug 'ludovicchabant/vim-gutentags' "自动索引
+Plug 'voldikss/vim-floaterm' "浮动终端
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
+Plug 'w0rp/ale' "异步代码检查
+Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
+Plug 'terryma/vim-multiple-cursors'   "多处编辑
+Plug 'scrooloose/nerdcommenter'   "快速注释
+Plug 'Valloric/YouCompleteMe' "自动补全
+Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
+Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
+Plug 'Yggdroot/indentLine'    "缩进线
+Plug 'itchyny/vim-cursorword' "当前单词下划线
+Plug 'liuchengxu/vim-which-key'
+Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
+Plug 'airblade/vim-gitgutter' "显示文件变动
+Plug 'junegunn/gv.vim' "git commit 浏览器
+call plug#end()
+
+" 配色方案
+colorscheme Colorful
+" colorscheme NeoSolarized
+" colorscheme neodark
+" colorscheme space-vim-dark
+" 透明背景
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+
+" Airline 设置状态栏主题风格
+set t_Co=256
+set laststatus=2
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#fnametruncate = 16
+let g:airline#extensions#tabline#fnamecollapse = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+" normal模式切换到指定tab/buffer
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>0 <Plug>AirlineSelectTab0
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+
+" 代码检查
+let g:airline#extensions#ale#enabled = 0
+let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
+let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '•'
+let g:ale_echo_msg_error_str = '✹ Error'
+let g:ale_echo_msg_warning_str = '⚠ Warning'
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+" run lint only on saving a file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 0
+" dont run lint on opening a file
+let g:ale_lint_on_enter = 0
 
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -226,23 +276,9 @@ let g:ycm_semantic_triggers =  {
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
-" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：tree
-nmap <Leader>t :NERDTreeToggle<CR>
-" 设置NERDTree子窗口宽度
-let NERDTreeWinSize=32
-" 设置NERDTree子窗口位置
-let NERDTreeWinPos="left"
-" 显示隐藏文件
-let NERDTreeShowHidden=1
-" NERDTree 子窗口中不显示冗余帮助信息
-let NERDTreeMinimalUI=1
-" 删除文件时自动删除文件对应 buffer
-let NERDTreeAutoDeleteBuffer=1
-" open NERDTree automatically when vim starts up on opening a directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" vim-floaterm 浮动终端
+nnoremap <silent> <Leader>t :FloatermToggle<CR>
+tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
 " 快速注释配置
 " 默认情况下在注释分隔符后添加空格
@@ -253,39 +289,50 @@ let g:NERDTrimTrailingWhitespace = 1
 " 关闭默认快捷键
 let g:EasyMotion_do_mapping = 0 
 " 跳转到任何地方
-nmap s <Plug>(easymotion-s)
+nnoremap s <Plug>(easymotion-s)
 " 不区分大小写
 let g:EasyMotion_smartcase = 1
 " 快速跳转到上一行,下一行
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+nnoremap <Leader>j <Plug>(easymotion-j)
+nnoremap <Leader>k <Plug>(easymotion-k)
 
-" 插件在工程内全局查找
-nnoremap <m-f> :CtrlSF<Space>
-
-" 插件Leaderf -> 关闭预览功能,ESC退出函数列表
-let g:Lf_ShortcutF = '<c-f>'
-noremap <Leader>r :LeaderfMru<cr>
-noremap <Leader>f :LeaderfFunction!<cr>
-noremap <Leader>l :LeaderfLine<cr>
-noremap <m-t> :LeaderfTag<cr>
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 0
+" 插件Leaderf
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 let g:Lf_HideHelp = 1
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowDevIcons = 0
+let g:Lf_UseVersionControlTool = 1
+let g:Lf_DefaultExternalTool='rg'
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+" let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 0
+let g:Lf_WindowHeight = 0.30
 let g:Lf_StlColorscheme = 'powerline'
-let g:Lf_PreviewResult = {'Function':0}
-let g:Lf_NormalMap = {
-	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-	\ }
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0, 'Line': 0 }
+
+let g:Lf_ShortcutF = "<C-F>"
+noremap <leader>ff :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-S> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
 " 插件Better Rainbow Parentheses
@@ -332,14 +379,6 @@ if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
 
-" 检测函数（检测光标位置处文字的样式名）
-function! <SID>SynStack()
-    echo map(synstack(line('.'),col('.')),'synIDattr(v:val, "name")')
-    endfunc
-
-" 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
-nnoremap <leader>vc :call <SID>SynStack()<CR>
-
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
@@ -361,40 +400,3 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
-" normal模式切换到指定tab
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
-
-" 可视模式下快速全局替换
-vmap <C-R> y:%s`<C-R>"``g<left><left>
-
-map <F5> :call CompileRun()<CR>
-func! CompileRun()
-	exec "w"
-	if &filetype == 'c'
-		exec "!gcc % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!time python %"
-    elseif &filetype == 'go'
-        exec "!time go run %"
-    elseif &filetype == 'scala'
-        exec "!time scala %"
-	endif
-endfunc

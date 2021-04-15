@@ -51,7 +51,7 @@ set nofoldenable
 
 " 开启实时搜索功能
 set incsearch
-" 高亮搜索 
+" 高亮搜索
 set hlsearch
 " 搜索时大小写不敏感
 set ignorecase
@@ -65,8 +65,21 @@ set clipboard=unnamedplus
 " 在缩进位置，行结束符，段首可以回删
 set backspace=indent,eol,start
 
+" >>>>>>> VIM PLUG <<<<<<<<
+set easymotion
+" 关闭默认快捷键
+let g:EasyMotion_do_mapping = 0 
+" 跳转到任何地方
+nnoremap s <Plug>(easymotion-s)
+" 快速跳转到上一行,下一行
+nnoremap <Leader>j <Plug>(easymotion-j)
+nnoremap <Leader>k <Plug>(easymotion-k)
+
 set surround
 set multiple-cursors
+set exchange
+set textobj-entire
+
 
 " >>>>>>> IDEA 设置 <<<<<<<<
 " ==================================================
@@ -79,9 +92,9 @@ nnoremap / :action Find<CR>
 nnoremap <leader>/ /
 
 " 折叠所有代码
-nmap <Leader>{ zM
+nnoremap <Leader>{ zM
 " 打开所有折叠
-nmap <Leader>} zR
+nnoremap <Leader>} zR
 " 折叠当前代码
 nnoremap <leader>[ :action CollapseRegion<CR>
 " 打开当前折叠
@@ -122,7 +135,7 @@ nnoremap <leader>ns :action NewScratchFile<CR>
 nnoremap <leader>ga :action GotoAction<CR>
 nnoremap <leader>gc :action GotoClass<CR>
 nnoremap <leader>gd :action GotoDeclaration<CR>
-nnoremap <leader>gu :action ShowUsages<CR>
+nnoremap <leader>gr :action ShowUsages<CR>
 nnoremap <leader>gf :action GotoFile<CR>
 nnoremap <leader>gi :action GotoImplementation<CR>
 nnoremap <leader>gs :action GotoSymbol<CR>
@@ -131,8 +144,9 @@ nnoremap <leader>gt :action GotoTest<CR>
 nnoremap <leader>gv :action ActivateVersionControlToolWindow<CR>
 
 " 显示所有成员
-nnoremap <leader>f :action ActivateStructureToolWindow<CR>
+nnoremap <leader>ff :action ActivateStructureToolWindow<CR>
 
+nnoremap <c-f> :action GotoFile<CR>
 " 检查代码
 nnoremap <leader>ic :action InspectCode<CR>
 
@@ -145,24 +159,24 @@ nnoremap <leader>pm :action ShowPopupMenu<CR>
 nnoremap <leader>pi :action ParameterInfo<CR>
 
 " 最近打开文件
-nnoremap <leader>rf :action RecentFiles<CR>
+nnoremap <leader>fm :action RecentFiles<CR>
 " 最近修改文件
-nnoremap <leader>rc :action RecentChangedFiles<CR>
+nnoremap <leader>fc :action RecentChangedFiles<CR>
 " 替换
 nnoremap <leader>rp :action Replace<CR>
 " 重命名当前元素
-nnoremap <leader>rne :action RenameElement<CR>
+nnoremap <leader>rn :action RenameElement<CR>
 " 重命名当前文件
-nnoremap <leader>rnf :action RenameFile<CR>
+nnoremap <leader>rf :action RenameFile<CR>
 " 格式化代码
 nnoremap <leader>re :action ReformatCode<CR>
 
-nnoremap <leader>se :action SearchEverywhere<CR>
+nnoremap <c-s> :action SearchEverywhere<CR>
 " 显示引用
-nnoremap <leader>su :action FindUsages<CR>
+nnoremap <leader>fr :action FindUsages<CR>
 
 " 文件树
-nnoremap <leader>t :action ActivateProjectToolWindow<CR>
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
 
 " 添加书签
 nnoremap m0 :action ToggleBookmark0<CR>
@@ -186,3 +200,4 @@ nnoremap `6:action GotoBookmark6<CR>
 nnoremap `7:action GotoBookmark7<CR>
 nnoremap `8:action GotoBookmark8<CR>
 nnoremap `9:action GotoBookmark9<CR>
+set ideajoin

@@ -18,13 +18,8 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
     sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
-    sudo ln -s -f ~/dotfiles/.i3 ~/.i3
-    sudo ln -s -f ~/dotfiles/.asoundrc ~/.asoundrc
-    # 使用tmux配置文件
-    rm -rf ~/.tmux
-    git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-    ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
-    ln -s -f ~/dotfiles/.tmux.conf.local ~/.tmux.conf.local
+    sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
