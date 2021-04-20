@@ -171,10 +171,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " 配色方案
-colorscheme Colorful
+" colorscheme Colorful
 " colorscheme NeoSolarized
 " colorscheme neodark
-" colorscheme space-vim-dark
+colorscheme space-vim-dark
 " 透明背景
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
