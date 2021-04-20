@@ -4,8 +4,12 @@ set nocompatible
 let mapleader=" "
 
 " 文件编码
+set encoding=utf-8
 let &termencoding=&encoding 
 set fileencodings=utf-8,gbk
+
+" TextEdit might fail if hidden is not set.
+set hidden
 
 " 显示相对行号（当前行为绝对行号）
 set nu rnu
@@ -144,34 +148,26 @@ set rtp+=/usr/local/opt/fzf
 
 " 插件管理
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
-Plug 'vim-scripts/phd'
-Plug 'lingyv/Colorful'
-Plug 'iCyMind/NeoSolarized'
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'tomasr/molokai' "主题
+Plug 'vim-scripts/phd' "主题
+Plug 'lingyv/Colorful' "主题
+Plug 'iCyMind/NeoSolarized' "主题
+Plug 'KeitaNakamura/neodark.vim' "主题
+Plug 'liuchengxu/space-vim-dark' "主题
 Plug 'vim-airline/vim-airline' "美化状态栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
-Plug 'docunext/closetag.vim' " 自动补全html/xml标签
 Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'voldikss/vim-floaterm' "浮动终端
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
-Plug 'w0rp/ale' "异步代码检查
 Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
-Plug 'terryma/vim-multiple-cursors'   "多处编辑
 Plug 'scrooloose/nerdcommenter'   "快速注释
-Plug 'Valloric/YouCompleteMe' "自动补全
-Plug 'Lokaltog/vim-easymotion'    "把满足条件的位置用 [;A~Za~z] 间的标签字符标出来
-Plug 'fatih/vim-go', {'for': 'go'}   "go语言插件
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
-Plug 'liuchengxu/vim-which-key'
-Plug 'tpope/vim-fugitive' "vim 里使用 git 命令
 Plug 'airblade/vim-gitgutter' "显示文件变动
-Plug 'junegunn/gv.vim' "git commit 浏览器
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " 配色方案
@@ -213,66 +209,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>0 <Plug>AirlineSelectTab0
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
-
-" 代码检查
-let g:airline#extensions#ale#enabled = 0
-let g:ale_set_highlights = 0
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
-let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '•'
-let g:ale_echo_msg_error_str = '✹ Error'
-let g:ale_echo_msg_warning_str = '⚠ Warning'
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-" run lint only on saving a file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_save = 0
-" dont run lint on opening a file
-let g:ale_lint_on_enter = 0
-
-" UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<c-space>"
-
-" 提供python3自动完成
-let g:ycm_python_binary_path = 'python'
-" YCM 补全菜单配色
-" 菜单
-" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#12FF12
-" 选中项
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#00D1E8 guibg=#106900
-" 补全功能在注释中同样有效
-let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
-let g:ycm_confirm_extra_conf=0
-" 开启 YCM 标签补全引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-" inoremap <leader>; <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 语法关键字补全
-let g:ycm_seed_identifiers_with_syntax=1
-" 跳转到定义处 查找光标下的符号，跳转到它的定义;如果定义不能访问，则跳转到符号的声明
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-" 跳转到引用处 查找项目中的所有引用到光标下的标识符
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-" 获取变量或者方法的类型
-" nnoremap <leader>gt :YcmCompleter GetType<CR>
-" 获取文档
-" nnoremap <leader>gd :YcmCompleter GetDoc<CR>
-" 自动弹出语义补全
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,scala,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
 
 " vim-floaterm 浮动终端
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
@@ -398,3 +334,63 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
+" ====== Coc config ======
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json']
+
+set updatetime=100
+set shortmess+=c
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
