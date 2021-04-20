@@ -319,7 +319,7 @@ function! AutoSetFileHead()
 endfunc
 
 " ====== Coc 配置 ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json']
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver']
 
 set updatetime=100
 set shortmess+=c
