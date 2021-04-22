@@ -173,10 +173,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " 配色方案
-colorscheme Colorful
+" colorscheme Colorful
 " colorscheme NeoSolarized
 " colorscheme neodark
-" colorscheme space-vim-dark
+colorscheme space-vim-dark
 " 透明背景
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
@@ -222,16 +222,6 @@ let g:NERDSpaceDelims = 1
 " 取消注释时，启用修剪尾随空格
 let g:NERDTrimTrailingWhitespace = 1
  
-" 关闭默认快捷键
-let g:EasyMotion_do_mapping = 0 
-" 跳转到任何地方
-nnoremap s <Plug>(easymotion-s)
-" 不区分大小写
-let g:EasyMotion_smartcase = 1
-" 快速跳转到上一行,下一行
-nnoremap <Leader>j <Plug>(easymotion-j)
-nnoremap <Leader>k <Plug>(easymotion-k)
-
 " 插件Leaderf
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
@@ -260,15 +250,6 @@ noremap <C-S> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
-
-" should use `Leaderf gtags --update` first
-let g:Lf_GtagsAutoGenerate = 1
-let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
 " 插件Better Rainbow Parentheses
@@ -336,8 +317,8 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
-" ====== Coc config ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json']
+" ====== Coc 配置 ======
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver']
 
 set updatetime=100
 set shortmess+=c
