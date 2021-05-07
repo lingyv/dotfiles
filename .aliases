@@ -4,6 +4,10 @@ eval $(thefuck --alias FUCK)
 #命令行使用proxychains4
 alias fq=proxychains4
 
+#代理
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1081"
+alias unsetproxy="unset ALL_PROXY"
+
 #设置npm淘宝源
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \
