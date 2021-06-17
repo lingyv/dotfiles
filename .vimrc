@@ -166,7 +166,7 @@ Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
 Plug 'scrooloose/nerdcommenter'   "快速注释
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
-Plug 'airblade/vim-gitgutter' "显示文件变动
+Plug 'APZelos/blamer.nvim' "git 提交记录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -315,8 +315,16 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
+
+" ====== APZelos/blamer.nvim ======
+let g:blamer_enabled = 0
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' --> '
+let g:blamer_date_format = '%y/%m/%d %H:%M'
+
 " ====== Coc 配置 ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git']
 
 set updatetime=100
 set shortmess+=c
