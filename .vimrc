@@ -151,32 +151,25 @@ set rtp+=/usr/local/opt/fzf
 
 " 插件管理
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai' "主题
-Plug 'vim-scripts/phd' "主题
 Plug 'lingyv/Colorful' "主题
 Plug 'iCyMind/NeoSolarized' "主题
-Plug 'KeitaNakamura/neodark.vim' "主题
 Plug 'liuchengxu/space-vim-dark' "主题
 Plug 'vim-airline/vim-airline' "美化状态栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags' "自动索引
 Plug 'voldikss/vim-floaterm' "浮动终端
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
-Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
-Plug 'scrooloose/nerdcommenter'   "快速注释
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
-Plug 'airblade/vim-gitgutter' "显示文件变动
+Plug 'APZelos/blamer.nvim' "git 提交记录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " 配色方案
 " colorscheme Colorful
 " colorscheme NeoSolarized
-" colorscheme neodark
 colorscheme space-vim-dark
 " 透明背景
 hi Normal     ctermbg=NONE guibg=NONE
@@ -217,12 +210,6 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
 tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
-" 快速注释配置
-" 默认情况下在注释分隔符后添加空格
-let g:NERDSpaceDelims = 1
-" 取消注释时，启用修剪尾随空格
-let g:NERDTrimTrailingWhitespace = 1
- 
 " 插件Leaderf
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
@@ -279,24 +266,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" vim-gutentags 配置
-set tags=./tags;,tags
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
@@ -318,8 +287,16 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
+
+" ====== APZelos/blamer.nvim ======
+let g:blamer_enabled = 0
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' --> '
+let g:blamer_date_format = '%y/%m/%d %H:%M'
+
 " ====== Coc 配置 ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git']
 
 set updatetime=100
 set shortmess+=c
