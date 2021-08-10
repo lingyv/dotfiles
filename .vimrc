@@ -210,6 +210,12 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
 tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
+" vim-surround
+let g:surround_no_mappings = 1
+nmap ys <Plug>Ysurround
+nmap cs <Plug>Csurround
+nmap ds <Plug>Dsurround
+
 " 插件Leaderf
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
