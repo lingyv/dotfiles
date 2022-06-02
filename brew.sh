@@ -10,13 +10,12 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if test ! $(which brew); then
     echo "安装 homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 fi
 
 # Make sure we’re using the latest Homebrew.
 brew update
 
-brew install curl --with-libidn --with-libssh2 --with-nghttp2 --with-rtmpdump
 brew install proxychains-ng
 
 # Install GNU core utilities (those that come with OS X are outdated).
@@ -27,9 +26,9 @@ sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils --with-default-names
+brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
@@ -37,29 +36,25 @@ brew install bash
 brew install bash-completion
 
 brew install gawk
-brew install gnu-indent --with-default-names
-brew install gnu-tar --with-default-names
-brew install gnu-which --with-default-names
+brew install gnu-tar
+brew install gnu-which
 brew install gnutls
-brew install grep --with-default-names
+brew install grep
 brew install gzip
 brew install global
 brew install rg
 brew install make
 brew install unzip
+brew install python3
 brew install ffmpeg
 brew install ctags cscope the_silver_searcher
-brew install python3
 brew install gcc
-
-# Install `wget` with IRI support.
-brew install wget --with-iri
 
 # 设置zsh为默认shell
 chsh -s /bin/zsh
 
 # Install more recent versions of some OS X tools.
-brew install vim --with-override-system-vi
+brew install vim
 brew install neovim
 brew install homebrew/dupes/openssh
 
@@ -79,7 +74,7 @@ brew install thefuck
 brew install autojump
 
 # 安装oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions

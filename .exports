@@ -13,6 +13,11 @@ export HADOOP_HOME=/usr/local/hadoop/hadoop
 export HIVE_HOME=/usr/local/hive/hive
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
