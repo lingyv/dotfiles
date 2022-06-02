@@ -73,6 +73,9 @@ brew install tmux
 brew install thefuck
 brew install autojump
 
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+
 # 安装oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
