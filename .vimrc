@@ -302,7 +302,7 @@ let g:blamer_prefix = ' --> '
 let g:blamer_date_format = '%y/%m/%d %H:%M'
 
 " ====== Coc 配置 ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git']
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git', 'coc-pydocstring', 'coc-pyright']
 
 set updatetime=100
 set shortmess+=c
@@ -360,4 +360,4 @@ nmap <leader>rn <Plug>(coc-rename)
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-line)
