@@ -160,6 +160,7 @@ Plug 'voldikss/vim-floaterm' "浮动终端
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
+Plug 'psf/black', { 'branch': 'stable' } "python代码格式化
 Plug 'APZelos/blamer.nvim' "git 提交记录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -297,6 +298,12 @@ let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = ' --> '
 let g:blamer_date_format = '%y/%m/%d %H:%M'
+
+" ====== Black 保存时自动格式化py代码 ======
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
 
 " ====== Coc 配置 ======
 let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git']
