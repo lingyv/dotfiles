@@ -8,7 +8,7 @@ export GRADLE_USER_HOME=/usr/local/gradle/caches
 export GOPATH=~/coding/go
 export EDITOR=vim
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.cloud.tencent.com/homebrew-bottles
-export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
+#export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
 export HADOOP_HOME=/usr/local/hadoop/hadoop
 export HIVE_HOME=/usr/local/hive/hive
 

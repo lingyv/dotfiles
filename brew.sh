@@ -75,6 +75,7 @@ brew install autojump
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
+brew install git-delta
 
 # 安装oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
