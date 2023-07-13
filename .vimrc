@@ -5,7 +5,7 @@ let mapleader=" "
 
 " 文件编码
 set encoding=utf-8
-let &termencoding=&encoding 
+let &termencoding=&encoding
 set fileencodings=utf-8,gbk
 
 " TextEdit might fail if hidden is not set.
@@ -38,12 +38,12 @@ set visualbell t_vb=
 filetype on
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
-" 根据不同的文件类型执行不同的命令 
-" c/c++类型 
-:autocmd FileType c,cpp :set foldmethod=syntax 
-:autocmd FileType c,cpp :set cindent 
-" 是python类型 
-:autocmd FileType python :set foldmethod=syntax 
+" 根据不同的文件类型执行不同的命令
+" c/c++类型
+:autocmd FileType c,cpp :set foldmethod=syntax
+:autocmd FileType c,cpp :set cindent
+" 是python类型
+:autocmd FileType python :set foldmethod=syntax
 :autocmd FileType python :set smartindent
 
 " .un~ 文件写入 ~/undodor 文件夹中
@@ -90,7 +90,7 @@ nnoremap <leader>n :bn<CR>
 
 " 开启实时搜索功能
 set incsearch
-" 高亮搜索 
+" 高亮搜索
 set hlsearch
 " 搜索时大小写不敏感
 set ignorecase
@@ -157,7 +157,7 @@ Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm' "浮动终端
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " 查看函数列表
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
 Plug 'psf/black', { 'branch': 'stable' } "python代码格式化
@@ -242,6 +242,15 @@ noremap <C-S> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
 " 插件Better Rainbow Parentheses
