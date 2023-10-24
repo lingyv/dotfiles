@@ -73,10 +73,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'vim-scripts/ReplaceWithRegister'
 
 set sneak
-nnoremap f <Plug>(sneak-f)
-nnoremap F <Plug>(sneak-F)
-nnoremap t <Plug>(sneak-t)
-nnoremap T <Plug>(sneak-T)
 
 " >>>>>>> IDEA 设置 <<<<<<<<
 " ==================================================
