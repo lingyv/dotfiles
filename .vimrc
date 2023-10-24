@@ -159,6 +159,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak' "快速搜索、跳转
+Plug 'vim-scripts/ReplaceWithRegister' "使用寄存器替换
+Plug 'terryma/vim-multiple-cursors' "多光标编辑
 Plug 'voldikss/vim-floaterm' "浮动终端
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " 查看函数列表
 Plug 'Yggdroot/indentLine'    "缩进线
@@ -206,6 +209,12 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>0 <Plug>AirlineSelectTab0
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
+
+" vim-sneak
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " vim-floaterm 浮动终端
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
