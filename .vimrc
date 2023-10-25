@@ -5,7 +5,7 @@ let mapleader=" "
 
 " 文件编码
 set encoding=utf-8
-let &termencoding=&encoding 
+let &termencoding=&encoding
 set fileencodings=utf-8,gbk
 
 " TextEdit might fail if hidden is not set.
@@ -38,12 +38,12 @@ set visualbell t_vb=
 filetype on
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
-" 根据不同的文件类型执行不同的命令 
-" c/c++类型 
-:autocmd FileType c,cpp :set foldmethod=syntax 
-:autocmd FileType c,cpp :set cindent 
-" 是python类型 
-:autocmd FileType python :set foldmethod=syntax 
+" 根据不同的文件类型执行不同的命令
+" c/c++类型
+:autocmd FileType c,cpp :set foldmethod=syntax
+:autocmd FileType c,cpp :set cindent
+" 是python类型
+:autocmd FileType python :set foldmethod=syntax
 :autocmd FileType python :set smartindent
 
 " .un~ 文件写入 ~/undodor 文件夹中
@@ -90,7 +90,7 @@ nnoremap <leader>n :bn<CR>
 
 " 开启实时搜索功能
 set incsearch
-" 高亮搜索 
+" 高亮搜索
 set hlsearch
 " 搜索时大小写不敏感
 set ignorecase
@@ -150,32 +150,29 @@ set rtp+=/usr/local/opt/fzf
 
 " 插件管理
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai' "主题
-Plug 'vim-scripts/phd' "主题
 Plug 'lingyv/Colorful' "主题
 Plug 'iCyMind/NeoSolarized' "主题
-Plug 'KeitaNakamura/neodark.vim' "主题
 Plug 'liuchengxu/space-vim-dark' "主题
 Plug 'vim-airline/vim-airline' "美化状态栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim' "为括号上色
 Plug 'Raimondi/delimitMate' " 自动补全单引号，双引号等
 Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags' "自动索引
+Plug 'justinmk/vim-sneak' "快速搜索、跳转
+Plug 'vim-scripts/ReplaceWithRegister' "使用寄存器替换
+Plug 'terryma/vim-multiple-cursors' "多光标编辑
 Plug 'voldikss/vim-floaterm' "浮动终端
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 查看函数列表
-Plug 'jeetsukumaran/vim-pythonsense'    "Python 文本对象
-Plug 'scrooloose/nerdcommenter'   "快速注释
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " 查看函数列表
 Plug 'Yggdroot/indentLine'    "缩进线
 Plug 'itchyny/vim-cursorword' "当前单词下划线
-Plug 'airblade/vim-gitgutter' "显示文件变动
+Plug 'psf/black', { 'branch': 'stable' } "python代码格式化
+Plug 'APZelos/blamer.nvim' "git 提交记录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " 配色方案
 " colorscheme Colorful
 " colorscheme NeoSolarized
-" colorscheme neodark
 colorscheme space-vim-dark
 " 透明背景
 hi Normal     ctermbg=NONE guibg=NONE
@@ -212,16 +209,19 @@ nmap <leader>0 <Plug>AirlineSelectTab0
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
+" vim-sneak
+let g:sneak#label = 1
+
 " vim-floaterm 浮动终端
 nnoremap <silent> <Leader>t :FloatermToggle<CR>
 tnoremap <silent> <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
-" 快速注释配置
-" 默认情况下在注释分隔符后添加空格
-let g:NERDSpaceDelims = 1
-" 取消注释时，启用修剪尾随空格
-let g:NERDTrimTrailingWhitespace = 1
- 
+" vim-surround
+let g:surround_no_mappings = 1
+nmap ys <Plug>Ysurround
+nmap cs <Plug>Csurround
+nmap ds <Plug>Dsurround
+
 " 插件Leaderf
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
@@ -251,6 +251,15 @@ noremap <C-S> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
 
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
 
 " 插件Better Rainbow Parentheses
 let g:rbpt_colorpairs = [
@@ -278,24 +287,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" vim-gutentags 配置
-set tags=./tags;,tags
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
@@ -317,17 +308,31 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
+
+" ====== APZelos/blamer.nvim ======
+let g:blamer_enabled = 0
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' --> '
+let g:blamer_date_format = '%y/%m/%d %H:%M'
+
+" ====== Black 保存时自动格式化py代码 ======
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
+
 " ====== Coc 配置 ======
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-json', 'coc-java', 'coc-metals', 'coc-tsserver', 'coc-git']
 
 set updatetime=100
 set shortmess+=c
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -340,7 +345,7 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics

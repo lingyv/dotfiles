@@ -66,20 +66,13 @@ set clipboard=unnamedplus
 set backspace=indent,eol,start
 
 " >>>>>>> VIM PLUG <<<<<<<<
-set easymotion
-" 关闭默认快捷键
-let g:EasyMotion_do_mapping = 0 
-" 跳转到任何地方
-nnoremap s <Plug>(easymotion-s)
-" 快速跳转到上一行,下一行
-nnoremap <Leader>j <Plug>(easymotion-j)
-nnoremap <Leader>k <Plug>(easymotion-k)
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-exchange'
+Plug 'kana/vim-textobj-entire'
+Plug 'vim-scripts/ReplaceWithRegister'
 
-set surround
-set multiple-cursors
-set exchange
-set textobj-entire
-
+set sneak
 
 " >>>>>>> IDEA 设置 <<<<<<<<
 " ==================================================

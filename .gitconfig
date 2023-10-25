@@ -103,6 +103,17 @@
 	precomposeunicode = false
 	autocrlf = input
 
+	pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	#side-by-side = true
+	line-numbers = true
+
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
@@ -132,6 +143,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	colorMoved = default
 
 [help]
 
@@ -142,6 +154,7 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	conflictstyle = diff3
 
 [push]
 
