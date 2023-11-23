@@ -68,10 +68,15 @@ brew install tree
 
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
+brew install wget
 brew install node
 brew install tmux
 brew install thefuck
 brew install autojump
+brew install mysql
+brew install openjdk
+brew install hadoop
+brew install hive
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
