@@ -69,6 +69,11 @@ brew install tree
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
 brew install wget
+brew install bat
+brew install exa
+brew install fd
+brew install ripgrep
+brew install fzf
 brew install node
 brew install tmux
 brew install thefuck
