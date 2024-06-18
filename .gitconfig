@@ -176,3 +176,5 @@
 [safe]
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+[http]
+	sslBackend = openssl
