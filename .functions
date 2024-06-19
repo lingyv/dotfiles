@@ -1,7 +1,7 @@
 # 打印.gitignore文件 使用 --> pgi java,python
 function pgi() { curl -L -s https://www.toptal.com/developers/gitignore/api/$@ ;}
 
-$ yazi 文件管理器
+# yazi 文件管理器
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
