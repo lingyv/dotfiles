@@ -12,8 +12,7 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.curlrc ~/.curlrc
     sudo ln -s -f ~/dotfiles/.gitconfig ~/.gitconfig
     sudo ln -s -f ~/dotfiles/.vimrc ~/.vimrc
-    sudo ln -s -f ~/.vim ~/.config/nvim
-    sudo ln -s -f ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+    mkdir -p ~/.config/nvim/lua
     sudo ln -s -f ~/dotfiles/init.lua ~/.config/nvim/init.lua
     sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
