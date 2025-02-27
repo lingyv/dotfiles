@@ -169,6 +169,7 @@ Plug 'itchyny/vim-cursorword' "当前单词下划线
 Plug 'psf/black', { 'branch': 'stable' } "python代码格式化
 Plug 'APZelos/blamer.nvim' "git 提交记录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'folke/lazy.nvim'
 call plug#end()
 
 " 配色方案

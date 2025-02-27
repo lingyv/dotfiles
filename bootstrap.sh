@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
-            
+
     sudo ln -s -f ~/dotfiles/.zshrc ~/.zshrc
     sudo ln -s -f ~/dotfiles/.aliases ~/.aliases
     sudo ln -s -f ~/dotfiles/.functions ~/.functions
@@ -14,6 +14,7 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.vimrc ~/.vimrc
     sudo ln -s -f ~/.vim ~/.config/nvim
     sudo ln -s -f ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+    sudo ln -s -f ~/dotfiles/init.lua ~/.config/nvim/init.lua
     sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
     sudo ln -s -f ~/dotfiles/.condarc ~/.condarc
