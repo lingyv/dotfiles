@@ -1,4 +1,5 @@
 export LLM_KEY=NONE
+export LOCAL_LLM_KEY=NONE
 export M2_HOME=/usr/local/maven/maven
 export REDIS_HOME=/usr/local/redis/redis
 export ZOOKEEPER_HOME=/usr/local/zookeeper/zookeeper
