@@ -7,7 +7,7 @@ export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
 export GRADLE_USER_HOME=/usr/local/gradle/caches
 export GOPATH=~/coding/go
 export LLM_KEY=NONE
-
+export LOCAL_LLM_KEY=NONE
 export EDITOR=vim
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.cloud.tencent.com/homebrew-bottles
 #export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
