@@ -16,6 +16,7 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 
 alias vi=nvim
 alias cat=bat
+alias connect_server='ssh jinguo.xie@192.168.22.18  -p 22 -o ProxyCommand="nc -x 127.0.0.1:1089 %h %p"'
 
 #使用指定命令运行指定扩展名的文件
 alias -s jar='java -jar'
