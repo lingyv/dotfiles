@@ -194,29 +194,54 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
 if.window-title-regex-substring = '^(?!WeChat \(Chats\)|微信 \(聊天\)).*$'
-run = 'layout floating'
-
-# 使腾讯会议所有窗口设为自动悬浮：
-[[on-window-detected]]
-if.app-id = 'com.tencent.meeting'
-if.window-title-regex-substring = '^(?!TencentMeeting|\(腾讯\)会议)'
-run = 'layout floating'
-
-# 使腾讯元宝所有窗口设为自动悬浮：
-[[on-window-detected]]
-if.window-title-regex-substring = '腾讯元宝'
-run = 'layout floating'
-
-# 使豆包所有窗口设为自动悬浮：
-[[on-window-detected]]
-if.app-id = 'com.bot.pc.doubao'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace 1 --focus-follows-window']
 
 # 使钉钉所有窗口设为自动悬浮：
 [[on-window-detected]]
 if.app-id = '5ZSL2CJU2T.com.dingtalk.mac'
 if.window-title-regex-substring = '^(?!DingTalk \(Chats\)|钉钉 \(聊天|文档\)).*$'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace 1 --focus-follows-window']
+
+# 使腾讯元宝所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.window-title-regex-substring = '腾讯元宝'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
+# 使豆包所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.bot.pc.doubao'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
+# 使Dash所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.kapeli.dashdoc'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
+# 使腾讯会议所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.tencent.meeting'
+if.window-title-regex-substring = '^(?!TencentMeeting|\(腾讯\)会议)'
+run = ['layout floating', 'move-node-to-workspace 4 --focus-follows-window']
+
+# Word
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Word'
+run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+
+# Excel
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+
+# Excel
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Powerpoint'
+run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+
+# WPS
+[[on-window-detected]]
+if.app-name-regex-substring = '^(WPS.*)$'
+run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
 
 # 使jetbrans 相关窗口悬浮
 [[on-window-detected]]
@@ -224,3 +249,13 @@ run = 'layout floating'
 if.app-name-regex-substring = '^(IntelliJ.*|PyCharm.*|Writerside.*|DataGrip.*)$'
 if.window-title-regex-substring = '^(Commit.*|Welcome to.*|.*Diff.*|.*Clipboard.*|.*\(.*\).*)$'
 run = 'layout floating'
+
+# Chrome
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = ['move-node-to-workspace 7 --focus-follows-window']
+
+# Warp
+[[on-window-detected]]
+if.app-id = 'dev.warp.Warp-Stable'
+run = ['move-node-to-workspace 10 --focus-follows-window']
