@@ -793,6 +793,15 @@ function icon_map() {
 	"Dash")
 		icon_result=":lm_studio:"
 		;;
+	"WPS Office" | "wps office")
+		icon_result=":pages:"
+		;;
+	"Trae CN" | "trae")
+		icon_result=":cursor:"
+		;;
+	"Lingma" | "lingma")
+		icon_result=":coteditor:"
+		;;
 	*)
 		icon_result=":default:"
 		;;
