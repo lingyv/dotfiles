@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository>/usr/local/maven/repository</localRepository>
+    <localRepository>/Users/lingyv/.m2/repository</localRepository>
     <pluginGroups></pluginGroups>
-    <proxies></proxies>
+    <proxies>
+      <proxy>
+        <id>socks5-proxy</id>
+        <active>true</active>
+        <protocol>socks5</protocol>
+        <host>127.0.0.1</host>
+        <port>1089</port>
+        <nonProxyHosts>localhost|127.0.0.1|maven.aliyun.com|repo.spring.io|uk.maven.org|repository.cloudera.com|repo.hortonworks.com</nonProxyHosts>
+      </proxy>
+    </proxies>
+    <servers>
+      <server>
+          <id>100credit_release</id>
+          <username>deployment</username>
+          <password>deployment123</password>
+      </server>
+      <server>
+          <id>100credit_snapshots</id>
+          <username>deployment</username>
+          <password>deployment123</password>
+      </server>
+    </servers>
     <mirrors>
         <mirror>
             <id>ali-nexus</id>
@@ -36,4 +57,36 @@
             <url>http://repo.hortonworks.com/content/repositories/releases/</url>
         </mirror>
     </mirrors>
+    <profiles>
+      <profile>
+         <id>100credit</id>
+            <repositories>
+               <repository>
+                   <id>100credit</id>
+                   <url>http://192.168.162.106:8081/nexus/content/groups/public/</url>
+                   <releases>
+                      <enabled>true</enabled>
+                   </releases>
+                   <snapshots>
+                      <enabled>true</enabled>
+                   </snapshots>
+                </repository>
+              </repositories>
+              <pluginRepositories>
+                  <pluginRepository>
+                      <id>nexus</id>
+                      <url>http://192.168.162.106:8081/nexus/content/groups/public</url>
+                      <releases>
+                          <enabled>true</enabled>
+                      </releases>
+                      <snapshots>
+                          <enabled>true</enabled>
+                      </snapshots>
+                  </pluginRepository>
+              </pluginRepositories>
+      </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>100credit</activeProfile>
+    </activeProfiles>
 </settings>

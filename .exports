@@ -1,7 +1,7 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export JAVA_HOME=/opt/homebrew/opt/openjdk
+export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
 export M2_HOME=/opt/homebrew/opt/maven/libexec
 export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
 export GRADLE_USER_HOME=/usr/local/gradle/caches
@@ -14,6 +14,7 @@ export EDITOR=vim
 export HADOOP_HOME=/opt/homebrew/Cellar/hadoop/3.3.6/libexec
 export HIVE_HOME=/opt/lingyv/hive/hive-3.1.3
 export SPARK_HOME=/opt/homebrew/Cellar/apache-spark/3.5.0/libexec
+export NVM_DIR="$HOME/.nvm"
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"

@@ -1,16 +1,16 @@
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 # removed bash_prompt from default setting. we use didferent bash prompt
-for file in ~/.{exports,aliases,functions}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+for file in ~/.{exports,aliases,functions,secret_config,env}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 
 # Case-insensitive globbing (used in pathname expansion)
 # shopt -s nocaseglob;
@@ -20,3 +20,4 @@ unset file;
 
 # Autocorrect typos in path names when using `cd`
 # shopt -s cdspell;
+source /opt/homebrew/opt/nvm/nvm.sh
