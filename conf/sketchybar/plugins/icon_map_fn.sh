@@ -790,6 +790,9 @@ function icon_map() {
 	"腾讯元宝")
 		icon_result=":openai:"
 		;;
+	"千问")
+		icon_result=":openai:"
+		;;
 	"Dash")
 		icon_result=":lm_studio:"
 		;;

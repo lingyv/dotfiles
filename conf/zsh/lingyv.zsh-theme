@@ -37,6 +37,18 @@ ys_hg_prompt_info() {
 
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
+function venv_info {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        echo "%{$fg[green]%}‹${VIRTUAL_ENV:t}›%{$reset_color%}"
+    fi
+}
+
+function conda_info {
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        echo "%{$fg[green]%}‹${CONDA_DEFAULT_ENV}›%{$reset_color%}"
+    fi
+}
+
 # Prompt format:
 #
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE

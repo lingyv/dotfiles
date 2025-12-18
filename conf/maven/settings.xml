@@ -9,7 +9,7 @@
         <active>true</active>
         <protocol>socks5</protocol>
         <host>127.0.0.1</host>
-        <port>1089</port>
+        <port>1081</port>
         <nonProxyHosts>localhost|127.0.0.1|maven.aliyun.com|repo.spring.io|uk.maven.org|repository.cloudera.com|repo.hortonworks.com</nonProxyHosts>
       </proxy>
     </proxies>
