@@ -2,6 +2,15 @@
 # Not too different from the base starting config!
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+FONT="SF Pro"
+
+source "$CONFIG_DIR/colors.sh"
+
+# Setting up and starting the helper process
+HELPER=git.felix.helper
+pkill -f "$CONFIG_DIR/helper/helper $HELPER"
+#cd $CONFIG_DIR/helper && make
+$CONFIG_DIR/helper/helper $HELPER > /dev/null 2>&1 &
 
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
@@ -83,7 +92,7 @@ for sid in $(aerospace list-workspaces --monitor 1 --empty no); do
 done
 
 sketchybar --add item space_separator left \
-  --set space_separator icon="🌸" \
+  --set space_separator icon="|" \
   icon.padding_left=4 \
   label.drawing=off \
   background.drawing=off \
@@ -122,6 +131,14 @@ sketchybar --add item clock right \
   #icon.color=0x44FFFFFF \
   #label.color=0x44FFFFFF
 
+sketchybar --add item memory right \
+           --set memory \
+                 icon="󰍛" \
+                 icon.color="$GREEN" \
+                 script="${PLUGIN_DIR}/memory.sh" \
+                 update_freq=10
+
+source "$PLUGIN_DIR/cpu.sh"
 source "$PLUGIN_DIR/wechat.sh"
 source "$PLUGIN_DIR/dingtalk.sh"
 

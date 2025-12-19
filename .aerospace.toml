@@ -293,37 +293,37 @@ run = 'layout floating'
 # Chrome
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = ['layout floating', 'move-node-to-workspace 7 --focus-follows-window']
+run = ['move-node-to-workspace 7 --focus-follows-window']
 
 # Altas
 [[on-window-detected]]
 if.app-id = 'com.openai.atlas.web'
-run = ['layout floating', 'move-node-to-workspace 7 --focus-follows-window']
+run = ['move-node-to-workspace 7 --focus-follows-window']
 
 # DataGrip
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
 if.window-title-regex-substring = '^(Commit.*|Welcome to.*|.*Diff.*|.*Clipboard.*|.*修改.*|.*\(.*\).*)$'
-run = ['layout floating', 'move-node-to-workspace 8 --focus-follows-window']
+run = ['move-node-to-workspace 8 --focus-follows-window']
 
 # Pycharm
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
 if.window-title-regex-substring = '^(Commit.*|Welcome to.*|.*Diff.*|.*Clipboard.*|.*修改.*|.*\(.*\).*)$'
-run = ['layout floating', 'move-node-to-workspace 9 --focus-follows-window']
+run = ['move-node-to-workspace 9 --focus-follows-window']
 
 # Cursor
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
 if.app-name-regex-substring = '.*(Cursor|cursor).*'
-run = ['layout floating', 'move-node-to-workspace 9 --focus-follows-window']
+run = ['move-node-to-workspace 9 --focus-follows-window']
 
 # Trae
 [[on-window-detected]]
-if.app-id = 'com.trae.app'
-run = ['layout floating', 'move-node-to-workspace 9 --focus-follows-window']
+if.app-id = 'cn.trae.app'
+run = ['move-node-to-workspace 9 --focus-follows-window']
 
-# Warp
+# iterm2
 [[on-window-detected]]
-if.app-id = 'dev.warp.Warp-Stable'
+if.app-id = 'com.googlecode.iterm2'
 run = ['move-node-to-workspace 10 --focus-follows-window']
