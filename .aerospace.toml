@@ -165,8 +165,8 @@ alt-shift-semicolon = 'mode service'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = [
-  'layout floating tiling',
-  'mode main',
+	'layout floating tiling',
+	'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
@@ -266,22 +266,22 @@ run = ['layout floating', 'move-node-to-workspace 4 --focus-follows-window']
 # Word
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Word'
-run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+run = ['move-node-to-workspace 5 --focus-follows-window']
 
 # Excel
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
-run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+run = ['move-node-to-workspace 5 --focus-follows-window']
 
 # PPT
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Powerpoint'
-run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+run = ['move-node-to-workspace 5 --focus-follows-window']
 
 # WPS
 [[on-window-detected]]
 if.app-name-regex-substring = '^(WPS.*)$'
-run = ['layout floating', 'move-node-to-workspace 5 --focus-follows-window']
+run = ['move-node-to-workspace 5 --focus-follows-window']
 
 # 使jetbrans 相关窗口悬浮
 [[on-window-detected]]
@@ -326,4 +326,9 @@ run = ['move-node-to-workspace 9 --focus-follows-window']
 # iterm2
 [[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
+run = ['move-node-to-workspace 10 --focus-follows-window']
+
+# wezterm
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
 run = ['move-node-to-workspace 10 --focus-follows-window']
