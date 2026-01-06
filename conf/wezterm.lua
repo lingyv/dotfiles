@@ -52,6 +52,18 @@ config.keys = {
 		mods = "SHIFT", -- 修饰键：Shift
 		action = wezterm.action.SendString("~"), -- 执行动作：发送 ~ 字符
 	},
+	-- Cmd+V 粘贴
+	{
+		key = "v", -- 注意：key 只写单个字符，修饰键放在 mods 里
+		mods = "CMD",
+		action = wezterm.action.PasteFrom("Clipboard"), -- 更标准的 Paste 写法
+	},
+	-- Cmd+C 复制
+	{
+		key = "c",
+		mods = "CMD",
+		action = wezterm.action.CopyTo("Clipboard"), -- 更标准的 Copy 写法
+	},
 }
 
 return config
