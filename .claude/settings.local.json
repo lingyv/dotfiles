@@ -24,7 +24,9 @@
       "Bash(pkill:*)",
       "Bash(brew list:*)",
       "Skill(commit-commands:commit)",
-      "mcp__git__git_add"
+      "mcp__git__git_add",
+      "mcp__git__git_commit",
+      "WebSearch"
     ]
   }
 }
