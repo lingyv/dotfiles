@@ -21,7 +21,9 @@ brew install proxychains-ng
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
-sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
+if command -v gsha256sum >/dev/null 2>&1; then
+  sudo ln -sf "$(brew --prefix)/bin/gsha256sum" "$(brew --prefix)/bin/sha256sum"
+fi
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -42,12 +44,11 @@ brew install gnutls
 brew install grep
 brew install gzip
 brew install global
-brew install rg
 brew install make
 brew install unzip
-brew install python3
+brew install python
 brew install ffmpeg
-brew install ctags cscope the_silver_searcher
+brew install universal-ctags cscope
 brew install gcc
 
 # 设置zsh为默认shell
@@ -56,10 +57,9 @@ chsh -s /bin/zsh
 # Install more recent versions of some OS X tools.
 brew install vim
 brew install neovim
-brew install homebrew/dupes/openssh
+brew install openssh
 
 # Install other useful binaries.
-brew install ack
 brew install git
 brew install lua
 brew install p7zip
@@ -70,32 +70,31 @@ brew install tree
 # installation method.
 brew install wget
 brew install bat
-brew install exa
+brew install eza
 brew install fd
 brew install ripgrep
 brew install fzf
+brew install tldr
 brew install node
 brew install tmux
 brew install thefuck
-brew install autojump
+brew install btop
+brew install zoxide
 brew install mysql
 brew install openjdk
-brew install hadoop
-brew install hive
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
 brew install git-delta
 
 # 安装oh-my-zsh
-git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
+git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh
 ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir ~/coding
-git clone https://github.com/skywind3000/z.lua.git ~/coding/z.lua
 
 # Remove outdated versions from the cellar.
 brew cleanup

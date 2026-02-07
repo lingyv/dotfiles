@@ -50,9 +50,14 @@ ZSH_THEME="lingyv"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump macos zsh-syntax-highlighting fzf)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search copypath copyfile history colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
+
+# zoxide
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # User configuration
 
@@ -84,4 +89,3 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.bash_profile;
-eval "$(lua ~/coding/z.lua/z.lua --init zsh)"

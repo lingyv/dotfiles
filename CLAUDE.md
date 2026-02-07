@@ -42,7 +42,7 @@ After running `bootstrap.sh`, you must:
    git config --global user.name "Your Name"
    git config --global user.email you@example.com
    ```
-2. Install Vim plugins: Open Vim and run `:BundleInstall`
+2. Install Vim plugins: Open Vim and run `:PlugInstall`
 3. Install Tmux plugins: Press `prefix + I` (default: `Ctrl+g` then `I`)
 
 ### Apply macOS System Defaults
@@ -56,8 +56,8 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 ### Shell Environment
 - **Primary Shell**: Zsh with oh-my-zsh framework
 - **Custom Theme**: `lingyv` (located in `conf/zsh/`)
-- **Active Plugins**: git, autojump, macos, zsh-syntax-highlighting, fzf
-- **Directory Jumping**: z.lua (initialized in `.zshrc`, expects `~/coding/z.lua/`)
+- **Active Plugins**: git, zsh-autosuggestions, zsh-syntax-highlighting, sudo, extract, web-search, copypath, copyfile, history, colored-man-pages
+- **Directory Jumping**: zoxide (initialized in `.zshrc`)
 - **Configuration Loading Order**: `.zshrc` → `.bash_profile` → `.exports` + `.aliases` + `.functions`
 
 ### Development Stack
@@ -68,10 +68,6 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 - Node.js: nvm support
 - Go: `GOPATH` configured
 
-**Big Data Stack**:
-- Hadoop 3.3.6: `HADOOP_HOME`
-- Spark 3.5.0: `SPARK_HOME`
-- Hive 3.1.3: `HIVE_HOME`
 
 ### Editor Configuration
 
@@ -86,7 +82,7 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 - Symlinked to: `~/.config/nvim/init.lua`
 
 **Vim**:
-- Plugin Manager: vim-plug (requires `:BundleInstall` after setup)
+- Plugin Manager: vim-plug (requires `:PlugInstall` after setup)
 - Configuration: `.vimrc` (386 lines)
 
 **JetBrains IDEs**:
@@ -198,7 +194,6 @@ git checkout mac
 
 ### External Repositories
 - oh-my-zsh: Installed by `brew.sh`
-- z.lua: Expected at `~/coding/z.lua/` (must clone manually)
 - tmux plugin manager: Auto-cloned to `~/.tmux/plugins/tpm` by `bootstrap.sh`
 
 ### System Requirements

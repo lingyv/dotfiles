@@ -1,6 +1,8 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
 export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
 export M2_HOME=/opt/homebrew/opt/maven/libexec
 export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
@@ -11,23 +13,19 @@ export LOCAL_LLM_KEY=NONE
 export EDITOR=vim
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.cloud.tencent.com/homebrew-bottles
 #export PYTHONPATH=/usr/local/opt/xgboost/python-package:/usr/local/opt/LightGBM/python-package
-export HADOOP_HOME=/opt/homebrew/Cellar/hadoop/3.3.6/libexec
-export HIVE_HOME=/opt/lingyv/hive/hive-3.1.3
-export SPARK_HOME=/opt/homebrew/Cellar/apache-spark/3.5.0/libexec
 export NVM_DIR="$HOME/.nvm"
 
-export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
-export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-which/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+#export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+#export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+#export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+#export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+#export PATH="/opt/homebrew/opt/gnu-which/libexec/gnubin:$PATH"
+#export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+#export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gettext/bin:$PATH"
 export PATH="/opt/homebrew/opt/m4/bin:$PATH"
 export PATH="/opt/homebrew/opt/ncurses/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl/bin:$PATH"
-export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
@@ -38,7 +36,5 @@ export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/lingyv/.local/bin:$PATH"
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$SPARK_HOME/bin:/usr/local/pandoc/pandoc/bin:$PATH
+export PATH=$JAVA_HOME/bin:$M2_HOME/bin:/usr/local/pandoc/pandoc/bin:$PATH
 export PATH="$HOME/.npm-global/bin:$PATH"
