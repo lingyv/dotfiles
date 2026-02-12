@@ -8,9 +8,6 @@ set encoding=utf-8
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk
 
-" MacVim字体
-" set macligatures
-set guifont=Fira\ Code\ Retina:h13
 " TextEdit might fail if hidden is not set.
 set hidden
 
