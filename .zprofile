@@ -1,4 +1,7 @@
 
+# Keep PATH unique in zsh (important when tmux/server environment reuses PATH).
+typeset -U path PATH
+
 
 # Added by Toolbox App
 export PATH="$PATH:/Users/lingyv/Library/Application Support/JetBrains/Toolbox/scripts"
@@ -23,3 +26,6 @@ done
 unset file
 
 source /opt/homebrew/opt/nvm/nvm.sh
+
+# Final PATH dedupe after all sourced files potentially append/prepend entries.
+typeset -U path PATH

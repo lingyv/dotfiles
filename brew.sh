@@ -6,11 +6,15 @@
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
 
 if test ! $(which brew); then
-    echo "安装 homebrew..."
-    /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+	echo "安装 homebrew..."
+	/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 fi
 
 # Make sure we’re using the latest Homebrew.
@@ -22,7 +26,7 @@ brew install proxychains-ng
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 if command -v gsha256sum >/dev/null 2>&1; then
-  sudo ln -sf "$(brew --prefix)/bin/gsha256sum" "$(brew --prefix)/bin/sha256sum"
+	sudo ln -sf "$(brew --prefix)/bin/gsha256sum" "$(brew --prefix)/bin/sha256sum"
 fi
 
 # Install some other useful utilities like `sponge`.
@@ -82,6 +86,8 @@ brew install btop
 brew install zoxide
 brew install mysql
 brew install openjdk
+brew install sesh
+brew install television
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
@@ -93,7 +99,7 @@ ln -s ~/dotfiles/conf/zsh/lingyv.zsh-theme ~/.oh-my-zsh/themes/lingyv.zsh-theme
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir ~/coding
 
 # Remove outdated versions from the cellar.
