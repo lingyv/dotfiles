@@ -50,7 +50,7 @@ ZSH_THEME="lingyv"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search copypath copyfile history colored-man-pages)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search copypath copyfile history colored-man-pages fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,4 +88,4 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.bash_profile;
+#[[ -f "$HOME/.config/kaku/zsh/kaku.zsh" ]] && source "$HOME/.config/kaku/zsh/kaku.zsh" # Kaku Shell Integration
