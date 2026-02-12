@@ -1,48 +1,44 @@
-eval $(thefuck --alias)
-eval $(thefuck --alias FUCK)
-
-#命令行使用proxychains4
-alias fq=proxychains4
+# thefuck (if installed)
+if command -v thefuck >/dev/null 2>&1; then
+  eval $(thefuck --alias)
+  eval $(thefuck --alias FUCK)
+fi
 
 # zoxide quick jump
-alias j='z'
+if command -v zoxide >/dev/null 2>&1; then
+  alias j='z'
+fi
 
-#代理
+# Proxy settings
 alias setproxy="export https_proxy=http://127.0.0.1:1081 http_proxy=http://127.0.0.1:1081 all_proxy=socks5://127.0.0.1:1081"
 alias unsetproxy="unset https_proxy http_proxy all_proxy"
 
-#设置npm淘宝源
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
---cache=$HOME/.npm/.cache/cnpm \
---disturl=https://npm.taobao.org/dist \
---userconfig=$HOME/.cnpmrc"
+# npm mirror
+alias cnpm="npm --registry=https://registry.npmmirror.com --cache=$HOME/.npm/.cache/cnpm --disturl=https://npmmirror.com/mirrors/node --userconfig=$HOME/.cnpmrc"
 
+# Editor
 alias vi=nvim
-alias cat=bat
-alias connect_server='ssh jinguo.xie@192.168.22.18  -p 22 -o ProxyCommand="nc -x 127.0.0.1:1089 %h %p"'
+alias cat='bat --paging=never' 2>/dev/null || alias cat=cat
 
-#使用指定命令运行指定扩展名的文件
-alias -s jar='java -jar'
-alias -s go='go run'
-alias -s js='node'
-alias -s tgz='tar zxvf'
-alias -s py='python'
-
-#启动aria2
-alias aria2_start='aria2c --conf-path=/Users/lingyv/dotfiles/aria2.conf -D'
+# aria2
+alias aria2_start='aria2c --conf-path=~/dotfiles/aria2.conf -D'
 
 # eza as ls replacement
-alias ls='eza --icons'
-alias l='eza -alh --icons'
-alias la='eza -la --icons'
-alias ll='eza -l --icons'
-alias lt='eza --tree --icons'
-alias lsd='eza -l --icons --group-directories-first | rg "^d"'
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --icons'
+  alias l='eza -alh --icons'
+  alias la='eza -la --icons'
+  alias ll='eza -l --icons'
+  alias lt='eza --tree --icons'
+  alias lsd='eza -l --icons --group-directories-first | rg "^d"'
+fi
 
 # ripgrep as grep replacement
-alias grep='rg'
-alias fgrep='rg -F'
-alias egrep='rg -E'
+if command -v rg >/dev/null 2>&1; then
+  alias grep='rg'
+  alias fgrep='rg -F'
+  alias egrep='rg -E'
+fi
 
 # Get week number
 alias week='date +%V'
@@ -50,103 +46,32 @@ alias week='date +%V'
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
-# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
+# Update Arch Linux
+alias update='sudo pacman -Syu && yay -Syu && yay -Yc'
 
 # IP addresses
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+alias localip="ip route get 1.1.1.1 | grep -oP 'src \K\S+'"
+alias ips="ip addr show"
 
-# Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
-# Clean up LaunchServices to remove duplicates in the “Open With” menu
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-
-# Canonical hex dump; some systems have this symlinked
-command -v hd > /dev/null || alias hd="hexdump -C"
-
-# OS X has no `md5sum`, so use `md5` as a fallback
-command -v md5sum > /dev/null || alias md5sum="md5"
-
-# OS X has no `sha1sum`, so use `shasum` as a fallback
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
-
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Empty the Trash on all mounted volumes and the main HDD
-# Also, clear Apple’s System Logs to improve shell startup speed
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
-
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
-
-# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias plistbuddy="/usr/libexec/PlistBuddy"
-
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
-# (useful when executing time-consuming commands)
-alias badge="tput bel"
-
-# Intuitive map function
-# For example, to list all directories that contain a certain file:
-# find . -name .gitattributes | map dirname
-alias map="xargs -n1"
-
-# One of @janmoesen’s ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$method"="lwp-request -m '$method'"
-done
-
-# Make Grunt print stack traces by default
-command -v grunt > /dev/null && alias grunt="grunt --stack"
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# force to use macvim instead of normal vim
-if [ -f /usr/local/bin/mvim ]; then
-  alias vim="mvim -v"
+# Network
+alias route="ip route"
+alias listport="ss -tlnp"
+
+# Copy SSH key to clipboard (requires xclip on Arch)
+if command -v xclip >/dev/null 2>&1; then
+  function copySSHKey() {
+    cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+  }
 fi
 
-alias route="netstat -r"
-alias listport="netstat -a | egrep 'Proto|LISTEN'"
-alias pylintc="pylint --rcfile=pylint.rc"
-alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+# Clean up .DS_Store files (if any from macOS)
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete 2>/dev/null || true"
 
-# send color to anybar
-function anydot { echo -n $1 | nc -4u -w0 localhost ${2:-1738};  }
-
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
+# Empty trash
+alias emptytrash="rm -rf ~/.local/share/Trash/* 2>/dev/null || true"
