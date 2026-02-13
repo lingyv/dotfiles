@@ -2,22 +2,26 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local action = wezterm.action
 
--- 字体配置（修复了 weight 非法值 + 保持禁用连字）
-config.font = wezterm.font({
-	family = "FiraCode Nerd Font Mono",
-	weight = "Regular", -- 合法值：Regular/Bold/Light/Medium 或数字 100-900
-	harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
-})
+-- 明确指定用户字体目录，避免在某些环境下只命中内置字体
+config.font_dirs = { "/Users/lingyv/Library/Fonts" }
+
+-- 字体配置（主字体 + 回退链）
+-- 注意：font_with_fallback 会覆盖 config.font，主字体需放在第一位
 config.font_size = 15.0
 config.line_height = 1.0
 
 -- 配置字体回退链
 config.font = wezterm.font_with_fallback({
+	{
+		family = "FiraCode Nerd Font Mono",
+		weight = "Regular", -- 合法值：Regular/Bold/Light/Medium 或数字 100-900
+		harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+	},
 	"JetBrains Mono",
 	"Hack Nerd Font",
 	"NotoSans Nerd Font",
-	"Heiti SC",
 	"Fira Code",
+	"Heiti SC",
 	"Apple Color Emoji", -- Emoji支持
 	"Noto Sans CJK JP", -- 日文支持
 	"Noto Sans CJK KR", -- 韩文支持
