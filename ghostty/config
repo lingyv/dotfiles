@@ -22,6 +22,8 @@ background-blur-radius = 20
 # 光标配置
 cursor-style = block
 cursor-style-blink = true
+cursor-color = #F091A0
+selection-background = #F091A0
 
 # 回滚缓冲
 scrollback-limit = 3023
