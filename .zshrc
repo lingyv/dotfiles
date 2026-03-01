@@ -54,6 +54,9 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract colored-ma
 
 source $ZSH/oh-my-zsh.sh
 
+# Source .bash_profile for shared configuration
+[ -f ~/.bash_profile ] && source ~/.bash_profile
+
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
@@ -88,9 +91,19 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Load NVM if installed
+if [ -d "$HOME/.nvm" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
 # zsh-specific file extension associations
 alias -s jar='java -jar'
 alias -s go='go run'
 alias -s js='node'
 alias -s tgz='tar zxvf'
 alias -s py='python'
+
+# OpenClaw Completion
+source "/home/lingyv/.openclaw/completions/openclaw.zsh"
