@@ -35,7 +35,7 @@ alias aria2_start='aria2c --conf-path=/Users/lingyv/dotfiles/aria2.conf -D'
 alias ls='eza --icons'
 alias l='eza -alh --icons'
 alias la='eza -la --icons'
-alias ll='eza -l --icons'
+alias ll='eza --long --git --icons'
 alias lt='eza --tree --icons'
 alias lsd='eza -l --icons --group-directories-first | rg "^d"'
 
