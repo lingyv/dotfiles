@@ -29,7 +29,7 @@ vf() {
     nvim $(fzf)
 }
 
-# fd - cd to selected directory
+# fd - 进入所选目录
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -37,13 +37,13 @@ fd() {
   cd "$dir"
 }
 
-# fda - including hidden directories
+# fda - 包含隐藏目录
 fda() {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
-# fdr - cd to selected parent directory
+# fdr - 进入所选父目录
 fdr() {
   local declare dirs=()
   get_parent_dirs() {
@@ -62,47 +62,47 @@ function copySSHKey() {
     cat ~/.ssh/id_rsa.pub | pbcopy
 }
 
-# Simple calculator
+# 简易计算器
 function calc() {
 	local result="";
 	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	#                       └─ default (when `--mathlib` is used) is 20
+		#                       └─ 默认值（使用 `--mathlib` 时）是 20
 	#
 	if [[ "$result" == *.* ]]; then
-		# improve the output for decimal numbers
+			# 优化小数输出
 		printf "$result" |
-		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
+			sed -e 's/^\./0./'        `# 处理 ".5" 这类情况，补前导 0` \
+			    -e 's/^-\./-0./'      `# 处理 "-.5" 这类情况，补前导 0`\
+			    -e 's/0*$//;s/\.$//';  # 去掉末尾无效 0
 	else
 		printf "$result";
 	fi;
 	printf "\n";
 }
 
-# Create a new directory and enter it
+# 创建目录并进入
 function mkd() {
 	mkdir -p "$@" && cd "$_";
 }
 
-# Change working directory to the top-most Finder window location
-function cdf() { # short for `cdfinder`
+# 切换到 Finder 最上层窗口所在目录
+function cdf() { # `cdfinder` 的简写
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+# 创建 .tar.gz 压缩包，压缩器优先级：`zopfli` -> `pigz` -> `gzip`
 function targz() {
 	local tmpFile="${@%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
 	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
+			stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
 		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
 	);
 
 	local cmd="";
 	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
+			# .tar 小于 50MB 且安装了 zopfli 时优先使用 zopfli
 		cmd="zopfli";
 	else
 		if hash pigz 2> /dev/null; then
@@ -118,7 +118,7 @@ function targz() {
 	echo "${tmpFile}.gz created successfully.";
 }
 
-# Determine size of a file or total size of a directory
+# 统计文件大小或目录总大小
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
@@ -132,7 +132,7 @@ function fs() {
 	fi;
 }
 
-# Use Git’s colored diff when available
+# 若可用则使用 Git 的彩色 diff
 hash git &>/dev/null;
 if [ $? -eq 0 ]; then
 	function diff() {
@@ -140,7 +140,7 @@ if [ $? -eq 0 ]; then
 	}
 fi;
 
-# Create a data URL from a file
+# 从文件生成 data URL
 function dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
@@ -150,7 +150,7 @@ function dataurl() {
 }
 
 
-# Compare original and gzipped file size
+# 对比原始文件与 gzip 后大小
 function gz() {
 	local origsize=$(wc -c < "$1");
 	local gzipsize=$(gzip -c "$1" | wc -c);
@@ -159,50 +159,110 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
+# 对 JSON 字符串或文件进行语法高亮
+# 用法: `json '{"foo":42}'` 或 `echo '{"foo":42}' | json`
 function json() {
-	if [ -t 0 ]; then # argument
+		if [ -t 0 ]; then # 参数模式
 		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
+		else # 管道模式
 		python -mjson.tool | pygmentize -l javascript;
 	fi;
 }
 
-# Run `dig` and display the most useful info
+# 运行 `dig` 并展示关键信息
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
 }
 
-# UTF-8-encode a string of Unicode symbols
+# 将字符串编码为 UTF-8 十六进制
 function escape() {
 	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
-	# print a newline unless we’re piping the output to another program
+		# 如果不是管道输出，则补一个换行
 	if [ -t 1 ]; then
-		echo ""; # newline
+			echo ""; # 换行
 	fi;
 }
 
-# Decode \x{ABCD}-style Unicode escape sequences
+# 解码 \x{ABCD} 风格的 Unicode 转义
 function unidecode() {
 	perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
-	# print a newline unless we’re piping the output to another program
+		# 如果不是管道输出，则补一个换行
 	if [ -t 1 ]; then
-		echo ""; # newline
+			echo ""; # 换行
 	fi;
 }
 
-# Get a character’s Unicode code point
+# 获取字符的 Unicode 码点
 function codepoint() {
 	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-	# print a newline unless we’re piping the output to another program
+		# 如果不是管道输出，则补一个换行
 	if [ -t 1 ]; then
-		echo ""; # newline
+			echo ""; # 换行
 	fi;
 }
 
-# Show all the names (CNs and SANs) listed in the SSL certificate
-# for a given domain
+# zoxide 命令说明
+# - z <关键字>: 按 zoxide 记录的频率和最近访问跳转目录。
+# - zi: zoxide 自带的交互式跳转命令（由 .zshrc 中的 `zoxide init zsh` 提供）。
+# - Alt+z: 本文件把 Alt+z 绑定到 `zoxide-zi`（带预览的自定义选择器），不是原始 `zi`。
+# - zfp: 预览并选择目录，跳转后执行 `ls -la`。
+# - zcode: 预览并选择目录，跳转后使用 `cursor .` 打开。
+# - zexec: 预览并选择目录，跳转后输入并执行命令。
+# - _zoxide_fzf_pick: 上述自定义函数共用的底层 fzf 目录选择器。
+# zoxide + fzf 集成
+if command -v zoxide >/dev/null 2>&1; then
+  export _ZO_FZF_OPTS="--height 40% --reverse --border --border-label ' zoxide ' --prompt '📁  '"
+fi
+
+function _zoxide_fzf_pick() {
+  zoxide query -l | fzf \
+    --height 40% \
+    --reverse \
+    --border \
+    --border-label ' zoxide ' \
+    --prompt '📁  ' \
+    --preview 'if command -v tree >/dev/null 2>&1; then tree -C -L 2 {} | head -n 200; else ls -la {}; fi' \
+    --preview-window 'right:55%,wrap'
+}
+
+function zfp() {
+  local dir
+  dir=$(_zoxide_fzf_pick)
+  [[ -n "$dir" ]] && z "$dir" && ls -la
+}
+
+function zcode() {
+  local dir
+  dir=$(_zoxide_fzf_pick)
+  [[ -n "$dir" ]] && z "$dir" && command -v cursor >/dev/null 2>&1 && cursor .
+}
+
+function zexec() {
+  local dir cmd
+  dir=$(_zoxide_fzf_pick)
+  if [[ -n "$dir" ]]; then
+    z "$dir" || return
+    read -r "?Enter command: " cmd
+    [[ -n "$cmd" ]] && eval "$cmd"
+  fi
+}
+
+if [[ -o interactive ]]; then
+  function zoxide-zi() {
+    local dir
+    zle -I
+    dir=$(_zoxide_fzf_pick)
+    [[ -n "$dir" ]] && z "$dir"
+    zle reset-prompt
+  }
+
+  zle -N zoxide-zi
+  bindkey -M emacs '\ez' zoxide-zi
+  bindkey -M vicmd '\ez' zoxide-zi
+  bindkey -M viins '\ez' zoxide-zi
+fi
+
+# 显示指定域名证书中的所有名称（CN 和 SAN）
 function getcertnames() {
 	if [ -z "${1}" ]; then
 		echo "ERROR: No domain specified.";
@@ -211,7 +271,7 @@ function getcertnames() {
 
 	local domain="${1}";
 	echo "Testing ${domain}…";
-	echo ""; # newline
+	echo ""; # 换行
 
 	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
 		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
@@ -221,11 +281,11 @@ function getcertnames() {
 			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
 			no_serial, no_sigdump, no_signame, no_validity, no_version");
 		echo "Common Name:";
-		echo ""; # newline
+		echo ""; # 换行
 		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
-		echo ""; # newline
+		echo ""; # 换行
 		echo "Subject Alternative Name(s):";
-		echo ""; # newline
+		echo ""; # 换行
 		echo "${certText}" | grep -A 1 "Subject Alternative Name:" \
 			| sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2;
 		return 0;
@@ -235,8 +295,7 @@ function getcertnames() {
 	fi;
 }
 
-# `v` with no arguments opens the current directory in Vim, otherwise opens the
-# given location
+# `v` 无参数时在 Vim 中打开当前目录；有参数时打开指定路径
 function v() {
 	if [ $# -eq 0 ]; then
 		vim .;
@@ -245,8 +304,7 @@ function v() {
 	fi;
 }
 
-# `o` with no arguments opens the current directory, otherwise opens the given
-# location
+# `o` 无参数时打开当前目录；有参数时打开指定路径
 function o() {
 	if [ $# -eq 0 ]; then
 		open .;
@@ -255,10 +313,9 @@ function o() {
 	fi;
 }
 
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
+# `tre` 是 `tree` 的快捷封装：显示隐藏文件、启用颜色、忽略 `.git`
+# 且目录优先排序。输出会进入 `less`（保留颜色与行号），
+# 若内容较短则可直接一屏显示。
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
