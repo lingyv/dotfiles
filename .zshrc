@@ -54,6 +54,12 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search
 
 source $ZSH/oh-my-zsh.sh
 
+# Load custom dotfiles after oh-my-zsh, so aliases/functions can override defaults.
+for file in ~/.{exports,aliases,functions,secret_config,env}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
