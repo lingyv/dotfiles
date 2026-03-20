@@ -62,6 +62,10 @@ shell-integration-features = cursor,sudo,title,no-cursor
 # 自定义按键行为
 keybind = shift+escape=text:~
 keybind = shift+enter=text:\n
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+l=goto_split:right
 
 # 其他配置
 gtk-single-instance = true

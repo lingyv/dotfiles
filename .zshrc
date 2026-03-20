@@ -52,6 +52,8 @@ ZSH_THEME="lingyv"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search copypath copyfile history colored-man-pages fzf)
 
+# opencli completion
+fpath=(/Users/lingyv/.zsh/completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
 # Load custom dotfiles after oh-my-zsh, so aliases/functions can override defaults.
@@ -59,6 +61,15 @@ for file in ~/.{exports,aliases,functions,secret_config,env}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+# Ensure nvm controls Node toolchain in interactive shells.
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+if [ -s /opt/homebrew/opt/nvm/nvm.sh ]; then
+  source /opt/homebrew/opt/nvm/nvm.sh
+  # Remove inherited/stale nvm node bin entries so nvm can prepend the active one.
+  path=(${path:#$NVM_DIR/versions/node/*/bin})
+  nvm use --silent default >/dev/null 2>&1
+fi
 
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
