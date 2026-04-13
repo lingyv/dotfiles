@@ -11,7 +11,14 @@ export PATH="$PATH:/Users/lingyv/Library/Application Support/JetBrains/Toolbox/s
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # From ~/.bash_profile (for zsh login shells)
-eval $(/opt/homebrew/bin/brew shellenv)
+# Run brew from $HOME so startup doesn't fail when current dir is restricted.
+if [ -x /opt/homebrew/bin/brew ]; then
+  __orig_pwd="$PWD"
+  builtin cd "$HOME" 2>/dev/null || true
+  eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null)"
+  builtin cd "$__orig_pwd" 2>/dev/null || true
+  unset __orig_pwd
+fi
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"

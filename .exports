@@ -5,7 +5,7 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
 export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
 export M2_HOME=/opt/homebrew/opt/maven/libexec
-export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 export GRADLE_USER_HOME=/usr/local/gradle/caches
 export GOPATH=~/coding/go
 export LLM_KEY=NONE
