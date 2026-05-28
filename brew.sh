@@ -24,7 +24,7 @@ brew install proxychains-ng
 
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
+# brew install coreutils
 if command -v gsha256sum >/dev/null 2>&1; then
 	sudo ln -sf "$(brew --prefix)/bin/gsha256sum" "$(brew --prefix)/bin/sha256sum"
 fi
@@ -32,24 +32,24 @@ fi
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
+# brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed
+# brew install gnu-sed
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
 brew install bash
-brew install bash-completion
+# brew install bash-completion
 
 brew install gawk
-brew install gnu-tar
-brew install gnu-which
+# brew install gnu-tar
+# brew install gnu-which
 brew install gnutls
 brew install grep
 brew install gzip
 brew install global
 brew install make
-brew install unzip
+# brew install unzip
 brew install python
 brew install ffmpeg
 brew install universal-ctags cscope
@@ -84,7 +84,7 @@ brew install tmux
 brew install thefuck
 brew install btop
 brew install zoxide
-brew install mysql
+# brew install mysql
 brew install openjdk
 brew install sesh
 brew install television

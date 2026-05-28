@@ -50,7 +50,10 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo extract web-search copypath copyfile history colored-man-pages fzf)
+plugins=(git zsh-autosuggestions sudo extract web-search copypath copyfile history colored-man-pages fzf zsh-syntax-highlighting)
+# 异步功能以保持响应性
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # opencli completion
 fpath=(/Users/lingyv/.zsh/completions $fpath)
@@ -133,3 +136,5 @@ bindkey -M viins '\es' sesh-sessions
 
 # bun completions
 [ -s "/Users/lingyv/.bun/_bun" ] && source "/Users/lingyv/.bun/_bun"
+
+source /Users/lingyv/.config/broot/launcher/bash/br

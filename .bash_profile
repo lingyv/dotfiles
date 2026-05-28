@@ -21,3 +21,5 @@ unset file
 # Autocorrect typos in path names when using `cd`
 # shopt -s cdspell;
 source /opt/homebrew/opt/nvm/nvm.sh
+
+source /Users/lingyv/.config/broot/launcher/bash/br
