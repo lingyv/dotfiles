@@ -221,6 +221,16 @@ run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
 if.app-id = 'com.bot.pc.doubao'
 run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
 
+# 使Codex所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.openai.codex'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
+# 使ChatGPT所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
 # 使Kimi所有窗口设为自动悬浮：
 [[on-window-detected]]
 if.app-id = 'com.moonshot.kimichat'

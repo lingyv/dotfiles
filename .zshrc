@@ -16,7 +16,7 @@ ZSH_THEME="lingyv"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -62,14 +62,23 @@ for file in ~/.{exports,aliases,functions,secret_config,env}; do
 done
 unset file
 
-# Ensure nvm controls Node toolchain in interactive shells.
+# Load nvm on first use instead of paying its startup cost for every shell.
 export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
-if [ -s /opt/homebrew/opt/nvm/nvm.sh ]; then
-  source /opt/homebrew/opt/nvm/nvm.sh
-  # Remove inherited/stale nvm node bin entries so nvm can prepend the active one.
-  path=(${path:#$NVM_DIR/versions/node/*/bin})
-  nvm use --silent default >/dev/null 2>&1
-fi
+_load_nvm() {
+  unfunction nvm node npm npx corepack pnpm yarn 2>/dev/null
+  if [ -s /opt/homebrew/opt/nvm/nvm.sh ]; then
+    source /opt/homebrew/opt/nvm/nvm.sh
+    path=(${path:#$NVM_DIR/versions/node/*/bin})
+    nvm use --silent default >/dev/null 2>&1
+  fi
+}
+nvm() { _load_nvm && nvm "$@"; }
+node() { _load_nvm && node "$@"; }
+npm() { _load_nvm && npm "$@"; }
+npx() { _load_nvm && npx "$@"; }
+corepack() { _load_nvm && corepack "$@"; }
+pnpm() { _load_nvm && pnpm "$@"; }
+yarn() { _load_nvm && yarn "$@"; }
 
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
@@ -121,3 +130,6 @@ zle     -N             sesh-sessions
 bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions
+
+# bun completions
+[ -s "/Users/lingyv/.bun/_bun" ] && source "/Users/lingyv/.bun/_bun"

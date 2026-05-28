@@ -54,6 +54,9 @@ Session.vim
 # auto-generated tag files
 tags
 
+# Local Claude settings
+.claude/
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
