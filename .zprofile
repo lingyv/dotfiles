@@ -23,6 +23,12 @@ fi
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 
+# Let ncurses-based tools such as tmux find Ghostty's bundled terminfo.
+if [ -d /Applications/Ghostty.app/Contents/Resources/terminfo ]; then
+  export TERMINFO="/Applications/Ghostty.app/Contents/Resources/terminfo"
+  export TERMINFO_DIRS="$HOME/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo"
+fi
+
 source /opt/homebrew/opt/nvm/nvm.sh
 
 # Final PATH dedupe after all sourced files potentially append/prepend entries.
