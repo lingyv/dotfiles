@@ -111,7 +111,7 @@ set backspace=indent,eol,start
 " set list listchars=eol:ϟ,tab:ϊ♪,trail:·,extends:⇒,precedes:⇐,
 
 " w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
+cnoremap w!! w !sudo tee % >/dev/null
 
 " 配色方案
 set background=dark
