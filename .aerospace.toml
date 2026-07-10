@@ -1,6 +1,8 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+config-version = 2
+
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
@@ -38,6 +40,11 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Notify SketchyBar on workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -159,6 +166,9 @@ alt-shift-semicolon = 'mode service'
 9 = 3
 10 = 3
 
+# Explicitly declare persistent workspaces (required in config-version 2)
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -219,6 +229,11 @@ run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
 # 使豆包所有窗口设为自动悬浮：
 [[on-window-detected]]
 if.app-id = 'com.bot.pc.doubao'
+run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
+
+# 使IMA所有窗口设为自动悬浮：
+[[on-window-detected]]
+if.app-id = 'com.tencent.imamac'
 run = ['layout floating', 'move-node-to-workspace 2 --focus-follows-window']
 
 # 使Codex所有窗口设为自动悬浮：
