@@ -47,7 +47,7 @@ sketchybar --default "${default[@]}"
 sketchybar --add event aerospace_workspace_change
 
 # Show workspaces from all monitors
-for sid in $(aerospace list-workspaces --all); do
+for sid in $(gtimeout 5s aerospace list-workspaces --all); do
   sketchybar --add item space.$sid left \
     --subscribe space.$sid aerospace_workspace_change \
     --set space.$sid \
@@ -71,8 +71,8 @@ for sid in $(aerospace list-workspaces --all); do
 done
 
 # Load initial workspace states via aerospace.sh plugin
-for sid in $(aerospace list-workspaces --all); do
-  FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
+for sid in $(gtimeout 5s aerospace list-workspaces --all); do
+  FOCUSED_WORKSPACE=$(gtimeout 2s aerospace list-workspaces --focused)
   NAME="space.$sid"
   source "$CONFIG_DIR/plugins/aerospace.sh" "$sid"
 done

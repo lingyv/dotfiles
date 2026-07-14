@@ -4,7 +4,7 @@ WORKSPACE="$1"
 
 # If this workspace item doesn't exist yet, create it
 if ! sketchybar --query space.$WORKSPACE &>/dev/null; then
-  sketchybar --add item space.$WORKSPACE left \
+  sketchybar --add item space.$WORKSPACE left space_separator \
     --subscribe space.$WORKSPACE aerospace_workspace_change \
     --set space.$WORKSPACE \
     drawing=off \
@@ -26,8 +26,8 @@ if ! sketchybar --query space.$WORKSPACE &>/dev/null; then
     script="$CONFIG_DIR/plugins/aerospace.sh $WORKSPACE"
 fi
 
-# Update app icons for this workspace
-apps=$(aerospace list-windows --workspace "$WORKSPACE" 2>/dev/null | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+# Update app icons for this workspace (with timeout protection)
+apps=$( gtimeout 2s aerospace list-windows --workspace "$WORKSPACE" 2>/dev/null | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}' )
 
 icon_strip=" "
 if [ -n "$apps" ]; then
@@ -55,5 +55,27 @@ else
       background.border_width=0
   else
     sketchybar --set $NAME drawing=off
+  fi
+fi
+
+# Also update the previous workspace if it lost/gained a window
+if [ -n "$PREV_WORKSPACE" ] && [ "$PREV_WORKSPACE" != "$WORKSPACE" ]; then
+  prev_apps=$( gtimeout 2s aerospace list-windows --workspace "$PREV_WORKSPACE" 2>/dev/null | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}' )
+  prev_icon_strip=" "
+  if [ -n "$prev_apps" ]; then
+    while read -r app; do
+      prev_icon_strip+=" $($CONFIG_DIR/plugins/icon_map_fn.sh "$app")"
+    done <<<"$prev_apps"
+  fi
+  if [ -n "$prev_apps" ]; then
+    sketchybar --set space.$PREV_WORKSPACE \
+      drawing=on \
+      background.color=0x44FFFFFF \
+      label="$prev_icon_strip" \
+      label.shadow.drawing=off \
+      icon.shadow.drawing=off \
+      background.border_width=0
+  else
+    sketchybar --set space.$PREV_WORKSPACE drawing=off
   fi
 fi

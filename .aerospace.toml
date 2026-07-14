@@ -43,7 +43,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # Notify SketchyBar on workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+    'sleep 0.1 && ~/.config/sketchybar/plugins/aerospace_callback.sh $AEROSPACE_FOCUSED_WORKSPACE $AEROSPACE_PREV_WORKSPACE'
 ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
