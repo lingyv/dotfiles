@@ -154,7 +154,8 @@ The `bootstrap.sh` script creates these symlinks from `~/dotfiles/` to `~/`:
 - WezTerm: `ln -s ~/dotfiles/conf/wezterm.lua ~/.config/wezterm/wezterm.lua`
 - SketchyBar: `ln -s ~/dotfiles/conf/sketchybar ~/.config/sketchybar`
 - AeroSpace: Check for config location and symlink if needed
-- Yazi: `ln -s ~/dotfiles/yazi.toml ~/.config/yazi/yazi.toml`
+- Yazi: `ln -s ~/dotfiles/conf/yazi/yazi.toml ~/.config/yazi/yazi.toml`
+- Yazi keymap: `ln -s ~/dotfiles/conf/yazi/keymap.toml ~/.config/yazi/keymap.toml`
 
 ## Common Customization Points
 

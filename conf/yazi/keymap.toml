@@ -1,0 +1,26 @@
+# yazi keymap (symlinked to ~/.config/yazi/keymap.toml)
+#
+# 在 yazi 当前目录打开 tmux 浮动 popup
+# - [mgr] 是 yazi v0.4+ 的 section 头；旧版 [manager] 已废弃，不会被加载
+# - 不加 --block：让 yazi 保留在 popup 下方可见；退出 popup 内 shell (exit/C-d) 即回到 yazi
+# - -d "$PWD"：yazi 执行 shell 命令时 CWD = 当前目录，$PWD 透传给 tmux 指定起始目录
+#   （否则 popup 会落到启动 yazi 的那个目录，而不是当前浏览的目录）
+# - -E：popup 内 shell 退出后自动关闭 popup
+# - -w/-h：宽高百分比
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "shell 'tmux display-popup -E -d \"$PWD\" -w 80% -h 80%'"
+desc = "Open tmux popup in current directory"
+
+# 备选 1：想要整屏 shell（临时替换 yazi，退出后返回）而不是浮动 popup：
+# [[mgr.prepend_keymap]]
+# on   = "T"
+# run  = "shell --block '$SHELL'"
+# desc = "Open shell in current directory (block)"
+
+# 备选 2：想要一个固定靠下、占 40% 高度的 tmux 分屏（非 popup）：
+# [[mgr.prepend_keymap]]
+# on   = "T"
+# run  = "shell --block 'tmux split-window -p 40 -c \"$PWD\"'"
+# desc = "Open tmux split below"
