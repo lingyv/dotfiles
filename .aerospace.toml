@@ -378,3 +378,8 @@ run = ['move-node-to-workspace 10 --focus-follows-window']
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace 10 --focus-follows-window']
+
+# 东方财富
+[[on-window-detected]]
+if.app-id = 'com.eastmoney.explore'
+run = 'layout floating'
