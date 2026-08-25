@@ -131,7 +131,7 @@ alt-f = 'layout floating tiling'
 alt-shift-f = 'fullscreen'
 
 # Quick launch terminal
-alt-enter = 'exec-and-forget open -a WezTerm'
+alt-enter = 'exec-and-forget open -a Ghostty'
 
 # Monitor focus & workspace movement
 alt-ctrl-h = 'focus-monitor left'
@@ -389,9 +389,9 @@ run = ['move-node-to-workspace 10 --focus-follows-window']
 
 
 # ghostty
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = ['move-node-to-workspace 10 --focus-follows-window']
+#[[on-window-detected]]
+#if.app-id = 'com.mitchellh.ghostty'
+#run = ['move-node-to-workspace 10 --focus-follows-window']
 
 # 东方财富
 [[on-window-detected]]
