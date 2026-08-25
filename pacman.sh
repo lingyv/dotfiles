@@ -21,8 +21,6 @@ sudo pacman -S --needed --noconfirm \
     wget \
     jq \
     tree \
-    htop \
-    fastfetch \
     xclip
 
 # Development tools
@@ -53,7 +51,6 @@ sudo pacman -S --needed --noconfirm \
     noto-fonts-emoji \
     ttf-jetbrains-mono \
     ttf-jetbrains-mono-nerd \
-    ttf-fira-code \
     ttf-firacode-nerd \
     ttf-hack \
     ttf-hack-nerd \
@@ -64,8 +61,7 @@ if command -v yay &>/dev/null; then
     echo "==> Installing AUR packages..."
     yay -S --needed --noconfirm \
         sesh \
-        lazygit \
-        atuin
+        lazygit
 else
     echo "==> yay not found, skipping AUR packages"
     echo "==> Install yay: sudo pacman -S --needed base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
