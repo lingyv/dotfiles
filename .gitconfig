@@ -150,7 +150,9 @@
 
 	# Detect copies as well as renames
 	renames = copies
-	colorMoved = default
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
 
 [help]
 
@@ -168,7 +170,8 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
+	autoSetupRemote = true
 [http]
 	sslVerify = false
 [icdiff]
@@ -179,9 +182,20 @@
 	process = git-lfs filter-process
 	required = true
 [pull]
-	rebase = false
+	rebase = true
 [safe]
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
 [http]
 	sslBackend = openssl
+[rerere]
+	enabled = true
+	autoupdate = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = -version:refname
+[column]
+	ui = auto
+[commit]
+	verbose = true

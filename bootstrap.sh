@@ -19,6 +19,7 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.condarc ~/.condarc
     sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
     sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    sudo ln -s -f ~/dotfiles/.inputrc ~/.inputrc
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 

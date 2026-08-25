@@ -319,3 +319,105 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# -- SSH auto-reconnect & terminal cleanup ------------------------------------
+# Wrap ssh to clean up the terminal and reconnect when a connection drops.
+# A remote tmux or editor arms terminal modes over the SSH pipe (mouse tracking,
+# focus reporting, the alternate screen) that only it can disarm. If the
+# connection dies instead of exiting cleanly, those modes stay armed on the
+# local terminal, and every mouse move floods the prompt with escape junk.
+ssh() {
+  local rc started
+
+  started=$SECONDS
+  command ssh "$@"
+  rc=$?
+
+  [[ -t 1 ]] || return $rc
+  _ssh_disarm
+
+  # Reconnect only when an interactive session drops: ssh exits 255 for
+  # transport failures, but a fast 255 with no established session is a
+  # connect/auth failure, and redirected stdin would feed the remaining
+  # piped input to a fresh remote shell.
+  if (( rc != 255 )) || [[ ! -t 0 ]] || ! _ssh_interactive "$@" ||
+    (( SECONDS - started < 30 )); then
+    return $rc
+  fi
+
+  # Retry in a subshell: Ctrl-C reaches the whole foreground process group,
+  # so it cancels both the in-flight attempt and the loop itself.
+  (
+    while true; do
+      echo "Connection lost. Reconnecting (Ctrl-C to stop)..."
+      sleep 2
+      command ssh "$@"
+      rc=$?
+      _ssh_disarm
+      (( rc != 255 )) && exit $rc
+    done
+  )
+}
+
+# Disarm mouse tracking (1000/1002/1003, 1006 encoding), focus reporting
+# (1004), and the alternate screen (1049), and show the cursor again.
+_ssh_disarm() {
+  printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?1004l\e[?1049l\e[?25h'
+}
+
+# True for an interactive session: a destination and no remote command.
+_ssh_interactive() {
+  local value_opts="BbcDEeFIiJLlmOoPpQRSWw"
+  local argv=("$@") arg letters i dest="" opts_done=""
+
+  while (($#)); do
+    arg="$1"
+    shift
+
+    if [[ -z $opts_done && $arg == "--" ]]; then
+      opts_done=1
+    elif [[ -z $opts_done && $arg == -?* ]]; then
+      letters="${arg#-}"
+      for ((i = 0; i < ${#letters}; i++)); do
+        if [[ $value_opts == *"${letters:i:1}"* ]]; then
+          (( i == ${#letters} - 1 )) && shift
+          break
+        fi
+      done
+    elif [[ -z $dest ]]; then
+      dest="$arg"
+    else
+      return 1
+    fi
+  done
+
+  [[ -n $dest ]] || return 1
+
+  # A RemoteCommand from ssh_config or -o replays on reconnect; ssh -G
+  # resolves the effective configuration without connecting.
+  local resolved
+  resolved=$(command ssh -G "${argv[@]}" 2>/dev/null) || return 1
+  ! grep -i '^remotecommand ' <<<"$resolved" | grep -qvi '^remotecommand none$'
+}
+
+# -- SSH port forwarding -------------------------------------------------------
+# Usage: fip <host> <port1> [port2] ...
+fip() {
+  (( $# < 2 )) && echo "Usage: fip <host> <port1> [port2] ..." && return 1
+  local host="$1"
+  shift
+  for port in "$@"; do
+    ssh -f -N -L "${port}:localhost:${port}" "$host" && echo "Forwarding localhost:$port -> $host:$port"
+  done
+}
+
+dip() {
+  (( $# == 0 )) && echo "Usage: dip <port1> [port2] ..." && return 1
+  for port in "$@"; do
+    pkill -f "ssh.*-L ${port}:localhost:${port}" && echo "Stopped forwarding port $port" || echo "No forwarding on port $port"
+  done
+}
+
+lip() {
+  ps aux | grep -E "ssh.*-L [0-9]+:localhost:[0-9]+" | grep -v grep || echo "No active forwards"
+}
