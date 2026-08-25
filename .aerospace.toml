@@ -125,6 +125,20 @@ alt-shift-l = 'move right'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
+# Window management (inspired by Hyprland)
+alt-w = 'close --window-node-focused'
+alt-f = 'layout floating tiling'
+alt-shift-f = 'fullscreen'
+
+# Quick launch terminal
+alt-enter = 'exec-and-forget open -a WezTerm'
+
+# Monitor focus & workspace movement
+alt-ctrl-h = 'focus-monitor left'
+alt-ctrl-l = 'focus-monitor right'
+alt-shift-ctrl-h = 'move-workspace-to-monitor left'
+alt-shift-ctrl-l = 'move-workspace-to-monitor right'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
