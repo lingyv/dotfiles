@@ -106,4 +106,10 @@ alias -s tgz='tar zxvf'
 alias -s py='python'
 
 # OpenClaw Completion
-source "/home/lingyv/.openclaw/completions/openclaw.zsh"
+export PATH=~/.npm-global/bin:$PATH
+alias yt-dlp="$HOME/.agent-reach-venv/bin/yt-dlp"
+export PATH=~/gh-cli/bin:$PATH
+
+# Qwen Code PATH block begin
+export PATH='/home/lingyv/.local/bin':$PATH
+# Qwen Code PATH block end

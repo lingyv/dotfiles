@@ -1,1 +1,0 @@
-{"permissions": {"allow": ["Bash(tree:*)", "Skill(superpowers:systematic-debugging)", "Bash(mysql:*)", "Bash(tail:*)", "Bash(sudo rm:*)", "Bash(ls:*)", "Bash(kill:*)", "Bash(cat:*)", "Bash(pkill:*)", "Skill(commit-commands:commit)", "mcp__git__git_add", "mcp__git__git_commit", "WebSearch"]}}
