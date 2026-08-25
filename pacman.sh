@@ -23,6 +23,26 @@ sudo pacman -S --needed --noconfirm \
     tree \
     xclip
 
+# Additional CLI tools
+echo "==> Installing additional CLI tools..."
+sudo pacman -S --needed --noconfirm \
+    7zip \
+    tldr \
+    thefuck \
+    uv \
+    rsync \
+    yazi \
+    micro \
+    helix \
+    alacritty \
+    ghostty \
+    wl-clipboard \
+    cliphist \
+    ffmpeg \
+    ffmpegthumbnailer \
+    zathura \
+    zathura-pdf-poppler
+
 # Development tools
 echo "==> Installing development tools..."
 sudo pacman -S --needed --noconfirm \
@@ -56,12 +76,47 @@ sudo pacman -S --needed --noconfirm \
     ttf-hack-nerd \
     ttf-nerd-fonts-symbols
 
+# GUI applications
+echo "==> Installing GUI applications..."
+sudo pacman -S --needed --noconfirm \
+    firefox \
+    pacseek \
+    pcmanfm-qt \
+    celluloid \
+    file-roller \
+    gnome-epub-thumbnailer \
+    opencode
+
+# Chinese input method and fonts
+echo "==> Installing Chinese input method and fonts..."
+sudo pacman -S --needed --noconfirm \
+    fcitx5 \
+    fcitx5-configtool \
+    fcitx5-rime \
+    adobe-source-han-sans-cn-fonts \
+    adobe-source-han-serif-cn-fonts \
+    ttf-dejavu \
+    wqy-microhei \
+    wqy-zenhei \
+    oh-my-zsh
+
 # AUR packages (using yay if available)
 if command -v yay &>/dev/null; then
     echo "==> Installing AUR packages..."
     yay -S --needed --noconfirm \
         sesh \
-        lazygit
+        lazygit \
+        google-chrome \
+        netease-cloud-music \
+        wechat-bin \
+        wemeet-bin \
+        dingtalk-bin \
+        wps-office-365 \
+        wps-office-mui-zh-cn \
+        deepseek-reasonix-desktop \
+        deepseek-reasonix-tui \
+        rime-ice-git \
+        ttf-wps-fonts
 else
     echo "==> yay not found, skipping AUR packages"
     echo "==> Install yay: sudo pacman -S --needed base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
@@ -71,13 +126,6 @@ fi
 echo "==> Installing tmux plugins..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# Install oh-my-zsh
-echo "==> Checking oh-my-zsh..."
-if [ ! -d ~/.oh-my-zsh ]; then
-    echo "==> oh-my-zsh not found. Install manually:"
-    echo "    sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 fi
 
 # Install zsh plugins
