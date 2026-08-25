@@ -128,7 +128,7 @@ alt-equal = 'resize smart +50'
 # Window management (inspired by Hyprland)
 alt-w = 'close'
 alt-f = 'layout floating tiling'
-alt-shift-f = 'layout fullscreen tiling'
+alt-shift-f = 'fullscreen'
 
 # Quick launch terminal
 alt-enter = 'exec-and-forget open -a Ghostty'
