@@ -383,3 +383,9 @@ run = ['move-node-to-workspace 10 --focus-follows-window']
 [[on-window-detected]]
 if.app-id = 'com.eastmoney.explore'
 run = 'layout floating'
+
+# 图书
+[[on-window-detected]]
+if.app-id = 'com.apple.iBooksX'
+run = 'layout floating'
+
