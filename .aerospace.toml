@@ -126,7 +126,7 @@ alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
 # Window management (inspired by Hyprland)
-alt-w = 'close --window-node-focused'
+alt-w = 'close'
 alt-f = 'layout floating tiling'
 alt-shift-f = 'fullscreen'
 
