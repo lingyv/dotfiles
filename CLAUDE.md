@@ -62,24 +62,15 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 
 ### Development Stack
 **Language Toolchains** (configured in `.exports`):
-- Java 17: `JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home`
-- Maven: `M2_HOME` with settings in `conf/maven/settings.xml`
-- Python 3: Conda configuration via `.condarc`
+- Java 17: `JAVA_HOME=/usr/lib/jvm/default`
 - Node.js: nvm support
 - Go: `GOPATH` configured
 
 
 ### Editor Configuration
 
-**Neovim** (Primary):
-- Plugin Manager: **lazy.nvim** (not vim-plug)
-- Entry Point: `init.lua` (loads `plugins.lua`)
-- Key Features:
-  - LLM integration via `llm.nvim` plugin (uses local Ollama with deepseek-r1:14b model)
-  - Codeium for AI completion
-  - Streaming support for LLM responses with custom handlers
-- Configuration: `init.lua` + `plugins.lua` (390 lines of plugin definitions)
-- Symlinked to: `~/.config/nvim/init.lua`
+**Neovim**:
+- Shares the Vim config: `~/.config/nvim/init.vim` symlinked to `.vimrc` (vim-plug)
 
 **Vim**:
 - Plugin Manager: vim-plug (requires `:PlugInstall` after setup)
@@ -87,7 +78,6 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 
 **JetBrains IDEs**:
 - IdeaVim: `.ideavimrc` for Vim emulation
-- IDE Settings: Pre-configured jars in `conf/jetbrains/` for GoLand, IntelliJ, PyCharm
 
 ### Terminal & UI Stack
 
@@ -122,10 +112,6 @@ This configures 800+ system settings (Finder, Dock, Safari, keyboard, trackpad, 
 - `fda`: Fuzzy find directory including hidden ones
 - `fdr`: Find and remove directories
 
-**Network & Download**:
-- Aria2: BitTorrent/HTTP downloader with RPC (`aria2.conf`)
-- Clash: Proxy manager config in `conf/clash/`
-
 **Git Configuration**:
 - Delta pager: Colored diffs with line numbers, side-by-side mode
 - Custom aliases in `.gitconfig`: merge tools, rebase helpers, log formats, PR management
@@ -146,9 +132,10 @@ The `.aliases` file (170+ lines) includes extensive macOS-specific shortcuts.
 ## File Symlink Strategy
 
 The `bootstrap.sh` script creates these symlinks from `~/dotfiles/` to `~/`:
-- Shell: `.zshrc`, `.bash_profile`, `.bashrc`, `.aliases`, `.functions`, `.exports`
-- Editors: `.vimrc`, `.ideavimrc`, `~/.config/nvim/init.lua`
-- Tools: `.gitconfig`, `.curlrc`, `.tmux.conf`, `.condarc`, `.tern-project`
+- Shell: `.zshrc`, `.zprofile`, `.bash_profile`, `.bashrc`, `.aliases`, `.functions`, `.exports`
+- Editors: `.vimrc`, `.ideavimrc`, `~/.config/nvim/init.vim`
+- Tools: `.gitconfig`, `.curlrc`, `.tmux.conf`
+- Input: `fcitx5/` → `~/.config/fcitx5/config`, `~/.config/fcitx5/profile`
 
 **Manual Symlinks Required**:
 - WezTerm: `ln -s ~/dotfiles/conf/wezterm.lua ~/.config/wezterm/wezterm.lua`
@@ -159,8 +146,7 @@ The `bootstrap.sh` script creates these symlinks from `~/dotfiles/` to `~/`:
 ## Common Customization Points
 
 ### Updating Plugin Lists
-- **Neovim**: Edit `plugins.lua`, restart and run `:Lazy sync`
-- **Vim**: Edit `.vimrc`, run `:BundleInstall` in Vim
+- **Vim/Neovim**: Edit `.vimrc`, run `:PlugInstall` in Vim
 - **Zsh**: Edit `.zshrc` plugins array, run `source ~/.zshrc`
 
 ### Modifying Aliases & Functions
@@ -201,18 +187,8 @@ git checkout mac
 - Linux: apt/pacman package manager
 - Fonts: Nerd Fonts (FiraCode, Hack, JetBrains Mono) installed via `brew.sh`
 
-## LLM Integration (Neovim)
-
-The Neovim setup includes local LLM integration:
-- **Provider**: Ollama running locally (HTTP endpoint)
-- **Model**: deepseek-r1:14b (configured in `plugins.lua`)
-- **Plugin**: `llm.nvim` with streaming support
-- **Features**: Custom prompt handlers, streaming parsers, multi-provider support
-
-To use: Ensure Ollama is installed and model is pulled (`ollama pull deepseek-r1:14b`)
-
 ## Language Configuration
 
-- Primary: English (`en_US.UTF-8`)
+- Primary: Chinese (`zh_CN.UTF-8`)
 - CJK Support: Font fallbacks for Chinese, Japanese, Korean
 - Emoji Support: Apple Color Emoji in font stack

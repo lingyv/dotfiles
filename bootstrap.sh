@@ -12,12 +12,11 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.curlrc ~/.curlrc
     sudo ln -s -f ~/dotfiles/.gitconfig ~/.gitconfig
     sudo ln -s -f ~/dotfiles/.vimrc ~/.vimrc
-    mkdir -p ~/.config/nvim/lua
-    sudo ln -s -f ~/dotfiles/init.lua ~/.config/nvim/init.lua
+    mkdir -p ~/.config/nvim
+    sudo ln -s -f ~/dotfiles/.vimrc ~/.config/nvim/init.vim
     sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
     sudo ln -s -f ~/dotfiles/.exports ~/.exports
-    sudo ln -s -f ~/dotfiles/.condarc ~/.condarc
-    sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
+    sudo ln -s -f ~/dotfiles/.zprofile ~/.zprofile
     sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
     mkdir -p ~/.config/fcitx5
     sudo ln -s -f ~/dotfiles/fcitx5/config ~/.config/fcitx5/config
@@ -37,7 +36,7 @@ else
   echo "    git config --global user.name \"Your Name\"";
   echo "    git config --global user.email you@example.com";
   echo "";
-  echo "When you first start vim, please use :BundleInstall to install all the plugins."
+  echo "When you first start vim, please use :PlugInstall to install all the plugins."
   echo "Have fun!"
 fi;
 unset doIt;

@@ -49,20 +49,16 @@ git checkout linux
 - .bash_profile bash配置文件
 - .bashrc bash配置文件
 - .curlrc curl配置文件
-- .editorconfig 编码规范
 - .exports 环境变量
 - .functions bash函数
 - .gdbinit GDB配置
 - .gitconfig git配置文件
 - .ideavimrc idea插件IdeaVim配置文件
-- .inputrc
-- .tern-project YouCompleteMe js补全配置文件
 - .tmux.conf.local tmux配置文件, 配合github.com/gpakosz/.tmux.git使用
 - .vimrc vim配置文件
-- .wgetrc wget配置文件
 - .zshrc zsh配置文件
-- aria2.conf aria2配置文件
 - bootstrap.sh 链接配置文件脚本
+- fcitx5/ fcitx5输入法配置
 
 ## macOS
 - .osx 配置macOS系统

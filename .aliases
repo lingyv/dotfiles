@@ -20,9 +20,6 @@ alias cnpm="npm --registry=https://registry.npmmirror.com --cache=$HOME/.npm/.ca
 alias vi=nvim
 alias cat='bat --paging=never' 2>/dev/null || alias cat=cat
 
-# aria2
-alias aria2_start='aria2c --conf-path=~/dotfiles/aria2.conf -D'
-
 # eza as ls replacement
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza --icons'
