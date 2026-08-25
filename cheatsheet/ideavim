@@ -1,0 +1,48 @@
+<Leader>{ zM 折叠所有代码
+<Leader>} zR 打开所有折叠
+<leader>[ 折叠当前代码
+<leader>] 打开当前折叠
+<leader>bl 书签列表
+<leader>bb 当前行打断点
+<leader>br 查看所有断点
+<leader>d[ 折叠文档
+<leader>d] 打开文档
+<leader>cc 注释
+<leader>ce close current tab
+<leader>co close other tab
+<leader>ct close active tab
+<leader>rc 选择配置Run
+<leader>dc 选择配置Debug
+<leader>nf newfile
+<leader>nc newclass
+<leader>nd newdir
+<leader>np newpackageinfo
+<leader>ns newscratchfile
+<leader>ga gotoaction
+<leader>gc gotoclass
+<leader>gd gotodeclaration
+<leader>gr gotouse
+<leader>gf gotofile
+<leader>f gotofile
+<leader>gi gotoimplementation
+<leader>gs gotosymbol
+<leader>gt gototest
+<leader>gv 版本管理
+<leader>m 显示所有成员
+<leader>ic 检查代码
+<leader>oi 优化import
+<leader>pm 显示弹出菜单
+<leader>pi 显示参数信息
+<leader>rf 最近打开文件
+<leader>rc 最近修改文件
+<leader>rp 替换
+<leader>rne 重命名当前元素
+<leader>rnf 重命名当前文件
+<leader>re 格式化代码
+<leader>se 搜索
+<leader>su 显示引用
+<leader>t 文件树
+<Leader>j  快速跳转上一行
+<Leader>k  快速跳转下一行
+m0~9 添加书签
+`0~9 跳转到书签

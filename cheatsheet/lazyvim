@@ -1,0 +1,90 @@
+j	向下移动	n, x	
+<Down>	向下移动	n, x	
+k	向上移动	n, x	
+<Up>	向上移动	n, x	
+<C-h>	切换到左侧窗口	n	
+<C-j>	切换到下方窗口	n	
+<C-k>	切换到上方窗口	n	
+<C-l>	切换到右侧窗口	n	
+<C-Up>	增加窗口高度	n	
+<C-Down>	减少窗口高度	n	
+<C-Left>	减少窗口宽度	n	
+<C-Right>	增加窗口宽度	n	
+<A-j>	下移（行 / 选中内容）	n, i, v	
+<A-k>	上移（行 / 选中内容）	n, i, v	
+<S-h>	上一个缓冲区	n	
+<S-l>	下一个缓冲区	n	
+[b	上一个缓冲区	n	
+]b	下一个缓冲区	n	
+<leader>bb	切换到另一个缓冲区	n	
+<leader>`	切换到另一个缓冲区	n	
+<leader>bd	删除缓冲区	n	
+<leader>bo	删除其他所有缓冲区	n	
+<leader>bD	删除缓冲区并关闭对应窗口	n	
+<esc>	退出当前模式并清除搜索高亮	i, n, s	
+<leader>ur	重绘界面 / 清除搜索高亮 / 更新差异对比	n	
+n	跳转到下一个搜索结果	n, x, o	
+N	跳转到上一个搜索结果	n, x, o	
+<C-s>	保存文件	i, x, n, s	
+<leader>K	执行关键词查询（调用 keywordprg）	n	
+gco	在下方添加注释	n	
+gcO	在上方添加注释	n	
+<leader>l	打开 Lazy 插件管理器	n	
+<leader>fn	新建文件	n	
+<leader>xl	打开位置列表	n	
+<leader>xq	打开快速修复列表	n	
+[q	跳转到快速修复列表上一项	n	
+]q	跳转到快速修复列表下一项	n	
+<leader>cf	格式化代码（当前行 / 选中内容）	n, x	
+<leader>cd	查看当前行诊断信息	n	
+]d	跳转到下一个诊断信息	n	
+[d	跳转到上一个诊断信息	n	
+]e	跳转到下一个错误	n	
+[e	跳转到上一个错误	n	
+]w	跳转到下一个警告	n	
+[w	跳转到上一个警告	n	
+<leader>uf	切换全局自动格式化功能	n	
+<leader>uF	切换当前缓冲区自动格式化功能	n	
+<leader>us	切换拼写检查功能	n	
+<leader>uw	切换自动换行功能	n	
+<leader>uL	切换相对行号显示	n	
+<leader>ud	切换诊断信息显示	n	
+<leader>ul	切换行号显示	n	
+<leader>uc	切换隐藏级别（conceal level）	n	
+<leader>uA	切换标签栏显示	n	
+<leader>uT	切换 Treesitter 语法高亮	n	
+<leader>ub	切换深色背景	n	
+<leader>uD	切换窗口暗淡效果	n	
+<leader>ua	切换动画效果	n	
+<leader>ug	切换缩进参考线	n	
+<leader>uS	切换平滑滚动功能	n	
+<leader>dpp	切换性能分析器	n	
+<leader>dph	切换性能分析器高亮	n	
+<leader>uh	切换内嵌提示（inlay hints）	n	
+<leader>gL	查看当前目录 Git 日志	n	
+<leader>gb	显示当前行 Git Blame 信息	n	
+<leader>gf	查看当前文件 Git 历史记录	n	
+<leader>gl	查看 Git 日志	n	
+<leader>gB	在浏览器打开 Git 对应位置	n, x	
+<leader>gY	复制 Git 对应位置链接	n, x	
+<leader>qq	退出所有窗口	n	
+<leader>ui	查看光标位置信息	n	
+<leader>uI	查看 Treesitter 语法树	n	
+<leader>L	查看 LazyVim 更新日志	n	
+<leader>fT	打开当前目录终端	n	
+<leader>ft	打开项目根目录终端	n	
+<c-/>	打开项目根目录终端	n, t	
+<c-_>	忽略 which-key 提示	n, t	
+<leader>-	水平拆分窗口（下方新建）	n	
+<leader>|	垂直拆分窗口（右侧新建）	n
+<leader>wd	删除当前窗口	n	
+<leader>wm	切换窗口缩放模式	n	
+<leader>uZ	切换窗口缩放模式	n	
+<leader>uz	切换禅模式（专注编辑）	n	
+<leader><tab>l	切换到最后一个标签页	n	
+<leader><tab>o	关闭其他所有标签页	n	
+<leader><tab>f	切换到第一个标签页	n	
+<leader><tab><tab>	新建标签页	n	
+<leader><tab>]	切换到下一个标签页	n	
+<leader><tab>d	关闭当前标签页	n	
+<leader><tab>[	切换到上一个标签页	n	

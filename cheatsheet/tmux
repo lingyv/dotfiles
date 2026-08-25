@@ -1,0 +1,48 @@
+tmux  创建session
+<prefix> C-c  创建session
+tmux new -S name  创建session并指定一个name
+tmux ls  查看后台session
+tmux a  重连session
+tmux a -t num  指定session num连接
+tmux kill-ses -t myses  kill某个session
+tmux kill-ses -a  kill除当前的其他session
+tmux kill-ses -a -t myses  kill除myses的其他session
+<prefix> d  detach session
+<prefix> C-f  查找session
+<prefix> s  列出session
+<prefix> $  重命名session
+<prefix> (  跳到上一个session
+<prefix> )  跳到下一个session
+<prefix> c  新建一个window
+<prefix> C-l  下一个window
+<prefix> C-h  上一个window
+<prefix> w  列出window
+<prefix> &  关闭当前window
+<prefix> num[1-9]  选定特定num的window
+<prefix> f  查找window
+<prefix> ,  重命名window
+<prefix> .  移动window
+<prefix> h/j/k/l  在一个window中切换pane
+<prefix> H/J/K/L  调整pane大小
+<prefix> -  上下切分pane
+<prefix> _  左右切分pane
+<prefix> z  全屏化当前pane,再次执行退出全屏
+<prefix> x  关闭当前pane
+<prefix> q  显示pane编号
+<prefix> <  跟前一个编号的pane交换
+<prefix> >  跟后一个编号的pane交换
+<prefix> ;  跳转到上一个活跃的pane
+<prefix> !  将pane转化为window
+<prefix> <Space>  改变pane的布局
+<prefix> t  显示时钟
+<prefix> :  命令行
+<prefix> Enter  复制模式
+Space  复制模式 进入选择模式
+Enter  复制模式 确认选择内容,并退出
+<prefix> r  重载配置文件
+<prefix> ?  查看所有快捷键列表（带描述）
+<prefix> p  弹出浮动窗口 (80%)
+<prefix> P  弹出持久 popup 会话 (90%)
+<prefix> S  fzf 选择 session 弹出
+<prefix> t  sesh 快速切换 session
+状态栏右侧显示: PREFIX（前缀激活） COPY（复制模式） ZOOM（pane 全屏）
