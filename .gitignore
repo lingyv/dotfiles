@@ -57,6 +57,10 @@ tags
 # Local Claude settings
 .claude/
 
+# Reasonix
+.reasonix/
+reasonix.toml
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
