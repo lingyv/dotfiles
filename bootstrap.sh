@@ -19,6 +19,9 @@ function doIt() {
     sudo ln -s -f ~/dotfiles/.condarc ~/.condarc
     sudo ln -s -f ~/dotfiles/.tern-project ~/.tern-project
     sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    mkdir -p ~/.config/fcitx5
+    sudo ln -s -f ~/dotfiles/fcitx5/config ~/.config/fcitx5/config
+    sudo ln -s -f ~/dotfiles/fcitx5/profile ~/.config/fcitx5/profile
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
