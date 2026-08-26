@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Fcitx5 输入法中英切换(onClick 用)。
+# 当前激活输入法为 rime 时,翻转其 ascii(西文/中文)模式;
+# 否则切回 rime。
+
+IM=$(busctl --user call org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1 CurrentInputMethod 2>/dev/null | grep -o '"[^"]*"' | tr -d '"')
+
+if [ "$IM" = "rime" ]; then
+  cur=$(busctl --user call org.fcitx.Fcitx5 /rime org.fcitx.Fcitx.Rime1 IsAsciiMode 2>/dev/null)
+  if [ "$cur" = "b true" ]; then
+    busctl --user call org.fcitx.Fcitx5 /rime org.fcitx.Fcitx.Rime1 SetAsciiMode b false >/dev/null
+  else
+    busctl --user call org.fcitx.Fcitx5 /rime org.fcitx.Fcitx.Rime1 SetAsciiMode b true >/dev/null
+  fi
+else
+  # 从英文键盘切回 rime
+  busctl --user call org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1 SetCurrentIM s "rime" >/dev/null
+fi

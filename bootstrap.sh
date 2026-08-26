@@ -29,6 +29,12 @@ function doIt() {
              hyprland.lua xdph.conf hyprsunset.conf .luarc.json; do
         ln -s -f ~/dotfiles/hypr/$f ~/.config/hypr/$f
     done
+
+    # Omarchy shell custom bar scripts (Fcitx status)
+    mkdir -p ~/.config/omarchy/bar/scripts
+    ln -s -f ~/dotfiles/omarchy/shell.json ~/.config/omarchy/shell.json
+    ln -s -f ~/dotfiles/omarchy/bar/scripts/fcitx-status ~/.config/omarchy/bar/scripts/fcitx-status
+    ln -s -f ~/dotfiles/omarchy/bar/scripts/fcitx-toggle ~/.config/omarchy/bar/scripts/fcitx-toggle
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

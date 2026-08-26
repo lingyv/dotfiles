@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Fcitx5 输入法状态 bar widget 脚本。
+# 输出 Waybar 风格 JSON,供 omarchy bar 的 command 模块显示。
+#
+# 查询项:
+#   /controller CurrentInputMethod  -> 当前激活输入法("rime" / "fcitx-keyboard-us" 等)
+#   /rime       IsAsciiMode          -> rime 是否处于西文(ascii)输入模式
+
+IM=$(busctl --user call org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1 CurrentInputMethod 2>/dev/null | grep -o '"[^"]*"' | tr -d '"')
+
+ascii_only() {
+  local r
+  r=$(busctl --user call org.fcitx.Fcitx5 /rime org.fcitx.Fcitx.Rime1 IsAsciiMode 2>/dev/null)
+  [ "$r" = "b true" ]
+}
+
+case "$IM" in
+  rime)
+    if ascii_only; then
+      text="英·rime"; cls="en"; label="英文"
+    else
+      text="中·rime"; cls="zh"; label="中文"
+    fi
+    tooltip="Fcitx5: Rime ($label) — 点击切换"
+    ;;
+  fcitx-keyboard-us|keyboard-us|"" )
+    text="英"; cls="en"; label="英文键盘"
+    tooltip="Fcitx5: 英文键盘 — 点击切换"
+    ;;
+  *)
+    text="$IM"; cls="zh"
+    tooltip="Fcitx5: $IM"
+    ;;
+esac
+
+printf '{"text":"%s","tooltip":"%s","class":"%s"}\n' "$text" "$tooltip" "$cls"
