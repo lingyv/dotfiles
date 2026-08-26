@@ -22,6 +22,13 @@ function doIt() {
     mkdir -p ~/.config/fcitx5
     ln -s -f ~/dotfiles/fcitx5/config ~/.config/fcitx5/config
     ln -s -f ~/dotfiles/fcitx5/profile ~/.config/fcitx5/profile
+
+    # Hyprland (Omarchy) user overrides
+    mkdir -p ~/.config/hypr
+    for f in bindings.lua looknfeel.lua input.lua autostart.lua monitors.lua \
+             hyprland.lua xdph.conf hyprsunset.conf .luarc.json; do
+        ln -s -f ~/dotfiles/hypr/$f ~/.config/hypr/$f
+    done
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
