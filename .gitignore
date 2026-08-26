@@ -10,6 +10,9 @@
 # local Claude Code settings (machine-specific)
 .claude/settings.local.json
 
+# Reasonix session config (local, not tracked)
+reasonix.toml
+
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 

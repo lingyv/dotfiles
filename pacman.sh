@@ -69,24 +69,12 @@ sudo pacman -S --needed --noconfirm \
     noto-fonts \
     noto-fonts-cjk \
     noto-fonts-emoji \
-    ttf-jetbrains-mono \
-    ttf-jetbrains-mono-nerd \
     ttf-firacode-nerd \
     ttf-hack \
     ttf-hack-nerd \
     ttf-nerd-fonts-symbols
 
 # GUI applications
-echo "==> Installing GUI applications..."
-sudo pacman -S --needed --noconfirm \
-    firefox \
-    pacseek \
-    pcmanfm-qt \
-    celluloid \
-    file-roller \
-    gnome-epub-thumbnailer \
-    opencode
-
 # Chinese input method and fonts
 echo "==> Installing Chinese input method and fonts..."
 sudo pacman -S --needed --noconfirm \
@@ -97,8 +85,7 @@ sudo pacman -S --needed --noconfirm \
     adobe-source-han-serif-cn-fonts \
     ttf-dejavu \
     wqy-microhei \
-    wqy-zenhei \
-    oh-my-zsh
+    wqy-zenhei
 
 # AUR packages (using yay if available)
 if command -v yay &>/dev/null; then
@@ -126,17 +113,6 @@ fi
 echo "==> Installing tmux plugins..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# Install zsh plugins
-echo "==> Installing zsh plugins..."
-if [ -d ~/.oh-my-zsh/custom/plugins ]; then
-    if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-    fi
-    if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-    fi
 fi
 
 # Install NVM

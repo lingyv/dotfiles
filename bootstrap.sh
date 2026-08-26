@@ -4,24 +4,24 @@ cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
 
-    sudo ln -s -f ~/dotfiles/.zshrc ~/.zshrc
-    sudo ln -s -f ~/dotfiles/.aliases ~/.aliases
-    sudo ln -s -f ~/dotfiles/.functions ~/.functions
-    sudo ln -s -f ~/dotfiles/.bash_profile ~/.bash_profile
-    sudo ln -s -f ~/dotfiles/.bashrc ~/.bashrc
-    sudo ln -s -f ~/dotfiles/.curlrc ~/.curlrc
-    sudo ln -s -f ~/dotfiles/.gitconfig ~/.gitconfig
-    sudo ln -s -f ~/dotfiles/.vimrc ~/.vimrc
-    mkdir -p ~/.config/nvim
-    sudo ln -s -f ~/dotfiles/.vimrc ~/.config/nvim/init.vim
-    sudo ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
-    sudo ln -s -f ~/dotfiles/.exports ~/.exports
-    sudo ln -s -f ~/dotfiles/.zprofile ~/.zprofile
-    sudo ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -s -f ~/dotfiles/.zshrc ~/.zshrc
+    ln -s -f ~/dotfiles/.aliases ~/.aliases
+    ln -s -f ~/dotfiles/.functions ~/.functions
+    ln -s -f ~/dotfiles/.bash_profile ~/.bash_profile
+    ln -s -f ~/dotfiles/.bashrc ~/.bashrc
+    ln -s -f ~/dotfiles/.curlrc ~/.curlrc
+    ln -s -f ~/dotfiles/.gitconfig ~/.gitconfig
+    ln -s -f ~/dotfiles/.vimrc ~/.vimrc
+    #mkdir -p ~/.config/nvim # use lazyvim
+    #ln -s -f ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+    ln -s -f ~/dotfiles/.ideavimrc ~/.ideavimrc
+    ln -s -f ~/dotfiles/.exports ~/.exports
+    ln -s -f ~/dotfiles/.zprofile ~/.zprofile
+    ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -s -f ~/dotfiles/ghostty ~/.config/
     mkdir -p ~/.config/fcitx5
-    sudo ln -s -f ~/dotfiles/fcitx5/config ~/.config/fcitx5/config
-    sudo ln -s -f ~/dotfiles/fcitx5/profile ~/.config/fcitx5/profile
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ln -s -f ~/dotfiles/fcitx5/config ~/.config/fcitx5/config
+    ln -s -f ~/dotfiles/fcitx5/profile ~/.config/fcitx5/profile
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

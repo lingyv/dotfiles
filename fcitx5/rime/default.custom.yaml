@@ -1,0 +1,12 @@
+patch:
+  # 这里的 rime_ice_suggestion 为雾凇方案的默认预设
+  __include: rime_ice_suggestion:/
+
+  # 候选词每页默认显示 9 个
+  # (具体方案如 double_pinyin_flypy 通过各自的 .custom.yaml 覆盖,见同名文件)
+  "menu/page_size": 9
+
+  # Shift 中英切换(commit_code = 按 shift 立即输入西文/切回中文)
+  # 默认左 Shift 已支持,这里把右 Shift 也设为同样行为
+  "ascii_composer/switch_key/Shift_L": commit_code
+  "ascii_composer/switch_key/Shift_R": commit_code
